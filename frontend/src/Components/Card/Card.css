@@ -110,12 +110,12 @@
 
 .quick-add-button {
   position: absolute;
-  border: 1px solid black;
+
   bottom: 14%;
   left: 0;
   width: 100%;
   padding: 12px 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   color: #007bff;
   border: none;
   font-weight: bold;
@@ -125,6 +125,7 @@
 }
 
 .quick-add-button {
+  border: 1px solid #007bff;
   transform: translateY(100%);
   transition: all 1s ease;
 }
