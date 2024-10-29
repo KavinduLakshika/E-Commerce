@@ -1,7 +1,19 @@
 import './Card.css';
 import { FaHeart, FaEye } from 'react-icons/fa';
+import { useState } from 'react';
 
-const Card = ({ image, prodName, prodPrice }) => {
+const Card = ({ image, prodName, prodPrice, onAddToCart, onAddToWishlist }) => {
+    const [wishlistAdded, setWishlistAdded] = useState(false);
+
+    const handleAddToCart = () => {
+        onAddToCart({ image, prodName, prodPrice });
+    };
+
+    const handleAddToWishlist = () => {
+        setWishlistAdded(true);
+        onAddToWishlist({ image, prodName, prodPrice });
+    };
+
     return (
         <div className='container-fluid mt-3'>
             <div className="product-card">
@@ -12,10 +24,11 @@ const Card = ({ image, prodName, prodPrice }) => {
                         alt={prodName}
                     />
                     <div className="icon-container">
-                        <div className="icon-wrapper">
-                            <FaHeart className="icon" />
+                        <div className="icon-wrapper" onClick={handleAddToWishlist}>
+                            <FaHeart className={`icon ${wishlistAdded ? 'added' : ''}`} />
                             <div className="icon-label">
-                                Add to Wishlist <FaHeart />
+                                {wishlistAdded ? 'Added to Wishlist' : 'Add to Wishlist'}
+                                <FaHeart />
                             </div>
                         </div>
                         <div className="icon-wrapper">
@@ -27,7 +40,7 @@ const Card = ({ image, prodName, prodPrice }) => {
                     </div>
                 </div>
                 <div className="product-details">
-                    <button className="quick-add-button">
+                    <button className="quick-add-button" onClick={handleAddToCart}>
                         QUICK ADD
                     </button>
                     <div className="product-name">{prodName}</div>
