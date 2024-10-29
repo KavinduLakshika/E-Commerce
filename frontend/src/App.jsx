@@ -1,10 +1,14 @@
-import "bootswatch/dist/lux/bootstrap.min.css";
 import Card from "./Components/Card/card";
+import prod from './assets/prod.jpg';
 
 function App() {
   return (
     <div>
-      <Card></Card>
+      <Card
+        image={prod}
+        prodName="Buddika"
+        prodPrice="180"
+      />
     </div>
   )
 }
