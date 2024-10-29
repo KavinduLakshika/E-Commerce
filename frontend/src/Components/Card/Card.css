@@ -126,7 +126,7 @@
   width: 100%;
   padding: 12px 0;
   background-color: white;
-  color: #007bff;
+  color: #000000;
   border: none;
   font-weight: bold;
   opacity: 0;
@@ -135,7 +135,6 @@
 }
 
 .quick-add-button {
-  border: 1px solid #007bff;
   transform: translateY(100%);
   transition: all 1s ease;
 }
@@ -157,8 +156,8 @@
 }
 
 .quick-add-button:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
 
 .size-buttons {

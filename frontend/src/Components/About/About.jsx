@@ -6,6 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 const About = () => {
 
   return (
+    <>
     <div className="slider-container">
       <Carousel
         showArrows={true}
@@ -26,6 +27,7 @@ const About = () => {
         </div>
       </Carousel>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import './NavBar.css'; // Ensure you add your CSS in this file
+import './NavBar.css';
 import { FaBars, FaShoppingCart, FaBell } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -9,17 +10,17 @@ const NavBar = () => {
                 <a className="navbar-brand" href="#">
                     <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo" loading="lazy" />
                 </a>
-                
+
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
+                            <Link to='/' style={{ textDecoration: 'none' }}><a className="nav-link">Home</a></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Shop</a>
+                            <Link to='men' style={{ textDecoration: 'none' }}><a className="nav-link">Shop</a></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Contact</a>
+                            <Link to='' style={{ textDecoration: 'none' }}><a className="nav-link">Contact</a></Link>
                         </li>
                     </ul>
                 </div>
