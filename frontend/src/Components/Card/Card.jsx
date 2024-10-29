@@ -2,16 +2,27 @@ import './Card.css';
 import { FaHeart, FaEye } from 'react-icons/fa';
 import { useState } from 'react';
 
-const Card = ({ image, prodName, prodPrice, onAddToCart, onAddToWishlist }) => {
+const Card = ({ image, prodName, prodPrice, onAddToCart, onAddToWishlist, availableSizes }) => {
+    `
+    `
     const [wishlistAdded, setWishlistAdded] = useState(false);
+    const [selectedSize, setSelectedSize] = useState(null);
 
     const handleAddToCart = () => {
-        onAddToCart({ image, prodName, prodPrice });
+        if (selectedSize) {
+            onAddToCart({ image, prodName, prodPrice, selectedSize });
+        } else {
+            alert("Please select a size before adding to cart.");
+        }
     };
 
     const handleAddToWishlist = () => {
         setWishlistAdded(true);
         onAddToWishlist({ image, prodName, prodPrice });
+    };
+
+    const handleSizeSelect = (size) => {
+        setSelectedSize(size);
     };
 
     return (
@@ -45,6 +56,17 @@ const Card = ({ image, prodName, prodPrice, onAddToCart, onAddToWishlist }) => {
                     </button>
                     <div className="product-name">{prodName}</div>
                     <div className="product-price">Rs {prodPrice}</div>
+                </div>
+                <div className="size-buttons">
+                    {availableSizes.map((size) => (
+                        <button
+                            key={size}
+                            className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+                            onClick={() => handleSizeSelect(size)}
+                        >
+                            {size}
+                        </button>
+                    ))}
                 </div>
             </div>
         </div>
