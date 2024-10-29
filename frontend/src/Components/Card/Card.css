@@ -1,3 +1,14 @@
+.sort-select {
+  width: 200px;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.sort-select:hover {
+  color: black;
+}
+
 .product-card {
   width: 20rem;
   border: 1px solid #e0e0e0;

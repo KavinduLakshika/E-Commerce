@@ -1,4 +1,3 @@
-// src/CardList.js
 /* eslint-disable react/prop-types */
 import './Card.css';
 import { FaHeart, FaEye } from 'react-icons/fa';
@@ -20,6 +19,7 @@ const CardList = ({
     const [currentPage, setCurrentPage] = useState(1);
     const [wishlistAdded, setWishlistAdded] = useState({});
     const [selectedSizes, setSelectedSizes] = useState({});
+    const [sortOption, setSortOption] = useState('default');
 
     useEffect(() => {
         setCurrentPage(1);
@@ -42,14 +42,41 @@ const CardList = ({
         setSelectedSizes({ ...selectedSizes, [item.prodName]: size });
     };
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    const currentItems = data.slice(
+    const handleSortChange = (e) => {
+        setSortOption(e.target.value);
+    };
+
+    const sortedData = [...data].sort((a, b) => {
+        if (sortOption === 'name') {
+            return a.prodName.localeCompare(b.prodName);
+        } else if (sortOption === 'priceAsc') {
+            return a.prodPrice - b.prodPrice;
+        } else if (sortOption === 'priceDesc') {
+            return b.prodPrice - a.prodPrice;
+        }
+        return 0; 
+    });
+
+    const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+    const currentItems = sortedData.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
 
     return (
         <div className="container-fluid p-4">
+
+            <div className="row mb-3 align-items-center">
+                <div className="col-md-12 d-flex justify-content-end">
+                    <select className="form-select sort-select" value={sortOption} onChange={handleSortChange}>
+                        <option value="default">Sort By</option>
+                        <option value="name">Name</option>
+                        <option value="priceAsc">Price: Low to High</option>
+                        <option value="priceDesc">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
             <div className="row">
                 {currentItems.map((item, index) => (
                     <div className="col-md-3 mb-3" key={index}>
@@ -57,7 +84,7 @@ const CardList = ({
                             <div className="product-card-img-container">
                                 <img src={item.image} className="product-card-img" alt={item.prodName} />
 
-                                {showIcons && (
+                                {showIcons &&
                                     <div className="icon-container">
                                         <div className="icon-wrapper" onClick={() => handleAddToWishlist(item)}>
                                             <FaHeart className={`icon ${wishlistAdded[item.prodName] ? 'added' : ''}`} />
@@ -67,25 +94,23 @@ const CardList = ({
                                         </div>
                                         <div className="icon-wrapper">
                                             <FaEye className="icon" />
-                                            <div className="icon-label">
-                                                View Details
-                                            </div>
+                                            <div className="icon-label">View Details</div>
                                         </div>
                                     </div>
-                                )}
+                                }
                             </div>
 
-                            {showProdDetails && (
+                            {showProdDetails &&
                                 <div className="product-details">
-                                    {showBtn && (
+                                    {showBtn &&
                                         <button className="quick-add-button" onClick={() => handleAddToCart(item)}>
-                                            {item.btnName} {/* Use item.btnName for button text */}
+                                            QUICK ADD
                                         </button>
-                                    )}
+                                    }
                                     {showName && <div className="product-name">{item.prodName}</div>}
                                     {showPrice && <div className="product-price">Rs {item.prodPrice}</div>}
                                 </div>
-                            )}
+                            }
 
                             {showSizeOptions && (
                                 <div className="size-buttons">
