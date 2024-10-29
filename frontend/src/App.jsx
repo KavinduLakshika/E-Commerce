@@ -1,11 +1,17 @@
-import Card from "./Components/Card/card";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import Home from './Pages/Home/Home';
 
 function App() {
   return (
-    <div>
-      <Card></Card>
-    </div>
-  )
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
