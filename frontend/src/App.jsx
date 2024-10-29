@@ -6,11 +6,13 @@ import Mens from './Pages/Mens/Mens';
 function App() {
   return (
     <BrowserRouter>
+    <div className="m-3">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="men" element={<Mens />} />
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }
