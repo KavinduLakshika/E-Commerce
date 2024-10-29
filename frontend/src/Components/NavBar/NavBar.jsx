@@ -1,16 +1,15 @@
 import React from 'react';
-import './NavBar';
+import './NavBar.css'; // Ensure you add your CSS in this file
 import { FaBars, FaShoppingCart, FaBell } from 'react-icons/fa';
 
 const NavBar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary position-sticky top-0" style={{ zIndex: 1030 }}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo" loading="lazy" />
                 </a>
                 
-
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
@@ -58,4 +57,5 @@ const NavBar = () => {
         </nav>
     );
 }
+
 export default NavBar;

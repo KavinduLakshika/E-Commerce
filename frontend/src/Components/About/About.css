@@ -1,0 +1,21 @@
+.slider-container {
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+}
+
+.slider-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 0 10px;
+  }
+
+  .slider-container img {
+    border-radius: 10px;
+  }
+}
