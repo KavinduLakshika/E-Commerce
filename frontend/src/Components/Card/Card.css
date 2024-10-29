@@ -31,15 +31,11 @@
   transform: scale(1.15);
 }
 
-.icon-container,
-.quick-add-button {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.product-card:hover .icon-container,
-.product-card:hover .quick-add-button {
-  opacity: 1;
+.icon {
+  font-size: 0.8rem;
+  color: black;
+  transition: all 0.3s ease;
+  position: absolute;
 }
 
 .icon-container {
@@ -66,11 +62,6 @@
   transition: background-color 0.3s ease;
 }
 
-.icon-wrapper:hover {
-  background-color: transparent;
-  box-shadow: none;
-}
-
 .icon-label {
   position: absolute;
   top: 50%;
@@ -91,11 +82,20 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.icon {
-  font-size: 0.8rem;
-  color: black;
-  transition: all 0.3s ease;
-  position: absolute;
+.icon-container,
+.quick-add-button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .icon-container,
+.product-card:hover .quick-add-button {
+  opacity: 1;
+}
+
+.icon-wrapper:hover {
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .icon-wrapper:hover .icon {
@@ -110,8 +110,7 @@
 
 .quick-add-button {
   position: absolute;
-
-  bottom: 14%;
+  bottom: 25%;
   left: 0;
   width: 100%;
   padding: 12px 0;
@@ -130,6 +129,17 @@
   transition: all 1s ease;
 }
 
+.product-name {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.product-price {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
 .product-card:hover .quick-add-button {
   opacity: 1;
   transform: translateY(0);
@@ -140,13 +150,26 @@
   color: white;
 }
 
-.product-name {
-  font-weight: bold;
+.size-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
-.product-price {
-  color: #333;
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+.size-button {
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.size-button.selected,
+.size-button:hover {
+  background-color: #007bff;
+  color: white;
 }
