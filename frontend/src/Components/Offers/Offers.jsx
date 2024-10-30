@@ -41,7 +41,7 @@ function Offers() {
       {/* Gallery Rows */}
       <div className="row">
         {images.map((image, index) => (
-          <div key={index} className="col-lg-3 col-md-6 mb-4">
+          <div key={index} className=" col-6 col-lg-3 col-md-6 col-sm-6  mb-4">
             <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
               <img src={image} className="w-100" alt={`Thumbnail ${index + 1}`} />
             </div>
