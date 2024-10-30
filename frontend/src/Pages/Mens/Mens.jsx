@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardList from "../../Components/Card/CardList";
-import prod from '../../assets/prod.jpg';
+import prod from '../../assets/prod.webp';
 import './Mens.css';
 
 function Mens() {

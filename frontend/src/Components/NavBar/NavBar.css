@@ -3,3 +3,38 @@
     top: 0;
     z-index: 1030;
 }
+
+.navbar {
+    background-color: #343a40;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.navbar .nav-link {
+    color: white;
+}
+
+.navbar .dropdown-menu {
+    background-color: #495057;
+    border-radius: 0.5rem;
+}
+
+.navbar .dropdown-item {
+    color: white;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #6c757d;
+}
+.navbar-brand {
+    position: relative;
+    left: 42%;
+    text-align: center;
+}
+@media (max-width:991px) {
+    .navbar-brand {
+        position: relative;
+        left: 0;
+    }
+}
+    

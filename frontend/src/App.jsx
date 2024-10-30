@@ -11,6 +11,7 @@ import Accessories from './Pages/Mens/MensWear/Accessories';
 function App() {
   return (
     <BrowserRouter>
+    <div className="m-3">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/accessories" element={<Accessories />} />
         
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }
