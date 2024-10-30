@@ -25,7 +25,6 @@ function App() {
       '../src/assets/prod.webp',
       '../src/assets/prod 2.webp',
       '../src/assets/prod.webp',
-      '../src/assets/prod 2.webp',
     ],
     sizes: ['2XL', 'XL', 'L', 'M', 'S'],
     colors: ['Multi Color'],
