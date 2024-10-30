@@ -2,14 +2,6 @@ import React from 'react';
 import './Offers.css';
 
 const images = [
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-1.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-2.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-3.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-4.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-5.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-6.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-7.webp',
-  // 'https://mdbcdn.b-cdn.net/img/screens/yt/screen-video-8.webp',
   'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fxogwlpx44qiz2c4pdoqib4wd&w=828&q=75',
   'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Ftwxsxy4va4y3lh90mvfpp6nh&w=828&q=75',
   'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fbznom57qeoi3h8nhkas6yvn3&w=828&q=75',
