@@ -9,7 +9,7 @@ function Services() {
     return (
         <div className='container-fluid mt-5 my-5'>
              
-        <div className='container mt-5 my-5'>
+        <div className='mt-5 my-5'>
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <div className="card d-flex flex-column align-items-center justify-content-center p-3 cardbg h-100 rounded">
