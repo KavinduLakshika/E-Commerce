@@ -18,6 +18,7 @@ const CardList = ({
     const [sortOption, setSortOption] = useState('default');
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
+    const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
     const [colorDropdownOpen, setColorDropdownOpen] = useState(false);
     const [sizeDropdownOpen, setSizeDropdownOpen] = useState(false);
 
@@ -51,6 +52,13 @@ const CardList = ({
         currentPage * itemsPerPage
     );
 
+    const toggleSortDropdown = () => setSortDropdownOpen(!sortDropdownOpen);
+
+    const handleSortChange = (option) => {
+        setSortOption(option);
+        setSortDropdownOpen(false);
+    };
+
     const toggleColorDropdown = () => setColorDropdownOpen(!colorDropdownOpen);
     const toggleSizeDropdown = () => setSizeDropdownOpen(!sizeDropdownOpen);
 
@@ -73,16 +81,23 @@ const CardList = ({
                 </div>
                 <div className="col-md-9 d-flex justify-content-end">
                     {showSort && (
-                        <select
-                            className="form-select sort-select"
-                            value={sortOption}
-                            onChange={(e) => setSortOption(e.target.value)}
-                        >
-                            <option value="default">Sort By</option>
-                            <option value="name">Name</option>
-                            <option value="priceAsc">Price: Low to High</option>
-                            <option value="priceDesc">Price: High to Low</option>
-                        </select>
+                        <div className="sort-dropdown">
+                            <button
+                                className="sort-button"
+                                onClick={toggleSortDropdown}
+                            >
+                                Sort By {sortOption !== 'default' && `: ${sortOption}`}
+                                <span className={`arrow ${sortDropdownOpen ? 'up' : 'down'}`}></span>
+                            </button>
+                            {sortDropdownOpen && (
+                                <ul className="sort-options">
+                                    <li onClick={() => handleSortChange('default')}>Default</li>
+                                    <li onClick={() => handleSortChange('name')}>Name</li>
+                                    <li onClick={() => handleSortChange('priceAsc')}>Price: Low to High</li>
+                                    <li onClick={() => handleSortChange('priceDesc')}>Price: High to Low</li>
+                                </ul>
+                            )}
+                        </div>
                     )}
                 </div>
             </div>
@@ -121,11 +136,10 @@ const CardList = ({
                                             </div>
                                         </ul>
                                     )}
+                                    <hr />
                                 </div>
                             )}
 
-
-                            <hr />
                             {showSize && (
                                 <div className="dropdown mb-3">
                                     <button
@@ -152,9 +166,10 @@ const CardList = ({
                                     )}
                                 </div>
                             )}
+                            <hr />
                         </div>
                     )}
-                    <hr />
+
                 </div>
 
                 <div className="col-md-9">
