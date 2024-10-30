@@ -9,3 +9,20 @@
 .card h5 {
     font-size: 1.1rem;
 }
+
+@media (max-width:768px){
+
+    .cardbg .icon svg {
+        width: 24px; 
+        height: 24px;
+    }
+
+    .cardbg h5 {
+        font-size: 12px;
+    }
+
+    .cardbg p {
+        font-size: 10px; 
+    }
+
+}
