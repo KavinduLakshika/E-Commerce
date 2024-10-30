@@ -10,9 +10,11 @@ const NavBar = () => {
 
                 {/* Left Side: Shopping Cart and User Dropdown */}
                 <div className="d-flex align-items-center">
-                    <a className="text-reset me-3" href="#">
-                        <FaShoppingCart size={25} color="white" />
-                    </a>
+                    <Link to="/cart">
+                        <a className="text-reset me-3" href="#">
+                            <FaShoppingCart size={25} color="white" />
+                        </a>
+                    </Link>
                     <div className="dropdown">
                         <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
@@ -36,17 +38,20 @@ const NavBar = () => {
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <FaBars size={25} color="white" />
                 </button>
-                
+
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link to='/' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Home</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/men' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Shop</span></Link>
+                            <Link to='/men' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Men</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/contact' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Contact</span></Link>
+                            <Link to='/women' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Women</span></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/contact' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Brands</span></Link>
                         </li>
                     </ul>
                 </div>
