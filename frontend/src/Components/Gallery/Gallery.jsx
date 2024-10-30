@@ -5,6 +5,7 @@ function Gallery() {
         <div className="d-flex justify-content-center my-5">
 
             <div class="row container">
+                <div className='text-center mb-2'> <h1>New Arrivals</h1> </div>
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 ">
                     <img
                         // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
