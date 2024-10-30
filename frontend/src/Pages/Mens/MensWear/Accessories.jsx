@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CardList from "../../Components/Card/CardList";
-import prod from '../../assets/prod.jpg';
-import './Mens.css';
+import CardList from "../../../Components/Card/CardList";
+import prod from '../../../assets/prod.jpg';
+import '../../Mens/Mens.css';
 
-function Mens() {
+function Accessories() {
+
     const navigate = useNavigate();
-    const [activeCategory, setActiveCategory] = useState('All');
+    const [activeCategory, setActiveCategory] = useState('Accessories');
 
     const handleCategoryClick = (category, path) => {
         setActiveCategory(category);
@@ -56,45 +57,45 @@ function Mens() {
                     </span>
                     <span
                         onClick={() => handleCategoryClick("Men's Formal wear", '/formalwear')}
-                        className={`cat-link ${activeCategory === "Men's Formal wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeCategory === "Formal wear" ? 'active' : ''}`}
                     >
                         Men’s Formal wear
                     </span>
                     <span
                         onClick={() => handleCategoryClick("Men's Casual Wear", '/casualWear')}
-                        className={`cat-link ${activeCategory === "Men's Casual Wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeCategory === "Casual Wear" ? 'active' : ''}`}
                     >
                         Men’s Casual Wear
                     </span>
                     <span
                         onClick={() => handleCategoryClick("Men's Active wear", '/activeWear')}
-                        className={`cat-link ${activeCategory === "Men's Active wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeCategory === "Active wear" ? 'active' : ''}`}
                     >
                         Men’s Active wear
                     </span>
                     <span
                         onClick={() => handleCategoryClick("Men's Inner wear", '/innerWear')}
-                        className={`cat-link ${activeCategory === "Men's Inner wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeCategory === "Inner wear" ? 'active' : ''}`}
                     >
                         Men’s Inner wear
                     </span>
                     <span
                         onClick={() => handleCategoryClick("Men's Accessories", '/accessories')}
-                        className={`cat-link ${activeCategory === "Men's Accessories" ? 'active' : ''}`}
+                        className={`cat-link ${activeCategory === "Accessories" ? 'active' : ''}`}
                     >
                         Men’s Accessories
                     </span>
                 </div>
             </div>
-            
+
             <div>
                 <CardList
                     data={sampleData}
-                    pageName='Men'
+                    pageName='Accessories'
                 />
             </div>
         </div>
-    );
+    )
 }
 
-export default Mens;
+export default Accessories

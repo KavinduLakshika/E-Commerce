@@ -2,15 +2,14 @@
   width: 200px;
   margin-right: 10px;
   font-weight: bold;
-  transition: all 0.3s ease;
 }
 
-.sort-select:hover {
-  color: black;
+.pageName {
+  font-weight: bold;
 }
 
 .product-card {
-  width: 20rem;
+  width: 100%;
   border: 1px solid #e0e0e0;
   overflow: hidden;
   position: relative;
@@ -28,120 +27,27 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 400px;
+  height: 300px;
 }
 
 .product-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s ease-out;
+  transition: transform 0.5s ease-out;
 }
 
 .product-card:hover .product-card-img {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
-.icon {
-  font-size: 0.8rem;
-  color: black;
-  transition: all 0.3s ease;
-  position: absolute;
-}
-
-.icon-container {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.icon-wrapper {
-  position: relative;
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  padding: 10px;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.icon-label {
-  position: absolute;
-  top: 50%;
-  left: 51%;
-  transform: translate(-90%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 5px 10px;
-  white-space: nowrap;
-  font-size: 0.9rem;
-  color: black;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.icon-container,
-.quick-add-button {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.product-card:hover .icon-container,
 .product-card:hover .quick-add-button {
   opacity: 1;
 }
 
-.icon-wrapper:hover {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.icon-wrapper:hover .icon {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.icon-wrapper:hover .icon-label {
-  opacity: 1;
-  visibility: visible;
-}
-
-.quick-add-button {
-  position: absolute;
-  bottom: 25%;
-  left: 0;
-  width: 100%;
-  padding: 12px 0;
-  background-color: white;
-  color: #000000;
-  border: none;
-  font-weight: bold;
-  opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.3s ease;
-}
-
-.quick-add-button {
-  transform: translateY(100%);
-  transition: all 1s ease;
-}
-
 .product-name {
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .product-price {
@@ -150,36 +56,60 @@
   margin-bottom: 10px;
 }
 
-.product-card:hover .quick-add-button {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.quick-add-button:hover {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-}
-
-.size-buttons {
-  display: flex;
-  justify-content: center;
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  padding: 10px;
 }
 
-.size-button {
-  padding: 5px 10px;
-  border: 1px solid #007bff;
-  background-color: white;
-  color: #007bff;
+.color-option {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 8px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.color-option.selected {
+  border: 2px solid #007bff;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid #000;
+  background-color: white;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.size-option {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  background-color: white;
   font-weight: bold;
+  cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.size-button.selected,
-.size-button:hover {
+.size-option.selected {
   background-color: #007bff;
   color: white;
+  border: 2px solid #0056b3;
+}
+
+.size-option:hover {
+  background-color: #e0e0e0;
 }
