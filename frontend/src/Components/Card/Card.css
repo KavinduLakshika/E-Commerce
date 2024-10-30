@@ -1,6 +1,12 @@
+
+.pageName {
+  margin-left: 100px;
+}
+
 .sort-dropdown {
   position: relative;
   display: inline-block;
+  width: 250px;
 }
 
 .sort-button {
