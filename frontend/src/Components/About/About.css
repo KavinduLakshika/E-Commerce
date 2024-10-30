@@ -11,11 +11,14 @@
 }
 
 @media (max-width: 768px) {
-  .slider-container {
-    padding: 0 10px;
-  }
-
   .slider-container img {
     border-radius: 10px;
+  }
+}
+
+@media (max-width:1000px) {
+  .slider-container img {
+    height:300px;
+    object-fit: cover;
   }
 }
