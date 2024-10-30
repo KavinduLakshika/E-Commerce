@@ -9,6 +9,8 @@ import ActiveWear from './Pages/Mens/MensWear/ActiveWear';
 import Accessories from './Pages/Mens/MensWear/Accessories';
 import Women from './Pages/Women/Women';
 import Product from './Components/product/product';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Sign/SignUp';
 
 function App() {
   const productData = {
@@ -18,9 +20,9 @@ function App() {
     price: 3760.00,
     images: [
       '../src/assets/prod.webp',
-      '../src/assets/IMG-20221017-WA0043.jpg',
+      '../src/assets/prod 2.webp',
       '../src/assets/prod.webp',
-      '../src/assets/IMG-20221017-WA0043.jpg',
+      '../src/assets/prod 2.webp',
     ],
     sizes: ['2XL', 'XL', 'L', 'M', 'S'],
     colors: ['Multi Color'],
@@ -44,6 +46,8 @@ function App() {
 
           <Route path="/product" element={<Product {...productData} />} />
 
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
         </Routes>
       </div>
     </BrowserRouter>
