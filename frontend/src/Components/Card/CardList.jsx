@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useMemo } from 'react';
-import './Card.css'; // Assuming you're using the existing CSS
+import './Card.css';
 
 const CardList = ({
     data,
@@ -78,7 +78,7 @@ const CardList = ({
                             value={sortOption}
                             onChange={(e) => setSortOption(e.target.value)}
                         >
-                            <option value="default">Default</option>
+                            <option value="default">Sort By</option>
                             <option value="name">Name</option>
                             <option value="priceAsc">Price: Low to High</option>
                             <option value="priceDesc">Price: High to Low</option>

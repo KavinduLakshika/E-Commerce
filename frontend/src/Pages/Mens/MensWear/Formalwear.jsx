@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardList from "../../../Components/Card/CardList";
-import prod from '../../../assets/prod.jpg';
+import prod from '../../../assets/prod.webp';
 import '../../Mens/Mens.css';
 
 function Formalwear() {
@@ -24,21 +24,21 @@ function Formalwear() {
         },
         {
             prodName: "Product 2",
-            prodPrice: 1500,
+            prodPrice: 2000,
             image: prod,
             color: "blue",
             availableSizes: ['S', 'M', 'L'],
         },
         {
             prodName: "Product 2",
-            prodPrice: 1500,
+            prodPrice: 2500,
             image: prod,
             color: "blue",
             availableSizes: ['S', 'M', 'L'],
         },
         {
             prodName: "Product 2",
-            prodPrice: 1500,
+            prodPrice: 3000,
             image: prod,
             color: "blue",
             availableSizes: ['S', 'M', 'L'],
