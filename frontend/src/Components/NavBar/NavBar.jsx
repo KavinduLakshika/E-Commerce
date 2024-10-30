@@ -45,10 +45,13 @@ const NavBar = () => {
                             <Link to='/' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Home</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/men' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Shop</span></Link>
+                            <Link to='/men' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Men</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/contact' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Contact</span></Link>
+                            <Link to='/women' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Women</span></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/contact' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Brands</span></Link>
                         </li>
                     </ul>
                 </div>
