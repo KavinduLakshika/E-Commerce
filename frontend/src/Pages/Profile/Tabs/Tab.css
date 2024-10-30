@@ -1,0 +1,49 @@
+.save-btn {
+  width: 150px;
+  background-color: #007bff;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.close-btn {
+  width: 150px;
+  background-color: white;
+  color: black;
+}
+
+.close-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.cat {
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  gap: 5px;
+}
+.cat-link {
+  margin: 0 10px;
+  padding: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cat-link:hover {
+  color: gray;
+}
+
+.cat-link.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.11.3",
     "bootswatch": "^5.3.3",
     "frontend": "file:",
     "mdb-ui-kit": "^8.0.0",

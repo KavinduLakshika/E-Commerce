@@ -13,6 +13,7 @@ import Women from './Pages/Women/Women';
 import Product from './Components/product/product';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Sign/SignUp';
+import Profile from './Pages/Profile/Profile';
 
 function App() {
   const productData = {
@@ -50,6 +51,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </BrowserRouter>
