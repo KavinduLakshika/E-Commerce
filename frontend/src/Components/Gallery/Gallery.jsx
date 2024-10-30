@@ -7,7 +7,7 @@ function Gallery() {
             <div className="row container">
                 <hr />
                 <div className="text-center mb-2">
-                    <h1>New Arrivals</h1>
+                    <h1>Category</h1>
                 </div>
 
                 <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
