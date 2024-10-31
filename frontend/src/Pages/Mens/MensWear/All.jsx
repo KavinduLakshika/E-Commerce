@@ -1,9 +1,7 @@
 import CardList from "../../../Components/Card/CardList";
 import prod from '../../../assets/prod.webp';
-import '../../Mens/Mens.css';
 
-function Formalwear() {
-
+function All() {
     const sampleData = [
         {
             prodName: "Product 1",
@@ -34,15 +32,14 @@ function Formalwear() {
             availableSizes: ['S', 'M', 'L'],
         },
     ];
-
     return (
         <div>
             <CardList
                 data={sampleData}
-                pageName='Formal wear'
+                pageName='All'
             />
         </div>
     )
 }
 
-export default Formalwear
+export default All

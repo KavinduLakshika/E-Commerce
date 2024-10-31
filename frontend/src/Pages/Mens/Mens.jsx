@@ -1,86 +1,69 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import CardList from "../../Components/Card/CardList";
-import prod from '../../assets/prod.webp';
+import All from './MensWear/All';
+import Formalwear from './MensWear/Formalwear';
+import CasualWear from './MensWear/CasualWear';
+import ActiveWear from './MensWear/ActiveWear';
+import InnerWear from './MensWear/InnerWear';
+import Accessories from './MensWear/Accessories';
 import './Mens.css';
 
 function Mens() {
-    const navigate = useNavigate();
-    const [activeCategory, setActiveCategory] = useState('All');
+    const [activeSection, setActiveSection] = useState("All");
 
-    const handleCategoryClick = (category, path) => {
-        setActiveCategory(category);
-        navigate(path);
+    const renderActiveSection = () => {
+        switch (activeSection) {
+            case "formalwear":
+                return <Formalwear />;
+            case "casualWear":
+                return <CasualWear />;
+            case "activeWear":
+                return <ActiveWear />;
+            case "innerWear":
+                return <InnerWear />;
+            case "accessories":
+                return <Accessories />;
+            default:
+                return <All />;
+        }
     };
-
-    const sampleData = [
-        {
-            prodName: "Product 1",
-            prodPrice: 1000,
-            image: prod,
-            color: "red",
-            availableSizes: ["S", "M", "L", "XL", "2XL", "3XL"]
-        },
-        {
-            prodName: "Product 2",
-            prodPrice: 2000,
-            image: prod,
-            color: "blue",
-            availableSizes: ['S', 'M', 'L'],
-        },
-        {
-            prodName: "Product 2",
-            prodPrice: 2500,
-            image: prod,
-            color: "blue",
-            availableSizes: ['S', 'M', 'L'],
-        },
-        {
-            prodName: "Product 2",
-            prodPrice: 3000,
-            image: prod,
-            color: "blue",
-            availableSizes: ['S', 'M', 'L'],
-        },
-    ];
 
     return (
         <div className="p-4">
-            <div className="text-center ">
+            <div className="text-center">
                 <div className="d-flex justify-content-center cat">
                     <span
-                        onClick={() => handleCategoryClick('All', '/men')}
-                        className={`cat-link ${activeCategory === 'All' ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "all" ? "active" : ""}`}
+                        onClick={() => setActiveSection("all")}
                     >
                         All
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Formal wear", '/formalwear')}
-                        className={`cat-link ${activeCategory === "Formal wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "formalwear" ? "active" : ""}`}
+                        onClick={() => setActiveSection("formalwear")}
                     >
                         Formal wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Casual Wear", '/casualWear')}
-                        className={`cat-link ${activeCategory === "Casual Wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "casualWear" ? "active" : ""}`}
+                        onClick={() => setActiveSection("casualWear")}
                     >
                         Casual Wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Active wear", '/activeWear')}
-                        className={`cat-link ${activeCategory === "Active wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "activeWear" ? "active" : ""}`}
+                        onClick={() => setActiveSection("activeWear")}
                     >
                         Active wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Inner wear", '/innerWear')}
-                        className={`cat-link ${activeCategory === "Inner wear" ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "innerWear" ? "active" : ""}`}
+                        onClick={() => setActiveSection("innerWear")}
                     >
                         Inner wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Accessories", '/accessories')}
-                        className={`cat-link ${activeCategory === "Accessories" ? 'active' : ''}`}
+                        className={`cat-link ${activeSection === "accessories" ? "active" : ""}`}
+                        onClick={() => setActiveSection("accessories")}
                     >
                         Accessories
                     </span>
@@ -88,10 +71,7 @@ function Mens() {
             </div>
 
             <div>
-                <CardList
-                    data={sampleData}
-                    pageName='Men'
-                />
+                {renderActiveSection()}
             </div>
         </div>
     );

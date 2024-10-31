@@ -1,18 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CardList from "../../../Components/Card/CardList";
 import prod from '../../../assets/prod.webp';
 import '../../Mens/Mens.css';
 
 function CasualWear() {
-
-    const navigate = useNavigate();
-    const [activeCategory, setActiveCategory] = useState('Casual Wear');
-
-    const handleCategoryClick = (category, path) => {
-        setActiveCategory(category);
-        navigate(path);
-    };
 
     const sampleData = [
         {
@@ -46,54 +36,11 @@ function CasualWear() {
     ];
 
     return (
-        <div className="p-4">
-            <div className="text-center">
-                <div className="d-flex justify-content-center cat">
-                    <span
-                        onClick={() => handleCategoryClick('All', '/men')}
-                        className={`cat-link ${activeCategory === 'All' ? 'active' : ''}`}
-                    >
-                        All
-                    </span>
-                    <span
-                        onClick={() => handleCategoryClick("Formal wear", '/formalwear')}
-                        className={`cat-link ${activeCategory === "Formal wear" ? 'active' : ''}`}
-                    >
-                        Formal wear
-                    </span>
-                    <span
-                        onClick={() => handleCategoryClick("Casual Wear", '/casualWear')}
-                        className={`cat-link ${activeCategory === "Casual Wear" ? 'active' : ''}`}
-                    >
-                        Casual Wear
-                    </span>
-                    <span
-                        onClick={() => handleCategoryClick("Active wear", '/activeWear')}
-                        className={`cat-link ${activeCategory === "Active wear" ? 'active' : ''}`}
-                    >
-                        Active wear
-                    </span>
-                    <span
-                        onClick={() => handleCategoryClick("Inner wear", '/innerWear')}
-                        className={`cat-link ${activeCategory === "Inner wear" ? 'active' : ''}`}
-                    >
-                        Inner wear
-                    </span>
-                    <span
-                        onClick={() => handleCategoryClick("Accessories", '/accessories')}
-                        className={`cat-link ${activeCategory === "Accessories" ? 'active' : ''}`}
-                    >
-                        Accessories
-                    </span>
-                </div>
-            </div>
-
-            <div>
-                <CardList
-                    data={sampleData}
-                    pageName='Casual Wear'
-                />
-            </div>
+        <div>
+            <CardList
+                data={sampleData}
+                pageName='Casual Wear'
+            />
         </div>
     )
 }
