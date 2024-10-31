@@ -195,7 +195,7 @@
 
 .quick-add-button {
   position: absolute;
-  bottom: 25%;
+  bottom: 23%;
   left: 0;
   width: 100%;
   padding: 12px 0;
@@ -216,7 +216,6 @@
 
 .product-card:hover .quick-add-button {
   opacity: 1;
-  transform: translateY(-1);
 }
 
 .quick-add-button:hover {

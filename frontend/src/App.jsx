@@ -5,7 +5,7 @@ import Mens from './Pages/Mens/Mens';
 import Cart from './Pages/Cart/Cart';
 
 import Women from './Pages/Women/Women';
-import Product from './Components/product/product';
+import Product from './Components/Product/Product';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
@@ -25,6 +25,7 @@ function App() {
     ],
     sizes: ['2XL', 'XL', 'L', 'M', 'S'],
     colors: ['Multi Color'],
+    maxQuantity:5
   };
 
   return (
