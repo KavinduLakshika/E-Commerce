@@ -30,39 +30,39 @@ function Mens() {
     return (
         <div className="p-4">
             <div className="text-center">
-                <div className="d-flex justify-content-center cat">
+                <div className="d-flex justify-content-center category">
                     <span
-                        className={`cat-link ${activeSection === "all" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "all" ? "active" : ""}`}
                         onClick={() => setActiveSection("all")}
                     >
                         All
                     </span>
                     <span
-                        className={`cat-link ${activeSection === "formalwear" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "formalwear" ? "active" : ""}`}
                         onClick={() => setActiveSection("formalwear")}
                     >
                         Formal wear
                     </span>
                     <span
-                        className={`cat-link ${activeSection === "casualWear" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "casualWear" ? "active" : ""}`}
                         onClick={() => setActiveSection("casualWear")}
                     >
                         Casual Wear
                     </span>
                     <span
-                        className={`cat-link ${activeSection === "activeWear" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "activeWear" ? "active" : ""}`}
                         onClick={() => setActiveSection("activeWear")}
                     >
                         Active wear
                     </span>
                     <span
-                        className={`cat-link ${activeSection === "innerWear" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "innerWear" ? "active" : ""}`}
                         onClick={() => setActiveSection("innerWear")}
                     >
                         Inner wear
                     </span>
                     <span
-                        className={`cat-link ${activeSection === "accessories" ? "active" : ""}`}
+                        className={`category-link ${activeSection === "accessories" ? "active" : ""}`}
                         onClick={() => setActiveSection("accessories")}
                     >
                         Accessories

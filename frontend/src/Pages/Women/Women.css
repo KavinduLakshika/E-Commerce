@@ -1,22 +1,22 @@
-.cat {
+.category {
   color: black;
   font-weight: bold;
   font-size: 15px;
   gap: 5px;
 }
 
-.cat-link {
+.category-link {
   margin: 0 10px;
   padding: 5px;
   text-decoration: none;
   cursor: pointer;
 }
 
-.cat-link:hover {
+.category-link:hover {
   color: gray;
 }
 
-.cat-link.active {
+.category-link.active {
   color: #007bff;
   border-bottom: 2px solid #007bff;
 }

@@ -25,45 +25,23 @@
   background-color: white;
   color: black;
 }
-
-.cat {
-  color: black;
-  font-weight: bold;
-  font-size: 15px;
-  gap: 5px;
-}
-.cat-link {
-  margin: 0 10px;
-  padding: 5px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.cat-link:hover {
-  color: gray;
-}
-
-.cat-link.active {
-  color: #007bff;
-  border-bottom: 2px solid #007bff;
-}
-.form-select {
+.acc .form-select {
   background-color: white;
   border: 1px solid rgb(141, 120, 120);
   border-radius: 10px;
 }
 
-.form-select:hover {
+.acc .form-select:hover {
   background-color: white;
   border: 1px solid rgb(141, 120, 120);
 }
 
-.form-control {
+.acc .form-control {
   background-color: white;
   border: 1px solid rgb(141, 120, 120);
 }
 
-.form-control:hover {
+.acc .form-control:hover {
   background-color: white;
   border: 1px solid rgb(141, 120, 120);
 }

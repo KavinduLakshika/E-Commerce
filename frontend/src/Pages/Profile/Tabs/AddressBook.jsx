@@ -11,14 +11,14 @@ function AddressBook() {
                 <div
                     className="border rounded p-3 mt-3 d-flex justify-content-center align-items-center"
                     style={{ cursor: "pointer", borderStyle: "dashed" }}
-                    onClick={() => setShowForm(true)} // Show form on click
+                    onClick={() => setShowForm(true)} 
                 >
                     <span className="text-primary">+ Add New Address</span>
                 </div>
             )}
 
             {showForm && (
-                <form className="row mt-2">
+                <form className="row mt-2 acc">
                     <h5 className="fw-bold">Add New Address</h5>
                     <div className="col-md-6 mt-2 mb-3">
                         <label className="form-label">First Name</label>
