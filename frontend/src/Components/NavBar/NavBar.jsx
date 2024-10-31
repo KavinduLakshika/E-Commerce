@@ -1,4 +1,3 @@
-import React from 'react';
 import './NavBar.css';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -20,7 +19,7 @@ const NavBar = () => {
                             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
                         </a>
                         <ul className="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li><a className="dropdown-item" href="#">My profile</a></li>
+                            <li><a className="dropdown-item" href="/profile">My profile</a></li>
                             <li><a className="dropdown-item" href="#">Settings</a></li>
                             <li><a className="dropdown-item" href="#">Logout</a></li>
                         </ul>

@@ -46,10 +46,10 @@ function Women() {
   return (
     <div className="p-4">
       <div className="text-center">
-        <div className="d-flex justify-content-center cat">
+        <div className="d-flex justify-content-center category">
           <span
             onClick={() => handleCategoryClick('All', '/men')}
-            className={`cat-link ${activeCategory === 'All' ? 'active' : ''}`}
+            className={`category-link ${activeCategory === 'All' ? 'active' : ''}`}
           >
             All
           </span>

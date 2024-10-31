@@ -1,0 +1,35 @@
+.cat {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 15px;
+  gap: 5px;
+}
+
+.cat-link {
+  margin: 0 10px;
+  padding: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cat-link:hover {
+  color: #007bff;
+}
+
+.cat-link.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.icon {
+  font-size: 30px;
+  color: white;
+  background: #007bff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}

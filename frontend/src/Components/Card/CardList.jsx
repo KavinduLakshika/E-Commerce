@@ -6,6 +6,7 @@ const CardList = ({
     data,
     pageName,
     itemsPerPage = 20,
+    showBtn = true,
     showFilters = true,
     showColor = true,
     showSort = true,
@@ -52,15 +53,29 @@ const CardList = ({
         currentPage * itemsPerPage
     );
 
-    const toggleSortDropdown = () => setSortDropdownOpen(!sortDropdownOpen);
-
     const handleSortChange = (option) => {
         setSortOption(option);
         setSortDropdownOpen(false);
     };
 
-    const toggleColorDropdown = () => setColorDropdownOpen(!colorDropdownOpen);
-    const toggleSizeDropdown = () => setSizeDropdownOpen(!sizeDropdownOpen);
+    const toggleSortDropdown = () => {
+        setSortDropdownOpen(!sortDropdownOpen);
+        setColorDropdownOpen(false);
+        setSizeDropdownOpen(false);
+    };
+
+    const toggleColorDropdown = () => {
+        setColorDropdownOpen(!colorDropdownOpen);
+        setSortDropdownOpen(false);
+        setSizeDropdownOpen(false);
+    };
+
+    const toggleSizeDropdown = () => {
+        setSizeDropdownOpen(!sizeDropdownOpen);
+        setSortDropdownOpen(false);
+        setColorDropdownOpen(false);
+    };
+
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
@@ -111,14 +126,15 @@ const CardList = ({
                             {showColor && (
                                 <div className="dropdown mb-3">
                                     <button
-                                        className="btn btn-outline-secondary dropdown-toggle w-100"
+                                        className="btn bg-white dropdown-toggle w-100"
                                         type="button"
                                         onClick={toggleColorDropdown}
                                     >
-                                        {selectedColor ? `Color: ${selectedColor.toUpperCase()}` : 'Select Color'}
+                                        {selectedColor ? `Color: ${selectedColor.toUpperCase()}` : 'Filter by Colors'}
                                     </button>
+
                                     {colorDropdownOpen && (
-                                        <ul className="dropdown-menu show w-100">
+                                        <ul className="color-filter dropdown-menu show w-100">
                                             <div className="color-grid">
                                                 {availableColors.map((color) => (
                                                     <button
@@ -130,7 +146,6 @@ const CardList = ({
                                                             className="color-swatch"
                                                             style={{ backgroundColor: color }}
                                                         ></span>
-                                                        {color.toUpperCase()}
                                                     </button>
                                                 ))}
                                             </div>
@@ -143,14 +158,14 @@ const CardList = ({
                             {showSize && (
                                 <div className="dropdown mb-3">
                                     <button
-                                        className="btn btn-outline-secondary dropdown-toggle w-100"
+                                        className="btn bg-white dropdown-toggle w-100"
                                         type="button"
                                         onClick={toggleSizeDropdown}
                                     >
                                         {selectedSize ? `Size: ${selectedSize}` : 'Select Size'}
                                     </button>
                                     {sizeDropdownOpen && (
-                                        <ul className="dropdown-menu show w-100">
+                                        <ul className="size-filter dropdown-menu show w-100">
                                             <div className="size-grid">
                                                 {availableSizes.map((size) => (
                                                     <button
@@ -184,6 +199,12 @@ const CardList = ({
                                     />
                                     {showProdDetails && (
                                         <div className="product-details mt-5">
+                                            {showBtn &&
+                                                <button className="quick-add-button">
+                                                    <i className="bi bi-plus-lg mx-2"></i>
+                                                    QUICK ADD
+                                                </button>
+                                            }
                                             {showName && <div className="product-name">{item.prodName}</div>}
                                             {showPrice && <div className="product-price">LKR {item.prodPrice}</div>}
                                         </div>

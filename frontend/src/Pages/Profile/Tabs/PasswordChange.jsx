@@ -1,7 +1,7 @@
 function PasswordChange() {
   return (
     <div className="d-flex align-items-center justify-content-center">
-      <form className="row" style={{ maxWidth: "500px", width: "100%" }}>
+      <form className="row acc" style={{ maxWidth: "500px", width: "100%" }}>
         <h3 className="fw-bold text-center mb-4">Password Change</h3>
 
         <div className="col-12 mb-3">

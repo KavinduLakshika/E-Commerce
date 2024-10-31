@@ -1,4 +1,4 @@
-import React from 'react'
+
 import About from '../../Components/About/About'
 import Offers from '../../Components/Offers/Offers'
 import Services from '../../Components/Services/Services'

@@ -1,45 +1,48 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { LuShoppingCart } from "react-icons/lu";
-import { BsBagFill } from "react-icons/bs";
 import './Product.css';
 
 const Product = ({
     title,
     description,
     price,
-    images,
-    sizes,
-    colors,
+    images = [],
+    sizes = [],
+    colors = [],
+    maxQuantity,
 }) => {
-    const [selectedImage, setSelectedImage] = useState(images[0]);
+    const [selectedImage, setSelectedImage] = useState(images[0] || '');
+    const [quantity, setQuantity] = useState(1);
+    const [selectedSize, setSelectedSize] = useState('');
+
+    const increaseQuantity = () => setQuantity(prevQty => (prevQty < maxQuantity ? prevQty + 1 : prevQty));
+    const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
     return (
-        <div className="container product-page mt-5">
+        <div className="container-fluid product-page mt-5 px-0">
             <div className="row">
-                <div className="col-md-2">
-                    {images.map((img, index) => (
-                        <img
-                            key={index}
-                            src={img}
-                            alt={`Product ${index + 1}`}
-                            className={`img-thumbnail mb-2 ${selectedImage === img ? 'selected' : ''}`}
-                            onClick={() => setSelectedImage(img)}
-                        />
-                    ))}
-                </div>
-
-                <div className="col-md-5">
+                <div className="col-md-5 d-flex">
                     <img src={selectedImage} alt="Selected Product" className="main-image img-fluid" />
+                    <div className="additional-images ms-3">
+                        {images.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img}
+                                alt={`Product ${index + 1}`}
+                                className={`img-thumbnail mb-2 ${selectedImage === img ? 'selected' : ''}`}
+                                onClick={() => setSelectedImage(img)}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <div className="col-md-5">
-                    <h2 className="product-title">{title}</h2>
+                    <h3 className="product-title">{title}</h3>
+                    <h6 className="price">LKR {price}</h6>
+                    <hr />
                     <p className="product-description">{description}</p>
-                    <h4 className="price">LKR {price}</h4>
-                    <p>Please select your preferred color and size</p>
 
-                    <div className="mb-3">
+                    <div className="mt-4 mb-3">
                         {colors.map((color, index) => (
                             <button key={index} className="btn btn-outline-secondary me-2">
                                 {color}
@@ -47,20 +50,31 @@ const Product = ({
                         ))}
                     </div>
 
-                    <div className="mb-4">
-                        {sizes.map((size) => (
-                            <button key={size} className="btn btn-outline-dark me-2">
+                    <div className="mb-3">
+                        {sizes.map((size, index) => (
+                            <button
+                                key={index}
+                                className={`btn me-2 size-btn ${selectedSize === size ? 'selected-size' : ''}`}
+                                onClick={() => setSelectedSize(size)}
+                            >
                                 {size}
                             </button>
                         ))}
                     </div>
 
-                    <div className='d-flex'>
+                    <div className="mb-4 d-flex align-items-center">
+                        <button onClick={decreaseQuantity} className="btn btn-sm me-2 qty-icon">-</button>
+                        <span className="quantity-display">{quantity}</span>
+                        <button onClick={increaseQuantity} className="btn btn-sm ms-2 qty-icon">+</button>
+                    </div>
+
+                    <hr />
+                    <div className="d-flex">
                         <button className="btn btn-info me-2">
-                            <BsBagFill /> Buy Now
+                            <i className="bi bi-bag-fill me-2"></i> Buy Now
                         </button>
                         <button className="btn btn-secondary">
-                            <LuShoppingCart /> Add To Cart
+                            <i className="bi bi-cart me-2"></i> Add To Cart
                         </button>
                     </div>
                 </div>
