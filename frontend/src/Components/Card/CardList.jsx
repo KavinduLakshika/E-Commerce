@@ -79,7 +79,7 @@ const CardList = ({
                 <div className="col-md-3">
                     <h1 className="pageName">{pageName}</h1>
                 </div>
-                <div className="col-md-9 d-flex justify-content-end">
+                <div className="col-md-9 d-flex justify-content-end sort">
                     {showSort && (
                         <div className="sort-dropdown">
                             <button
@@ -106,7 +106,7 @@ const CardList = ({
             <div className="row mt-5">
                 <div className="col-md-3">
                     {showFilters && (
-                        <div>
+                        <div className='filter'>
                             <h3>Filters</h3>
                             {showColor && (
                                 <div className="dropdown mb-3">

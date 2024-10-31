@@ -46,7 +46,7 @@ function Mens() {
 
     return (
         <div className="p-4">
-            <div className="text-center">
+            <div className="text-center ">
                 <div className="d-flex justify-content-center cat">
                     <span
                         onClick={() => handleCategoryClick('All', '/men')}
@@ -55,38 +55,38 @@ function Mens() {
                         All
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Men's Formal wear", '/formalwear')}
-                        className={`cat-link ${activeCategory === "Men's Formal wear" ? 'active' : ''}`}
+                        onClick={() => handleCategoryClick("Formal wear", '/formalwear')}
+                        className={`cat-link ${activeCategory === "Formal wear" ? 'active' : ''}`}
                     >
-                        Men’s Formal wear
+                        Formal wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Men's Casual Wear", '/casualWear')}
-                        className={`cat-link ${activeCategory === "Men's Casual Wear" ? 'active' : ''}`}
+                        onClick={() => handleCategoryClick("Casual Wear", '/casualWear')}
+                        className={`cat-link ${activeCategory === "Casual Wear" ? 'active' : ''}`}
                     >
-                        Men’s Casual Wear
+                        Casual Wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Men's Active wear", '/activeWear')}
-                        className={`cat-link ${activeCategory === "Men's Active wear" ? 'active' : ''}`}
+                        onClick={() => handleCategoryClick("Active wear", '/activeWear')}
+                        className={`cat-link ${activeCategory === "Active wear" ? 'active' : ''}`}
                     >
-                        Men’s Active wear
+                        Active wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Men's Inner wear", '/innerWear')}
-                        className={`cat-link ${activeCategory === "Men's Inner wear" ? 'active' : ''}`}
+                        onClick={() => handleCategoryClick("Inner wear", '/innerWear')}
+                        className={`cat-link ${activeCategory === "Inner wear" ? 'active' : ''}`}
                     >
-                        Men’s Inner wear
+                        Inner wear
                     </span>
                     <span
-                        onClick={() => handleCategoryClick("Men's Accessories", '/accessories')}
-                        className={`cat-link ${activeCategory === "Men's Accessories" ? 'active' : ''}`}
+                        onClick={() => handleCategoryClick("Accessories", '/accessories')}
+                        className={`cat-link ${activeCategory === "Accessories" ? 'active' : ''}`}
                     >
-                        Men’s Accessories
+                        Accessories
                     </span>
                 </div>
             </div>
-            
+
             <div>
                 <CardList
                     data={sampleData}
