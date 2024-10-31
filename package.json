@@ -3,9 +3,11 @@
     "concurrently": "^9.0.1"
   },
   "scripts": {
-  "frontend": "cd frontend && npm run dev",
-  "backend": "cd backend && npm start",
-  "dev": "concurrently \"npm run frontend\" \"npm run backend\""
-}
-
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.11.3"
+  }
 }
