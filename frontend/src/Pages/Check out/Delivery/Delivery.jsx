@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OrderSummary from "./OrderSummary";
+import OrderSummary from "../OrderSummary/OrderSummary";
 import './Delivery.css';
 
 // eslint-disable-next-line react/prop-types

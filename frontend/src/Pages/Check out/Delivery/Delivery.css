@@ -49,21 +49,6 @@
   border-radius: 10px;
 }
 
-.order-summary h5 {
-  font-weight: bold;
-}
-
-.orderSummary {
-  background-color: white;
-  border-radius: 10px;
-}
-
-.order-summary .summary-item,
-.order-summary .summary-total {
-  font-size: 1rem;
-  margin-top: 10px;
-}
-
 .form-control {
   border: 1px solid #81cdef;
   border-radius: 10px;

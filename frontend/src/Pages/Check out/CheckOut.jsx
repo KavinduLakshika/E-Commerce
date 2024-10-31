@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Delivery from './CheckOut/Delivery/Delivery';
-import Payment from './CheckOut/Payment';
-import Review from './CheckOut/Review';
+import Delivery from '../Check out/Delivery/Delivery';
+import Payment from './Payment';
+import Review from './Review';
 import './CheckOut.css';
 
 function CheckOut() {

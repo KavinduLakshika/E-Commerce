@@ -1,4 +1,5 @@
-import './Delivery.css';
+import './OrderSummary.css';
+
 function OrderSummary() {
     return (
         <div className="order-summary p-4 mt-2 h-100">
