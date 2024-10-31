@@ -9,6 +9,7 @@ import Product from './Components/product/product';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
+import NavBar from './Components/NavBar/NavBar';
 
 function App() {
   const productData = {
@@ -28,8 +29,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="m-3">
-        
+        <NavBar />
         <Routes>
+
           <Route path="/" element={<Home />} />
 
           <Route path="/men" element={<Mens />} />
