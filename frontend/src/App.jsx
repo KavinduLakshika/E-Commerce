@@ -10,6 +10,7 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
 import NavBar from './Components/NavBar/NavBar';
+import CheckOut from './Pages/Check out/CheckOut';
 
 function App() {
   const productData = {
@@ -44,6 +45,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
+
+          <Route path="/checkOut" element={<CheckOut />} />
         </Routes>
       </div>
     </BrowserRouter>

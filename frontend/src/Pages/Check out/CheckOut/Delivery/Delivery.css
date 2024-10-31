@@ -1,0 +1,95 @@
+.checkout-container {
+  padding: 20px;
+}
+
+.delivery-methods {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.delivery-methods .btn {
+  border: 1px solid #81cdef;
+  border-radius: 10px;
+  background-color: white;
+  color: #28322f;
+  width: 50%;
+}
+
+.delivery-methods .btn:hover {
+  border: 1px solid #81cdef;
+  border-radius: 10px;
+  background-color: white;
+  color: #28322f;
+  width: 50%;
+}
+
+.delivery-info {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.delivery-address h5,
+.contact-info h5,
+.delivery-options h5 {
+  font-weight: bold;
+}
+
+.delivery-options textarea {
+  resize: none;
+  height: 100px;
+}
+
+.delivery-options {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.contact-info {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.order-summary h5 {
+  font-weight: bold;
+}
+
+.orderSummary {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.order-summary .summary-item,
+.order-summary .summary-total {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.form-control {
+  border: 1px solid #81cdef;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.form-control:hover {
+  border: 1px solid #81cdef;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.proceed {
+  background-color: #2563eb;
+  color: white;
+}
+
+.proceed:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.pickup-info {
+  background-color: white;
+}
+
+.text-muted a {
+  text-decoration: none;
+}

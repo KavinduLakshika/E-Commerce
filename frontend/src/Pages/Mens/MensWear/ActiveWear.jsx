@@ -39,7 +39,7 @@ function ActiveWear() {
         <div>
             <CardList
                 data={sampleData}
-                pageName='All'
+                pageName='Active Wear'
             />
         </div>
     );

@@ -47,3 +47,23 @@
   color: #007bff;
   border-bottom: 2px solid #007bff;
 }
+.form-select {
+  background-color: white;
+  border: 1px solid rgb(141, 120, 120);
+  border-radius: 10px;
+}
+
+.form-select:hover {
+  background-color: white;
+  border: 1px solid rgb(141, 120, 120);
+}
+
+.form-control {
+  background-color: white;
+  border: 1px solid rgb(141, 120, 120);
+}
+
+.form-control:hover {
+  background-color: white;
+  border: 1px solid rgb(141, 120, 120);
+}
