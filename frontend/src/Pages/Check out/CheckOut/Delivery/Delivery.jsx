@@ -4,12 +4,12 @@ import './Delivery.css';
 
 // eslint-disable-next-line react/prop-types
 function Delivery({ onProceedToPayment }) {
-    const [deliveryMethod, setDeliveryMethod] = useState("Ship");
+  const [deliveryMethod, setDeliveryMethod] = useState("Ship");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onProceedToPayment();
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onProceedToPayment();
+  };
 
 
   return (
@@ -18,11 +18,11 @@ function Delivery({ onProceedToPayment }) {
         <div className="col-md-8 ">
           <form onSubmit={handleSubmit}>
             <div className="checkout-step">
-              <div className="p-4 border delivery-methods d-flex gap-3 ">
-                <button className={`btn ${deliveryMethod === "Ship" ? "btn-primary" : ""}`} onClick={() => setDeliveryMethod("Ship")}>
+              <div className="p-4 border delivery-methods d-flex gap-3">
+                <button type="button" className={`btn ${deliveryMethod === "Ship" ? "btn-primary" : ""}`} onClick={() => setDeliveryMethod("Ship")}>
                   Ship
                 </button>
-                <button className={`btn ${deliveryMethod === "PickUp" ? "btn-primary" : ""}`} onClick={() => setDeliveryMethod("PickUp")}>
+                <button type="button" className={`btn ${deliveryMethod === "PickUp" ? "btn-primary" : ""}`} onClick={() => setDeliveryMethod("PickUp")}>
                   Pick Up
                 </button>
               </div>
