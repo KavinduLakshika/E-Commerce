@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Mens from './Pages/Mens/Mens';
 import Cart from './Pages/Cart/Cart';
-import NavBar from './Components/NavBar/NavBar';
+
 import Women from './Pages/Women/Women';
 import Product from './Components/product/product';
 import Login from './Pages/Login/Login';
@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="m-3">
-        <NavBar />
+        
         <Routes>
           <Route path="/" element={<Home />} />
 
