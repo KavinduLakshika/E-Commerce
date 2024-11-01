@@ -19,7 +19,7 @@ const Product = ({
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
     return (
-        <div className="container-fluid product-page mt-5 px-0">
+        <div className="container-fluid product-page mt-5">
             <div className="row">
                 <div className="col-md-5 d-flex">
                     <img src={selectedImage} alt="Selected Product" className="main-image img-fluid" />
