@@ -23,7 +23,7 @@ const Product = ({
             <div className="row">
                 <div className="col-md-5 d-flex">
                     <img src={selectedImage} alt="Selected Product" className="main-image img-fluid" />
-                    <div className="additional-images ms-3">
+                    <div className="additional-images">
                         {images.map((img, index) => (
                             <img
                                 key={index}
@@ -36,7 +36,7 @@ const Product = ({
                     </div>
                 </div>
 
-                <div className="col-md-5">
+                <div className="col-md-5 des">
                     <h3 className="product-title">{title}</h3>
                     <h6 className="price">LKR {price}</h6>
                     <hr />
@@ -44,7 +44,7 @@ const Product = ({
 
                     <div className="mt-4 mb-3">
                         {colors.map((color, index) => (
-                            <button key={index} className="btn btn-outline-secondary me-2">
+                            <button key={index} className="btn btn-outline-secondary color-btn me-2">
                                 {color}
                             </button>
                         ))}
