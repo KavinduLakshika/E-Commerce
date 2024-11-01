@@ -23,7 +23,7 @@ const CardList = ({
     const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
     const [colorDropdownOpen, setColorDropdownOpen] = useState(false);
     const [sizeDropdownOpen, setSizeDropdownOpen] = useState(false);
-
+    
     useEffect(() => {
         setCurrentPage(1);
     }, [data]);
@@ -196,7 +196,7 @@ const CardList = ({
                                     onMouseLeave={() => setHoveredIndex(null)}
                                 >
                                     <img
-                                        src={hoveredIndex === index ? item.imageHover : item.image}
+                                        src={hoveredIndex === index ? item.images[1] : item.images[0]}
                                         className="product-card-img"
                                         alt={item.prodName}
                                     />

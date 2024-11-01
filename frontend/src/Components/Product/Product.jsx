@@ -14,7 +14,7 @@ const Product = ({
     const [selectedImage, setSelectedImage] = useState(images[0] || '');
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('');
-
+    
     const increaseQuantity = () => setQuantity(prevQty => (prevQty < maxQuantity ? prevQty + 1 : prevQty));
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
