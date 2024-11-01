@@ -2,10 +2,10 @@ import React from 'react';
 import './Offers.css';
 
 const images = [
-  'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fxogwlpx44qiz2c4pdoqib4wd&w=828&q=75',
-  'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Ftwxsxy4va4y3lh90mvfpp6nh&w=828&q=75',
-  'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fbznom57qeoi3h8nhkas6yvn3&w=828&q=75',
-  'https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fb4atx5h8mvscgrdeyunzoc99&w=828&q=75',
+  'https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Crop-tops-Sri-Lanka.jpg',
+  'https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Floral-dresses-Sri-Lanka.jpg',
+  'https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Linen-collections-Sri-Lanka.jpg',
+  'https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Office%20wear%20blouses%20SL.jpg',
 
 ];
 

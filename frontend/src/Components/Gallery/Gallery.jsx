@@ -13,7 +13,7 @@ function Gallery() {
                 <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fu22qckea35oqxf7t7veasvgo&w=1920&q=75"
+                            src="https://choccowear.com/wp-content/uploads/2024/09/TOPS_2.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="Tops"
                         />
@@ -21,7 +21,7 @@ function Gallery() {
                     </div>
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fhikorvr158kvcefl3exqxzcz&w=3840&q=75"
+                            src="https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Office%20wear%20blouses%20SL.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="T-Shirts"
                         />
@@ -32,7 +32,7 @@ function Gallery() {
                 <div className="col-lg-4 mb-4 mb-lg-0">
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2For398povxhjk2dov3a3izw7k&w=1920&q=75"
+                            src="https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Crop-tops-Sri-Lanka.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="Crop Tops"
                         />
@@ -40,7 +40,7 @@ function Gallery() {
                     </div>
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Faut3rz9w4f7se6o7rux6x8u4&w=3840&q=75"
+                            src="https://choccowear.com/wp-content/uploads/2024/09/Pants_2.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="Denims"
                         />
@@ -51,7 +51,7 @@ function Gallery() {
                 <div className="col-lg-4 mb-4 mb-lg-0">
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fj4fupnw38sdeyrimbndsqnf3&w=828&q=75"
+                            src="https://nilsonline.lk/image/catalog/nils/may2022/trending-now/Floral-dresses-Sri-Lanka.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="Skirt"
                         />
@@ -59,7 +59,7 @@ function Gallery() {
                     </div>
                     <div className="image-container mb-4">
                         <img
-                            src="https://kandyselection.lk/_next/image?url=https%3A%2F%2Fpub-aab205bc4ae24bca977e05a1c5b36628.r2.dev%2Fi4s6wpa42dfqe6drk0ojdpge&w=1920&q=75"
+                            src="https://choccowear.com/wp-content/uploads/2024/09/DRESSES_2.jpg"
                             className="w-100 shadow-1-strong rounded"
                             alt="Dresses"
                         />
