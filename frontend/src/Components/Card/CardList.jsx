@@ -16,6 +16,7 @@ const CardList = ({
     showPrice = true,
 }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
     const [sortOption, setSortOption] = useState('default');
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
@@ -75,7 +76,6 @@ const CardList = ({
         setSortDropdownOpen(false);
         setColorDropdownOpen(false);
     };
-
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
@@ -184,29 +184,36 @@ const CardList = ({
                             <hr />
                         </div>
                     )}
-
                 </div>
 
                 <div className="col-md-9">
                     <div className="row">
                         {currentItems.map((item, index) => (
                             <div className="col-md-3 mb-4" key={index}>
-                                <div className="product-card">
+                                <div
+                                    className="product-card"
+                                    onMouseEnter={() => setHoveredIndex(index)}
+                                    onMouseLeave={() => setHoveredIndex(null)}
+                                >
                                     <img
-                                        src={item.image}
+                                        src={hoveredIndex === index ? item.imageHover : item.image}
                                         className="product-card-img"
                                         alt={item.prodName}
                                     />
                                     {showProdDetails && (
                                         <div className="product-details mt-5">
-                                            {showBtn &&
+                                            {showBtn && (
                                                 <button className="quick-add-button">
                                                     <i className="bi bi-plus-lg mx-2"></i>
                                                     QUICK ADD
                                                 </button>
-                                            }
-                                            {showName && <div className="product-name">{item.prodName}</div>}
-                                            {showPrice && <div className="product-price">LKR {item.prodPrice}</div>}
+                                            )}
+                                            {showName && (
+                                                <div className="product-name">{item.prodName}</div>
+                                            )}
+                                            {showPrice && (
+                                                <div className="product-price">LKR {item.prodPrice}</div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
