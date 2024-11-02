@@ -5,6 +5,7 @@ import './Women.css';
 import prod from '../../assets/prod.webp';
 import prod2 from '../../assets/prod 2.webp';
 import prod3 from '../../assets/prod3.webp';
+import NavBar from '../../Components/NavBar/NavBar';
 
 function Women() {
   const navigate = useNavigate();
@@ -46,23 +47,26 @@ function Women() {
     }
   ];
   return (
-    <div className="p-4">
-      <div className="text-center">
-        <div className="d-flex justify-content-center category">
-          <span
-            onClick={() => handleCategoryClick('All', '/men')}
-            className={`category-link ${activeCategory === 'All' ? 'active' : ''}`}
-          >
-            All
-          </span>
+    <div>
+      <NavBar />
+      <div className="p-4">
+        <div className="text-center">
+          <div className="d-flex justify-content-center category">
+            <span
+              onClick={() => handleCategoryClick('All', '/men')}
+              className={`category-link ${activeCategory === 'All' ? 'active' : ''}`}
+            >
+              All
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <CardList
-          data={sampleData}
-          pageName='Women'
-        />
+        <div>
+          <CardList
+            data={sampleData}
+            pageName='Women'
+          />
+        </div>
       </div>
     </div>
   )

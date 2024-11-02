@@ -1,7 +1,9 @@
+import NavBar from '../../Components/NavBar/NavBar';
 import OrderSummery from '../Check out/OrderSummary/OrderSummary';
 function Cart() {
     return (
         <div>
+            <NavBar/>
             <section className="h-100 gradient-custom">
                 <div className="container py-5">
                     <div className="row d-flex justify-content-center my-4">

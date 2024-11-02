@@ -16,13 +16,15 @@ const NavBar = () => {
                     </Link>
                     <div className="dropdown">
                         <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
+                            <Link to="/profile">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
+                            </Link>
                         </a>
-                        <ul className="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuAvatar">
+                        {/* <ul className="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuAvatar">
                             <li><a className="dropdown-item" href="/profile">My profile</a></li>
                             <li><a className="dropdown-item" href="#">Settings</a></li>
                             <li><a className="dropdown-item" href="#">Logout</a></li>
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
 
@@ -48,9 +50,6 @@ const NavBar = () => {
                         </li>
                         <li className="nav-item">
                             <Link to='/women' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Women</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to='/contact' style={{ textDecoration: 'none' }}><span className="nav-link text-white">Brands</span></Link>
                         </li>
                     </ul>
                 </div>

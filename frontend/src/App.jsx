@@ -11,6 +11,8 @@ import SignUp from './Pages/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
 import NavBar from './Components/NavBar/NavBar';
 import CheckOut from './Pages/Check out/CheckOut';
+import SideBar from './Components/SideBar/SideBar';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   const productData = {
@@ -25,31 +27,28 @@ function App() {
     ],
     sizes: ['2XL', 'XL', 'L', 'M', 'S'],
     colors: ['Multi Color'],
-    maxQuantity:5
+    maxQuantity: 5
   };
 
   return (
     <BrowserRouter>
       <div className="m-3">
-        <NavBar />
         <Routes>
-
           <Route path="/" element={<Home />} />
-
           <Route path="/men" element={<Mens />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/women" element={<Women />} />
-
-
           <Route path="/product" element={<Product {...productData} />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/profile" element={<Profile />} />
-
           <Route path="/checkOut" element={<CheckOut />} />
         </Routes>
       </div>
+      <Routes>
+        <Route path='/sidebar' element={<SideBar />} />
+        <Route path='/dash' element={<Dashboard />} />
+      </Routes>
     </BrowserRouter>
   );
 }
