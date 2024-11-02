@@ -35,7 +35,7 @@
 .slide-in-cart {
     position: fixed;
     top: 0;
-    right: -100%; /* Hidden by default */
+    right: -100%; 
     width: 400px;
     height: 100%;
     background-color: #fff;
@@ -46,7 +46,7 @@
 }
 
 .slide-in-cart.visible {
-    right: 0; /* Slide in when visible */
+    right: 0; 
 }
 
 .cart-header {
