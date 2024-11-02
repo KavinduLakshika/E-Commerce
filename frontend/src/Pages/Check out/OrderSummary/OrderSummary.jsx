@@ -1,31 +1,54 @@
+/* eslint-disable react/prop-types */
 import './OrderSummary.css';
 
-function OrderSummary() {
+function OrderSummary({ product, quantity, selectedSize }) {
+    if (!product) {
+        return <div>No product selected</div>;
+    }
+
     return (
         <div className="order-summary p-4 mt-2 h-100">
-            <h5>Order Summary</h5>
-            <div className="summary-item d-flex justify-content-between">
-                <span>Sub Total</span>
-                <span>2195 LKR</span>
+            <h4>Order Summary</h4>
+            <div className="order-item d-flex align-items-center mb-4 mt-4">
+                <img
+                    src={product.images?.[0]}
+                    alt="Product"
+                    className="product-image"
+                />
+                <div className="order-details">
+                    <h6 className="product-title">{product.prodName}</h6>
+                    <p className="product-quantity">Quantity {quantity}</p>
+                    <p className="product-size">Size {selectedSize}</p>
+                </div>
+                <span className="prod-price ml-auto">LKR {product.prodPrice}</span>
             </div>
+
+            <div className="discount-section mb-3">
+                <input
+                    type="text"
+                    placeholder="Discount code or gift card"
+                    className="discount-input"
+                />
+                <button className="apply-button">Apply</button>
+            </div>
+
             <div className="summary-item d-flex justify-content-between">
-                <span>Discount</span>
-                <span>0 LKR</span>
+                <span>Subtotal</span>
+                <span>LKR {product.prodPrice * quantity}</span>
             </div>
             <div className="summary-item d-flex justify-content-between">
                 <span>Shipping</span>
-                <span>TBC</span>
+                <span>LKR 380.00</span>
             </div>
+
             <hr />
+
             <div className="summary-total d-flex justify-content-between">
                 <strong>Total</strong>
-                <strong>2195 LKR</strong>
+                <strong>LKR {product.prodPrice * quantity + 380}</strong>
             </div>
-            <p className="mt-3 text-muted">
-                * To make any changes to your order please go to the <a href="/cart">Cart</a>.
-            </p>
         </div>
     );
 }
 
-export default OrderSummary
+export default OrderSummary;

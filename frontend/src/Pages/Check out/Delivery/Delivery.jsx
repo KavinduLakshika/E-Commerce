@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import OrderSummary from "../OrderSummary/OrderSummary";
 import './Delivery.css';
 
 // eslint-disable-next-line react/prop-types
 function Delivery({ onProceedToPayment }) {
+  const location = useLocation();
+  const { product, quantity, selectedSize } = location.state || {};
+
   const [deliveryMethod, setDeliveryMethod] = useState("Ship");
 
   const handleSubmit = (e) => {
@@ -214,7 +218,7 @@ function Delivery({ onProceedToPayment }) {
           </form>
         </div>
         <div className="col-md-4 orderSummary">
-          <OrderSummary />
+          <OrderSummary product={product} quantity={quantity} selectedSize={selectedSize} />
         </div>
       </div>
     </div >

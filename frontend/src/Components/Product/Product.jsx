@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Product.css';
 import NavBar from '../NavBar/NavBar';
 
 const Product = () => {
+    const navigate = useNavigate();
+
     const [selectedImage, setSelectedImage] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('');
@@ -18,6 +21,16 @@ const Product = () => {
 
     const increaseQuantity = () => setQuantity(prevQty => (prevQty < product.maxQuantity ? prevQty + 1 : prevQty));
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
+
+    const handleBuyNow = () => {
+        navigate('/checkout', {
+            state: {
+                product,
+                quantity,
+                selectedSize,
+            },
+        });
+    };
 
     return (
         <div>
@@ -46,7 +59,7 @@ const Product = () => {
                         <p className="product-description">{product.description}</p>
 
                         <div className="mt-4 mb-3">
-                            {product.colors?.map((color, index) => (
+                            {product.availableColors?.map((color, index) => (
                                 <button key={index} className="btn btn-outline-secondary color-btn me-2">
                                     {color}
                                 </button>
@@ -73,7 +86,7 @@ const Product = () => {
 
                         <hr />
                         <div className="d-flex">
-                            <button className="btn btn-info me-2">
+                            <button className="btn btn-info me-2" onClick={handleBuyNow}>
                                 <i className="bi bi-bag-fill me-2"></i> Buy Now
                             </button>
                             <button className="btn btn-secondary">
