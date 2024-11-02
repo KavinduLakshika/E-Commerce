@@ -59,11 +59,9 @@ const Product = () => {
                         <p className="product-description">{product.description}</p>
 
                         <div className="mt-4 mb-3">
-                            {product.availableColors?.map((color, index) => (
-                                <button key={index} className="btn btn-outline-secondary color-btn me-2">
-                                    {color}
-                                </button>
-                            ))}
+                            <button className="btn color-btn me-2" style={{ backgroundColor: product.color, color: product.color.toLowerCase() === 'white' ? 'black' : 'white' }}>
+                                {product.color}
+                            </button>
                         </div>
 
                         <div className="mb-3">
