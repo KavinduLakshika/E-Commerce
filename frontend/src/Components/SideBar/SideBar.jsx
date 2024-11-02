@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './SideBar.css';
 
 const SideBar = () => {
-    // State to control sidebar open/close
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    // Function to toggle sidebar state
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -16,7 +14,6 @@ const SideBar = () => {
                 <div className="nav-sidebar">
                     <header className="header">
                         <div className="header_toggle" onClick={toggleSidebar}>
-                            {/* Toggle icon based on sidebar state */}
                             <i className={`bx ${isSidebarOpen ? 'bx-x' : 'bx-menu'}`} id="header-toggle"></i>
                         </div>
                         <div className="header_img">
