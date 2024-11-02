@@ -10,7 +10,9 @@ function All() {
             prodPrice: 1500,
             images: [prod, prod2, prod3],
             color: 'red',
-            availableSizes: ['S', 'M', 'L']
+            availableSizes: ['S', 'M', 'L'],
+            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
+            maxQuantity: 10,
         },
         {
             prodName: "Product 2",
@@ -18,13 +20,17 @@ function All() {
             images: [prod, prod2, prod3],
             color: "blue",
             availableSizes: ['S', 'M', 'L'],
+            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
+            maxQuantity: 10,
         },
         {
             prodName: 'Product 1',
             prodPrice: 1500,
             images: [prod, prod2, prod3],
             color: 'red',
-            availableSizes: ['S', 'M', 'L']
+            availableSizes: ['S', 'M', 'L'],
+            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
+            maxQuantity: 10,
         },
         {
             prodName: "Product 2",
@@ -32,6 +38,8 @@ function All() {
             images: [prod, prod2, prod3],
             color: "blue",
             availableSizes: ['S', 'M', 'L'],
+            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
+            maxQuantity: 10,
         }
     ];
     return (

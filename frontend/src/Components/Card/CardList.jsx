@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Card.css';
 
 const CardList = ({
@@ -23,6 +24,11 @@ const CardList = ({
     const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
     const [colorDropdownOpen, setColorDropdownOpen] = useState(false);
     const [sizeDropdownOpen, setSizeDropdownOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleQuickAdd = (product) => {
+        navigate('/product', { state: { product } });
+    };
     
     useEffect(() => {
         setCurrentPage(1);
@@ -203,7 +209,7 @@ const CardList = ({
                                     {showProdDetails && (
                                         <div className="product-details mt-5">
                                             {showBtn && (
-                                                <button className="quick-add-button">
+                                                <button className="quick-add-button" onClick={() => handleQuickAdd(item)}>
                                                     <i className="bi bi-plus-lg mx-2"></i>
                                                     QUICK ADD
                                                 </button>

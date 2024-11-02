@@ -44,40 +44,38 @@ function CheckOut() {
     };
 
     return (
-        <div>
-            <div className="m-4">
-                <div className="d-flex align-items-center justify-content-between">
-                    <h1>{getTitle()}</h1>
-                    <div className="text-center">
-                        <div className="d-flex justify-content-center cat">
-                            <span
-                                className={`cat-link ${activeSection === "delivery" ? "active" : ""}`}
-                                onClick={() => handleSectionClick("delivery")}
-                            >
-                                <i className="bi bi-truck icon"></i>
-                                <p>Delivery</p>
-                            </span>
-                            <span
-                                className={`cat-link ${activeSection === "payment" ? "active" : ""}`}
-                                onClick={() => handleSectionClick("payment")}
-                            >
-                                <i className="bi bi-credit-card icon"></i>
-                                <p>Payment</p>
-                            </span>
-                            <span
-                                className={`cat-link ${activeSection === "review" ? "active" : ""}`}
-                                onClick={() => handleSectionClick("review")}
-                            >
-                                <i className="bi bi-card-checklist icon"></i>
-                                <p>Review</p>
-                            </span>
-                        </div>
+        <div className="m-4">
+            <div className="d-flex align-items-center justify-content-between">
+                <h1>{getTitle()}</h1>
+                <div className="text-center">
+                    <div className="d-flex justify-content-center cat">
+                        <span
+                            className={`cat-link ${activeSection === "delivery" ? "active" : ""}`}
+                            onClick={() => handleSectionClick("delivery")}
+                        >
+                            <i className="bi bi-truck icon"></i>
+                            <p>Delivery</p>
+                        </span>
+                        <span
+                            className={`cat-link ${activeSection === "payment" ? "active" : ""}`}
+                            onClick={() => handleSectionClick("payment")}
+                        >
+                            <i className="bi bi-credit-card icon"></i>
+                            <p>Payment</p>
+                        </span>
+                        <span
+                            className={`cat-link ${activeSection === "review" ? "active" : ""}`}
+                            onClick={() => handleSectionClick("review")}
+                        >
+                            <i className="bi bi-card-checklist icon"></i>
+                            <p>Review</p>
+                        </span>
                     </div>
                 </div>
-                <hr />
-                <div>
-                    {renderActiveSection()}
-                </div>
+            </div>
+            <hr />
+            <div>
+                {renderActiveSection()}
             </div>
         </div>
     );
