@@ -1,91 +1,89 @@
 .position-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 1030;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
 }
 
 .navbar {
-    background-color: #343a40;
-    border-radius: 0.5rem;
-    overflow: hidden;
+  background-color: #343a40;
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .navbar .nav-link {
-    color: white;
+  color: white;
 }
 
 .navbar .dropdown-menu {
-    background-color: #495057;
-    border-radius: 0.5rem;
+  background-color: #495057;
+  border-radius: 0.5rem;
 }
 
 .navbar .dropdown-item {
-    color: white;
+  color: white;
 }
 
 .navbar .dropdown-item:hover {
-    background-color: #6c757d;
+  background-color: #6c757d;
 }
 .navbar-brand {
-    position: relative;
-    left: 42%;
-    text-align: center;
+  position: relative;
+  left: 42%;
+  text-align: center;
 }
 
 .slide-in-cart {
-    position: fixed;
-    top: 0;
-    right: -100%; 
-    width: 400px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    transition: right 0.3s ease;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: -100%; 
+  width: 700px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  z-index: 1050;
 }
 
 .slide-in-cart.visible {
-    right: 0; 
+  right: 0;
 }
 
 .cart-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .cart-content {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .cart-footer {
-    padding: 1rem;
-    border-top: 1px solid #ddd;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
 }
 
 .checkout-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
-
-@media (max-width:991px) {
-    .navbar-brand {
-        position: relative;
-        left: 0;
-    }
+@media (max-width: 991px) {
+  .navbar-brand {
+    position: relative;
+    left: 0;
+  }
 }
-    
