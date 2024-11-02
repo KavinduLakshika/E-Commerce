@@ -6,12 +6,13 @@ import NavBar from '../NavBar/NavBar';
 
 const Product = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { product } = location.state || {};
+
 
     const [selectedImage, setSelectedImage] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('');
-    const location = useLocation();
-    const { product } = location.state || {};
 
     useEffect(() => {
         setSelectedImage(product.images[0] || '');
@@ -31,6 +32,14 @@ const Product = () => {
             },
         });
     };
+
+    const handleAddToCart = () => {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const updatedCart = [...cartItems, { ...product, quantity, selectedSize }];
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+        navigate('/cart'); // Redirect to Cart page
+    };
+
 
     return (
         <div>
@@ -87,7 +96,7 @@ const Product = () => {
                             <button className="btn btn-info me-2" onClick={handleBuyNow}>
                                 <i className="bi bi-bag-fill me-2"></i> Buy Now
                             </button>
-                            <button className="btn btn-secondary">
+                            <button className="btn btn-secondary" onClick={handleAddToCart}>
                                 <i className="bi bi-cart me-2"></i> Add To Cart
                             </button>
                         </div>

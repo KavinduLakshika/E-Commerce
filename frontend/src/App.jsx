@@ -14,7 +14,7 @@ import SideBar from './Components/SideBar/SideBar';
 import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <div className="m-3">
