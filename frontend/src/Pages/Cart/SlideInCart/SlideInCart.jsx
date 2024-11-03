@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import './SlideInCart.css';
 import { Link, useNavigate } from 'react-router-dom';
-import NoItems from '../../../assets/empty-cart.svg';
 
 function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityChange }) {
     const navigate = useNavigate();
@@ -15,15 +14,14 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
             <div className={`slide-in-cart ${isVisible ? 'visible' : ''}`}>
                 <div className="cart-header">
                     <h2>
-                        <i className="bi bi-cart-plus mx-3"></i>
+                        <i className="bi bi-cart-plus mx-3 "></i>
                         Shopping Cart
                     </h2>
                     <button onClick={onClose} className="close-btn">×</button>
                 </div>
                 <div className="cart-content">
                     {cartItems.length === 0 ? (
-                        <div className='emt-cart'>
-                            
+                        <div className='emt-cart'> 
                             <p>No Cart Items</p>
                             <Link to='/'>
                                 <button className='btn bg-body-secondary'>Shop Now</button>
@@ -41,14 +39,14 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                                     <p>Size: {item.selectedSize}</p>
                                     <button
                                         type="button"
-                                        className="btn btn-primary btn-sm me-1 mb-2"
+                                        className="btn btn-primary btn-sm me-1 mb-2 remove"
                                         onClick={() => onRemoveItem(index)}
                                     >
                                         Remove
                                     </button>
                                 </div>
                                 <div className="col-lg-4 mb-4">
-                                    <div className="d-flex mb-4">
+                                    <div className="d-flex mb-4 qty">
                                         <button
                                             className="btn btn-primary px-3 me-2"
                                             onClick={() => onQuantityChange(index, item.quantity - 1)}

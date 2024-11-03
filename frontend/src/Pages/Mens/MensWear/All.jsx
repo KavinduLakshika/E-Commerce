@@ -36,7 +36,7 @@ function All() {
             prodName: "Product 2",
             prodPrice: 2000,
             images: [prod, prod2, prod3],
-            color: "b",
+            color: "blue",
             availableSizes: ['S', 'M', 'L'],
             description: 'A comfortable and stylish white t-shirt made from premium cotton.',
             maxQuantity: 10,

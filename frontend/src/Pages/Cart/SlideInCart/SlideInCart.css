@@ -66,3 +66,115 @@
   width: 250px;
   height: 250px;
 }
+
+@media (max-width: 428px) {
+  .slide-in-cart {
+    position: fixed;
+    top: 0;
+    right: 100%;
+    width: 400px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 1030;
+  }
+  .cart-header h2 {
+    display: flex;
+    visibility: visible;
+    font-size: 20px;
+    margin-left: -40px;
+  }
+  .cart-header h2 i {
+    visibility: hidden;
+  }
+  .checkout-btn {
+    width: 70%;
+    padding: 0.75rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 50px;
+  }
+  .cart-content img {
+    height: 150px;
+    object-fit: contain;
+    margin-left: -120px;
+  }
+  .cart-content h4 {
+    margin-top: -150px;
+    margin-left: 160px;
+  }
+  .cart-content p {
+    margin-left: 160px;
+  }
+  .cart-content button {
+    margin-left: 160px;
+  }
+  .cart-content h5 {
+    margin-left: 160px;
+  }
+}
+@media (max-width: 360px) {
+  .slide-in-cart {
+    position: fixed;
+    top: 0;
+    right: 100%;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 1030;
+  }
+  .cart-header h2 {
+    display: flex;
+    font-size: 15px;
+    margin-left: -50px;
+  }
+  .cart-header h2 i {
+    visibility: hidden;
+  }
+  .checkout-btn {
+    width: 70%;
+    padding: 0.75rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 50px;
+  }
+  .cart-content img {
+    height: 150px;
+    object-fit: contain;
+    margin-left: -80px;
+  }
+  .cart-content h4 {
+    font-size: 17px;
+    margin-top: -170px;
+    margin-left: 140px;
+  }
+  .cart-content p {
+    margin-left: 140px;
+  }
+  .cart-content button {
+    margin-left: 140px;
+  }
+  .qty {
+    margin-left: -50px;
+  }
+  .cart-content h5 {
+    margin-left: 120px;
+  }
+}
+@media (max-width: 1280px) {
+  .cart-header h2 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 991px) {
+
+}
