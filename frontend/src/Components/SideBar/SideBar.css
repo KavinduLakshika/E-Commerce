@@ -95,6 +95,7 @@ a {
 
 .nav_logo {
     margin-bottom: 2rem;
+    color: #fff;
 }
 
 .nav_logo-icon {
@@ -179,4 +180,15 @@ a {
     .body-pd {
         padding-left: calc(var(--nav-width) + 188px);
     }
+}
+/* Sidebar.css */
+
+
+.nav_link.active {
+    background-color: rgba(255, 255, 255, 0.426);
+}
+
+.nav_link:hover {
+    background-color: rgba(0, 0, 0, 0.426);
+    transition: 0.7;
 }
