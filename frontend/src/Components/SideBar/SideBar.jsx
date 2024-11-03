@@ -72,7 +72,7 @@ function Sidebar() {
                         ))}
                     </div>
 
-                    <Link to="/logout" className="nav_link">
+                    <Link to="/" className="nav_link">
                         <i className="bx bx-log-out nav_icon"></i>
                         <span className="nav_name">SignOut</span>
                     </Link>
