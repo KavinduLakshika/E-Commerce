@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import './SlideInCart.css';
 import { Link, useNavigate } from 'react-router-dom';
-import NoItems from '../../../assets/empty-cart.svg';
+import cart_back from '../../../assets/cart.jpg'
 
 function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityChange }) {
     const navigate = useNavigate();
@@ -23,7 +23,9 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                 <div className="cart-content">
                     {cartItems.length === 0 ? (
                         <div className='emt-cart'>
-                            
+                            <div className="cart-back-img">
+                                <img src={cart_back} alt="" />
+                            </div>
                             <p>No Cart Items</p>
                             <Link to='/'>
                                 <button className='btn bg-body-secondary'>Shop Now</button>
