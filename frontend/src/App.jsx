@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Mens from './Pages/Mens/Mens';
 import Cart from './Pages/Cart/Cart';
-
 import Women from './Pages/Women/Women';
 import Product from './Components/Product/Product';
 import Login from './Pages/Login/Login';
