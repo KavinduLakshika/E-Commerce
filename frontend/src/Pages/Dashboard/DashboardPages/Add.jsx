@@ -118,11 +118,22 @@ const Add = () => {
               <input type="text" name="name" value={formData.name} onChange={handleChange} required className="form-control" />
             </div>
 
-            <div className="col-md-6 mb-3">
+            <div className="col-md-3 mb-3">
+              <label className="form-label">Type</label>
+              <select name="type" value={formData.type} onChange={handleChange} required className="form-control">
+                <option value="">Select type</option>
+                <option value="Men">Men</option>
+                <option value="Men">Women</option>
+                <option value="Men">Unisex</option>
+              </select>
+            </div>
+
+            <div className="col-md-3 mb-3">
               <label className="form-label">Category</label>
               <select name="category" value={formData.category} onChange={handleChange} required className="form-control">
                 <option value="">Select Category</option>
-                <option value="T">T</option>
+                <option value="Men">T-Shirts</option>
+                <option value="Men">Shirts</option>
               </select>
             </div>
 
