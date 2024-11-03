@@ -21,11 +21,11 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                     ) : (
                         cartItems.map((item, index) => (
                             <div className="row" key={index}>
-                                <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
-                                    <img src={item.images[0]} className="w-100" alt={item.prodName} />
+                                <div className="col-lg-3 mb-4">
+                                    <img src={item.images[0]} className="w-100 " alt={item.prodName} />
                                 </div>
-                                <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                                    <p><strong>{item.prodName}</strong></p>
+                                <div className="col-lg-5 mb-4">
+                                    <h4><strong>{item.prodName}</strong></h4>
                                     <p>Color: {item.color}</p>
                                     <p>Size: {item.selectedSize}</p>
                                     <button
@@ -36,7 +36,7 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                                         Remove
                                     </button>
                                 </div>
-                                <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <div className="col-lg-4 mb-4">
                                     <div className="d-flex mb-4">
                                         <button
                                             className="btn btn-primary px-3 me-2"
@@ -60,7 +60,7 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                                             <i className="fas fa-plus"></i>
                                         </button>
                                     </div>
-                                    <p><strong>LKR {item.prodPrice * item.quantity}</strong></p>
+                                    <h5><strong>LKR {item.prodPrice * item.quantity}.00</strong></h5>
                                 </div>
                                 <hr />
                             </div>

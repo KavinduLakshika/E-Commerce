@@ -21,6 +21,22 @@ const NavBar = () => {
         setIsCartVisible(false);
     };
 
+    // Function to remove item from cart
+    const handleRemoveItem = (index) => {
+        const updatedCartItems = cartItems.filter((_, i) => i !== index);
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    };
+
+    // Function to change item quantity
+    const handleQuantityChange = (index, newQuantity) => {
+        const updatedCartItems = cartItems.map((item, i) =>
+            i === index ? { ...item, quantity: newQuantity } : item
+        );
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    };
+
     return (
         <>
             <nav className="navbar position-sticky navbar-expand-lg navbar-light mb-3" style={{ backgroundColor: '#343a40', zIndex: 1030 }}>
@@ -31,13 +47,13 @@ const NavBar = () => {
                         </a>
                         <div className="dropdown">
                             <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="/profile" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
                             </a>
                             <ul className="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li><a className="dropdown-item" href="/profile">My profile</a></li>
-                            <li><a className="dropdown-item" href="#">Settings</a></li>
-                            <li><a className="dropdown-item" href="#">Logout</a></li>
-                        </ul>
+                                <li><a className="dropdown-item" href="/profile">My profile</a></li>
+                                <li><a className="dropdown-item" href="#">Settings</a></li>
+                                <li><a className="dropdown-item" href="#">Logout</a></li>
+                            </ul>
                         </div>
                     </div>
 
@@ -72,6 +88,8 @@ const NavBar = () => {
                 isVisible={isCartVisible}
                 onClose={handleCloseCart}
                 cartItems={cartItems}
+                onRemoveItem={handleRemoveItem}
+                onQuantityChange={handleQuantityChange}
             />
         </>
     );
