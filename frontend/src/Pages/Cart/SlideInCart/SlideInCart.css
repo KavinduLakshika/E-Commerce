@@ -9,6 +9,20 @@
   overflow-y: auto;
   transition: right 0.3s ease;
   z-index: 1030;
+  /* background-image: url(../../../assets/cart.jpg); */
+  background-size: cover;
+}
+
+.cart-back-img{
+  position:absolute;
+  top: 17%;
+  left: 27%;
+  opacity: 0.9;
+  z-index: -1;
+}
+.cart-back-img img{
+  width: 250px;
+  height: auto;
 }
 
 .slide-in-cart.visible {
