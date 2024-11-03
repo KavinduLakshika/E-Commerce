@@ -1,26 +1,22 @@
-/* eslint-disable react/prop-types */
 import './OrderSummary.css';
 
-function OrderSummary({ product, quantity, selectedSize }) {
-    if (!product) {
-        return <div>No product selected</div>;
-    }
-
+function OrderSummary() {
+    
     return (
         <div className="order-summary p-4 mt-2 h-100">
             <h4>Order Summary</h4>
             <div className="order-item d-flex align-items-center mb-4 mt-4">
                 <img
-                    src={product.images?.[0]}
+                    src=''
                     alt="Product"
                     className="product-image"
                 />
                 <div className="order-details">
-                    <h6 className="product-title">{product.prodName}</h6>
-                    <p className="product-quantity">Quantity {quantity}</p>
-                    <p className="product-size">Size {selectedSize}</p>
+                    <h6 className="product-title">Name</h6>
+                    <p className="product-quantity">Quantity</p>
+                    <p className="product-size">Size</p>
                 </div>
-                <span className="prod-price ml-auto">LKR {product.prodPrice}</span>
+                <span className="prod-price ml-auto">LKR 000 </span>
             </div>
 
             <div className="discount-section mb-3">
@@ -34,7 +30,7 @@ function OrderSummary({ product, quantity, selectedSize }) {
 
             <div className="summary-item d-flex justify-content-between">
                 <span>Subtotal</span>
-                <span>LKR {product.prodPrice * quantity}</span>
+                <span>LKR </span>
             </div>
             <div className="summary-item d-flex justify-content-between">
                 <span>Shipping</span>
@@ -45,7 +41,7 @@ function OrderSummary({ product, quantity, selectedSize }) {
 
             <div className="summary-total d-flex justify-content-between">
                 <strong>Total</strong>
-                <strong>LKR {product.prodPrice * quantity + 380}</strong>
+                <strong>LKR 000</strong>
             </div>
         </div>
     );

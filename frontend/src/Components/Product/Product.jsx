@@ -25,17 +25,15 @@ const Product = () => {
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
     const handleBuyNow = () => {
-        navigate('/checkout', {
-            state: { product, quantity, selectedSize },
-        });
+        navigate('/checkout')
     };
 
     const handleAddToCart = () => {
         const newCartItem = { ...product, quantity, selectedSize };
         const updatedCart = [...cartItems, newCartItem];
-        setCartItems(updatedCart); // Update the local state with new item
-        localStorage.setItem('cartItems', JSON.stringify(updatedCart)); // Save to localStorage
-        setIsCartVisible(true); // Show cart sidebar
+        setCartItems(updatedCart);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart)); 
+        setIsCartVisible(true); 
     };
 
     const handleRemoveItem = (index) => {
@@ -52,7 +50,7 @@ const Product = () => {
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
 
-    const handleCloseCart = () => setIsCartVisible(false); 
+    const handleCloseCart = () => setIsCartVisible(false);
 
     return (
         <div>
@@ -116,7 +114,7 @@ const Product = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* SlideInCart component */}
             <SlideInCart
                 isVisible={isCartVisible}

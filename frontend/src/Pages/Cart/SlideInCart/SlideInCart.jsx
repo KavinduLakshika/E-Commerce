@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
 import './SlideInCart.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityChange }) {
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        navigate('/checkout'); 
+    };
+
     return (
         <>
             <div className={`slide-in-cart ${isVisible ? 'visible' : ''}`}>
@@ -68,7 +74,7 @@ function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityCh
                     )}
                 </div>
                 <div className="cart-footer">
-                    <button className="checkout-btn">Checkout</button>
+                    <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
                 </div>
             </div>
         </>
