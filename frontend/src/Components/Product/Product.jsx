@@ -115,6 +115,8 @@ const Product = () => {
                 </div>
             </div>
 
+            {isCartVisible && <div className="blur-overlay" onClick={handleCloseCart}></div>}
+            
             {/* SlideInCart component */}
             <SlideInCart
                 isVisible={isCartVisible}
