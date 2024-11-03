@@ -1,21 +1,17 @@
 /* eslint-disable react/prop-types */
 import './SlideInCart.css';
 import { Link, useNavigate } from 'react-router-dom';
-import cart_back from '../../../assets/cart.jpg'
 
 function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityChange }) {
     const navigate = useNavigate();
 
     const handleCheckout = () => {
-        navigate('/checkout');
+        navigate('/checkout'); 
     };
 
     return (
         <>
             <div className={`slide-in-cart ${isVisible ? 'visible' : ''}`}>
-                <div className="cart-back-img">
-                    <img src={cart_back} alt="" />
-                </div>
                 <div className="cart-header">
                     <h2>Shopping Cart</h2>
                     <button onClick={onClose} className="close-btn">×</button>
