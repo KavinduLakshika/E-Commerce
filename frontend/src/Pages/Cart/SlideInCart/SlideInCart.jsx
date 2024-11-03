@@ -1,24 +1,29 @@
 /* eslint-disable react/prop-types */
 import './SlideInCart.css';
 import { Link, useNavigate } from 'react-router-dom';
+import NoItems from '../../../assets/empty-cart.svg';
 
 function SlideInCart({ isVisible, onClose, cartItems, onRemoveItem, onQuantityChange }) {
     const navigate = useNavigate();
 
     const handleCheckout = () => {
-        navigate('/checkout'); 
+        navigate('/checkout');
     };
 
     return (
         <>
             <div className={`slide-in-cart ${isVisible ? 'visible' : ''}`}>
                 <div className="cart-header">
-                    <h2>Shopping Cart</h2>
+                    <h2>
+                        <i className="bi bi-cart-plus mx-3"></i>
+                        Shopping Cart
+                    </h2>
                     <button onClick={onClose} className="close-btn">×</button>
                 </div>
                 <div className="cart-content">
                     {cartItems.length === 0 ? (
                         <div className='emt-cart'>
+                            
                             <p>No Cart Items</p>
                             <Link to='/'>
                                 <button className='btn bg-body-secondary'>Shop Now</button>

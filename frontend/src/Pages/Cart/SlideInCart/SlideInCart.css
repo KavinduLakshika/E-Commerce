@@ -41,11 +41,6 @@
   justify-content: center;
 }
 
-.emt-cart {
-  text-align: center;
-  margin-top: 300px;
-}
-
 .cart-footer {
   position: absolute;
   bottom: 0;
@@ -62,4 +57,12 @@
   color: #fff;
   border: none;
   cursor: pointer;
+}
+.emt-cart {
+  text-align: center;
+  margin-top: 150px;
+}
+.no-item {
+  width: 250px;
+  height: 250px;
 }

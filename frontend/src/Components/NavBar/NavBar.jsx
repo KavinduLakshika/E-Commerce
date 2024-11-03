@@ -21,14 +21,12 @@ const NavBar = () => {
         setIsCartVisible(false);
     };
 
-    // Function to remove item from cart
     const handleRemoveItem = (index) => {
         const updatedCartItems = cartItems.filter((_, i) => i !== index);
         setCartItems(updatedCartItems);
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     };
 
-    // Function to change item quantity
     const handleQuantityChange = (index, newQuantity) => {
         const updatedCartItems = cartItems.map((item, i) =>
             i === index ? { ...item, quantity: newQuantity } : item
@@ -83,7 +81,8 @@ const NavBar = () => {
                 </div>
             </nav>
 
-            {/* SlideInCart Component */}
+            {isCartVisible && <div className="blur-overlay" onClick={handleCloseCart}></div>}
+
             <SlideInCart
                 isVisible={isCartVisible}
                 onClose={handleCloseCart}
