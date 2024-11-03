@@ -15,7 +15,7 @@ const Add = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const sizes = ['Small', 'Medium', 'Large'];
+  const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL  '];
   const colors = [
     { name: 'Red', code: '#FF0000' },
     { name: 'Green', code: '#008000' },
@@ -61,7 +61,7 @@ const Add = () => {
     { name: 'Lime', code: '#00FF00' },
     { name: 'Steel Blue', code: '#4682B4' },
   ];
-  
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -133,7 +133,7 @@ const Add = () => {
 
             <div className="col-md-6 mb-3">
               <label className="form-label">Size</label>
-              <div>
+              <div className="d-flex flex-wrap gap-2">
                 {sizes.map((size) => (
                   <div className="form-check form-check-inline align-items-center" key={size}>
                     <label className="checkbox-container">
@@ -173,7 +173,7 @@ const Add = () => {
                       />
                       <span className="custom-checkmark" style={{ backgroundColor: color.code }}></span>
                     </label>
-                      <span className="form-check-label">{color.name}</span>
+                    <span className="form-check-label">{color.name}</span>
                   </div>
                 ))}
               </div>

@@ -33,7 +33,7 @@ function Sidebar() {
     }, [isNavVisible]);
 
     const menuItems = [
-        { name: 'Dashboard', icon: 'bx-grid-alt', path: '/dash' },
+        { name: 'Dashboard', icon: 'bx-grid-alt', path: '/dashboard' },
         { name: 'Add Product', icon: 'bxs-message-square-add', path: '/add' },
         { name: 'Product List', icon: 'bx-list-ul', path: '/list' },
         { name: 'Order List', icon: 'bx-list-check', path: '/order_list' }

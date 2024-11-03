@@ -1,6 +1,7 @@
-.container{
+.container {
     max-width: 1920px;
 }
+
 .checkbox-container {
     display: flex;
     align-items: center;
@@ -40,7 +41,7 @@
     transform: translateY(-50%);
 }
 
-.checkbox-container input:checked~.line-indicator {
+.checkbox-container input:checked ~ .line-indicator {
     transform: translateY(-50%) rotate(90deg);
 }
 
@@ -56,6 +57,12 @@
 
 label {
     color: #000;
+}
+
+.d-flex.flex-wrap.gap-2 {
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /*color check box*/
