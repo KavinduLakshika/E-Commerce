@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
 function Sidebar() {
     const [isNavVisible, setIsNavVisible] = useState(false);
-    const [activeLink, setActiveLink] = useState('Dashboard');
+    const [activeLink, setActiveLink] = useState('');
+    const location = useLocation();
 
     const toggleNavbar = () => {
         setIsNavVisible(!isNavVisible);
     };
 
-    const handleLinkClick = (name) => {
-        setActiveLink(name);
-    };
+    useEffect(() => {
+        // Update activeLink based on the current path
+        const currentPath = location.pathname;
+        const activeItem = menuItems.find(item => item.path === currentPath);
+        if (activeItem) {
+            setActiveLink(activeItem.name);
+        }
+    }, [location]);
 
     useEffect(() => {
         const bodyElement = document.getElementById('body-pd');
@@ -27,16 +33,14 @@ function Sidebar() {
     }, [isNavVisible]);
 
     const menuItems = [
-        { name: 'Dashboard', icon: 'bx-grid-alt', path: '' },
-        { name: 'Users', icon: 'bx-user', path: '' },
-        { name: 'Messages', icon: 'bx-message', path: '' },
-        { name: 'Bookmark', icon: 'bx-bookmark', path: '' },
-        { name: 'Files', icon: 'bx-file', path: '' },
-        { name: 'Stats', icon: 'bx-stats', path: '' }
+        { name: 'Dashboard', icon: 'bx-grid-alt', path: '/dash' },
+        { name: 'Add Product', icon: 'bxs-message-square-add', path: '/add' },
+        { name: 'Product List', icon: 'bx-list-ul', path: '/list' },
+        { name: 'Order List', icon: 'bx-list-check', path: '/order_list' }
     ];
 
     return (
-        <div className='body' id="body-pd">
+        <>
             <header className="header" id="header">
                 <div className="header_toggle" onClick={toggleNavbar}>
                     <i className={`bx ${isNavVisible ? 'bx-x' : 'bx-menu'}`} id="header-toggle"></i>
@@ -56,7 +60,11 @@ function Sidebar() {
 
                         {menuItems.map((item) => (
                             <div className="nav_list" key={item.name}>
-                                <Link to={item.path} className={`nav_link ${activeLink === item.name ? 'active' : ''}`} onClick={() => handleLinkClick(item.name)} >
+                                <Link
+                                    to={item.path}
+                                    className={`nav_link ${activeLink === item.name ? 'active' : ''}`}
+                                    onClick={() => setActiveLink(item.name)}
+                                >
                                     <i className={`bx ${item.icon} nav_icon`}></i>
                                     <span className="nav_name">{item.name}</span>
                                 </Link>
@@ -70,7 +78,7 @@ function Sidebar() {
                     </Link>
                 </nav>
             </div>
-        </div>
+        </>
     );
 }
 

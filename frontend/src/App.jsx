@@ -11,6 +11,9 @@ import Profile from './Pages/Profile/Profile';
 import CheckOut from './Pages/Check out/CheckOut';
 import SideBar from './Components/SideBar/SideBar';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Add from './Pages/Dashboard/DashboardPages/Add';
+import List from './Pages/Dashboard/DashboardPages/List';
+import OrderList from './Pages/Dashboard/DashboardPages/OrderList';
 
 function App() {
 
@@ -30,8 +33,10 @@ function App() {
         </Routes>
       </div>
       <Routes>
-        <Route path='/sidebar' element={<SideBar />} />
         <Route path='/dash' element={<Dashboard />} />
+        <Route path='/add' element={<Add />} />
+        <Route path='/list' element={<List />} />
+        <Route path='/order_list' element={<OrderList />} />
       </Routes>
     </BrowserRouter>
   );
