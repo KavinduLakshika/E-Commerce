@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Product.css';
 import NavBar from '../NavBar/NavBar';
+import SlideInCart from '../../Pages/Cart/SlideInCart/SlideInCart';
 
 const Product = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { product } = location.state || {};
 
-
     const [selectedImage, setSelectedImage] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('');
+    const [isCartVisible, setIsCartVisible] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
         setSelectedImage(product.images[0] || '');
@@ -25,21 +26,33 @@ const Product = () => {
 
     const handleBuyNow = () => {
         navigate('/checkout', {
-            state: {
-                product,
-                quantity,
-                selectedSize,
-            },
+            state: { product, quantity, selectedSize },
         });
     };
 
     const handleAddToCart = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        const updatedCart = [...cartItems, { ...product, quantity, selectedSize }];
-        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-        navigate('/cart'); 
+        const newCartItem = { ...product, quantity, selectedSize };
+        const updatedCart = [...cartItems, newCartItem];
+        setCartItems(updatedCart); // Update the local state with new item
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart)); // Save to localStorage
+        setIsCartVisible(true); // Show cart sidebar
     };
 
+    const handleRemoveItem = (index) => {
+        const updatedCart = cartItems.filter((_, i) => i !== index);
+        setCartItems(updatedCart);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    };
+
+    const handleQuantityChange = (index, newQuantity) => {
+        const updatedCart = cartItems.map((item, i) =>
+            i === index ? { ...item, quantity: newQuantity } : item
+        );
+        setCartItems(updatedCart);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+    };
+
+    const handleCloseCart = () => setIsCartVisible(false); 
 
     return (
         <div>
@@ -103,8 +116,17 @@ const Product = () => {
                     </div>
                 </div>
             </div>
+            
+            {/* SlideInCart component */}
+            <SlideInCart
+                isVisible={isCartVisible}
+                onClose={handleCloseCart}
+                cartItems={cartItems}
+                onRemoveItem={handleRemoveItem}
+                onQuantityChange={handleQuantityChange}
+            />
         </div>
     );
-}
+};
 
 export default Product;
