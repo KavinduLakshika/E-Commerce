@@ -37,7 +37,7 @@ const Product = () => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const updatedCart = [...cartItems, { ...product, quantity, selectedSize }];
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
-        navigate('/cart'); // Redirect to Cart page
+        navigate('/cart'); 
     };
 
 
