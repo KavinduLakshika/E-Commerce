@@ -22,10 +22,8 @@ const NavBar = () => {
                             <FaShoppingCart size={25} color="white" />
                         </a>
                         <div className="dropdown">
-                            <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <Link to="/profile">
+                            <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="/profile" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
-                                </Link>
                             </a>
                         </div>
                     </div>
