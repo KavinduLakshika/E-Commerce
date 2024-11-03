@@ -167,8 +167,8 @@ const Table = ({
                 </div>
 
                 {showButton && (
-                    <div className=" d-flex justify-content-end">
-                        <button className="btn btn-info text-light" onClick={onAdd}>
+                    <div className=" d-flex ">
+                        <button className="btn btn-primary ms-auto" onClick={onAdd}>
                             {btnName}
                         </button>
                     </div>
