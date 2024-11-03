@@ -33,7 +33,7 @@ function Sidebar() {
     }, [isNavVisible]);
 
     const menuItems = [
-        { name: 'Dashboard', icon: 'bx-grid-alt', path: '/dash' },
+        { name: 'Dashboard', icon: 'bx-grid-alt', path: '/dashboard' },
         { name: 'Add Product', icon: 'bxs-message-square-add', path: '/add' },
         { name: 'Product List', icon: 'bx-list-ul', path: '/list' },
         { name: 'Order List', icon: 'bx-list-check', path: '/order_list' }
@@ -53,7 +53,7 @@ function Sidebar() {
             <div className={`l-navbar ${isNavVisible ? 'show' : ''}`} id="nav-bar">
                 <nav className="nav">
                     <div>
-                        <Link to="/dash" className="nav_logo">
+                        <Link to="/dashboard" className="nav_logo">
                             <i className='bx bxs-dog nav_icon'></i>
                             <span className="nav_logo-name">මගේ සමාගම</span>
                         </Link>

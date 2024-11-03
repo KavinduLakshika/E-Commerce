@@ -5,7 +5,6 @@ import Table from '../../../Components/Table/Table'
 const OrderList = () => {
   const columns = ["ID", "Products"];
   const data = ["ID", "Products"];
-  const btnName = 'Add New Product';
 
   const title = 'Product';
   const invoice = 'Product.pdf';
@@ -13,12 +12,12 @@ const OrderList = () => {
   return (
     <div className="body" id="body-pd">
       <Sidebar />
-      <div>
+      <div className='pt-4'>
       <h1>Order List</h1>
       <Table
         data={data}
         columns={columns}
-        btnName={btnName}
+        showButton={false}
         title={title}
         invoice={invoice}
         showDate={false}
