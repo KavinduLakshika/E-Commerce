@@ -111,7 +111,6 @@ label {
 
 .custom-checkbox-container input:checked ~ .custom-checkmark {
     background-color: var(--color);
-    border-color: var(--color);
 }
 
 .custom-checkbox-container input:checked ~ .custom-checkmark:after {
