@@ -5,6 +5,7 @@ const Dashboard = () => {
   return (
     <div className="body" id="body-pd">
       <SideBar />
+      <div className="pt-4"></div>
       <h1>Dashborad</h1>
     </div>
   )

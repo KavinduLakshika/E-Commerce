@@ -53,7 +53,7 @@ function Sidebar() {
             <div className={`l-navbar ${isNavVisible ? 'show' : ''}`} id="nav-bar">
                 <nav className="nav">
                     <div>
-                        <Link to="/dash" className="nav_logo">
+                        <Link to="/dashboard" className="nav_logo">
                             <i className='bx bxs-dog nav_icon'></i>
                             <span className="nav_logo-name">මගේ සමාගම</span>
                         </Link>

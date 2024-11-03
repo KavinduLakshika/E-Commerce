@@ -14,15 +14,18 @@ const List = () => {
   return (
     <div className="body" id="body-pd">
       <Sidebar />
-      <h1>List</h1>
-      <Table
-        data={data}
-        columns={columns}
-        btnName={btnName}
-        title={title}
-        invoice={invoice}
-        showDate={false}
-      />
+      <div className="pt-4">
+        <h1>List</h1>
+        <Table
+          data={data}
+          columns={columns}
+          btnName={btnName}
+          title={title}
+          invoice={invoice}
+          showDate={false}
+        />
+      </div>
+
     </div>
   )
 }
