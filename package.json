@@ -8,6 +8,11 @@
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "dependencies": {
-    "bootstrap-icons": "^1.11.3"
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "bootstrap-icons": "^1.11.3",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
+    "react-datepicker": "^7.5.0"
   }
 }

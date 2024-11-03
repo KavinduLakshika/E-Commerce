@@ -41,9 +41,14 @@
     transform: translateY(-50%) rotate(90deg);
 }
 
-/* Align the label inline */
 .form-check-inline {
     display: flex;
     align-items: center;
-    gap: 8px; /* Spacing between checkbox and label */
+    gap: 8px;
+}
+.form-control{
+    border: 1px solid rgb(202, 202, 202);
+}
+label{
+    color: #000;
 }
