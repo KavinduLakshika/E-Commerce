@@ -45,15 +45,10 @@ const NavBar = () => {
                         <a className="text-reset me-3" href="#" onClick={(e) => { e.preventDefault(); toggleCartVisibility(); }}>
                             <FaShoppingCart size={25} color="white" />
                         </a>
-                        <div className="dropdown">
-                            <a className="dropdown-toggle d-flex align-items-center hidden-arrow" href="/profile" id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div className="">
+                            <a href='/profile'>
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
                             </a>
-                            <ul className="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuAvatar">
-                                <li><a className="dropdown-item" href="/profile">My profile</a></li>
-                                <li><a className="dropdown-item" href="#">Settings</a></li>
-                                <li><a className="dropdown-item" href="#">Logout</a></li>
-                            </ul>
                         </div>
                     </div>
 
