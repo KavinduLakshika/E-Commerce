@@ -6,6 +6,7 @@ const Add = () => {
   const initialFormData = {
     image: null,
     name: '',
+    gender:'',
     category: '',
     price: '',
     size: [],
@@ -18,51 +19,50 @@ const Add = () => {
   const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL  '];
   const colors = [
     { name: 'Red', code: '#FF0000' },
-    { name: 'Green', code: '#008000' },
-    { name: 'Yellow', code: '#FFFF00' },
-    { name: 'Blue', code: '#0000FF' },
-    { name: 'Black', code: '#000000' },
-    { name: 'White', code: '#FFFFFF' },
-    { name: 'Pink', code: '#FFC0CB' },
-    { name: 'Purple', code: '#800080' },
-    { name: 'Orange', code: '#FFA500' },
-    { name: 'Brown', code: '#A52A2A' },
-    { name: 'Gray', code: '#808080' },
-    { name: 'Teal', code: '#008080' },
-    { name: 'Navy', code: '#000080' },
-    { name: 'Maroon', code: '#800000' },
-    { name: 'Olive', code: '#808000' },
-    { name: 'Burgundy', code: '#800020' },
-    { name: 'Coral', code: '#FF7F50' },
-    { name: 'Lavender', code: '#E6E6FA' },
-    { name: 'Gold', code: '#FFD700' },
-    { name: 'Silver', code: '#C0C0C0' },
-    { name: 'Cream', code: '#FFFDD0' },
-    { name: 'Beige', code: '#F5F5DC' },
-    { name: 'Peach', code: '#FFDAB9' },
-    { name: 'Turquoise', code: '#40E0D0' },
-    { name: 'Magenta', code: '#FF00FF' },
-    { name: 'Cyan', code: '#00FFFF' },
-    { name: 'Mint', code: '#98FF98' },
-    { name: 'Mustard', code: '#FFDB58' },
-    { name: 'Salmon', code: '#FA8072' },
-    { name: 'Charcoal', code: '#36454F' },
-    { name: 'Plum', code: '#8E4585' },
-    { name: 'Aqua', code: '#00FFFF' },
     { name: 'Brick Red', code: '#CB4154' },
-    { name: 'Emerald', code: '#50C878' },
-    { name: 'Forest Green', code: '#228B22' },
-    { name: 'Khaki', code: '#F0E68C' },
-    { name: 'Ivory', code: '#FFFFF0' },
+    { name: 'Burgundy', code: '#800020' },
+    { name: 'Maroon', code: '#800000' },
+    { name: 'Coral', code: '#FF7F50' },
+    { name: 'Salmon', code: '#FA8072' },
+    { name: 'Peach', code: '#FFDAB9' },
+    { name: 'Pink', code: '#FFC0CB' },
     { name: 'Fuchsia', code: '#FF00FF' },
+    { name: 'Magenta', code: '#FF00FF' },
+    { name: 'Lavender', code: '#E6E6FA' },
+    { name: 'Orange', code: '#FFA500' },
+    { name: 'Mustard', code: '#FFDB58' },
+    { name: 'Yellow', code: '#FFFF00' },
+    { name: 'Gold', code: '#FFD700' },
+    { name: 'Lime', code: '#00FF00' },
+    { name: 'Green', code: '#008000' },
+    { name: 'Forest Green', code: '#228B22' },
+    { name: 'Emerald', code: '#50C878' },
+    { name: 'Olive', code: '#808000' },
+    { name: 'Mint', code: '#98FF98' },
     { name: 'Light Blue', code: '#ADD8E6' },
+    { name: 'Blue', code: '#0000FF' },
+    { name: 'Steel Blue', code: '#4682B4' },
+    { name: 'Navy', code: '#000080' },
+    { name: 'Aqua', code: '#00FFFF' },
+    { name: 'Cyan', code: '#00FFFF' },
+    { name: 'Turquoise', code: '#40E0D0' },
+    { name: 'Teal', code: '#008080' },
+    { name: 'Purple', code: '#800080' },
+    { name: 'Plum', code: '#8E4585' },
+    { name: 'Brown', code: '#A52A2A' },
     { name: 'Sienna', code: '#A0522D' },
     { name: 'Copper', code: '#B87333' },
-    { name: 'Lime', code: '#00FF00' },
-    { name: 'Steel Blue', code: '#4682B4' },
+    { name: 'Charcoal', code: '#36454F' },
+    { name: 'Gray', code: '#808080' },
+    { name: 'Black', code: '#000000' },
+    { name: 'White', code: '#FFFFFF' },
+    { name: 'Silver', code: '#C0C0C0' },
+    { name: 'Ivory', code: '#FFFFF0' },
+    { name: 'Cream', code: '#FFFDD0' },
+    { name: 'Beige', code: '#F5F5DC' },
   ];
-
-
+  
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -119,12 +119,12 @@ const Add = () => {
             </div>
 
             <div className="col-md-3 mb-3">
-              <label className="form-label">Type</label>
-              <select name="type" value={formData.type} onChange={handleChange} required className="form-control">
-                <option value="">Select type</option>
+              <label className="form-label">Gender</label>
+              <select name="gender" value={formData.gender} onChange={handleChange} required className="form-control">
+                <option value="">Select Gender</option>
                 <option value="Men">Men</option>
-                <option value="Men">Women</option>
-                <option value="Men">Unisex</option>
+                <option value="Women">Women</option>
+                <option value="Unisex">Unisex</option>
               </select>
             </div>
 
@@ -132,8 +132,8 @@ const Add = () => {
               <label className="form-label">Category</label>
               <select name="category" value={formData.category} onChange={handleChange} required className="form-control">
                 <option value="">Select Category</option>
-                <option value="Men">T-Shirts</option>
-                <option value="Men">Shirts</option>
+                <option value="T-Shirts">T-Shirts</option>
+                <option value="Shirts">Shirts</option>
               </select>
             </div>
 
