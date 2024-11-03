@@ -193,7 +193,7 @@
 
 .quick-add-button {
   position: absolute;
-  bottom: 17%;
+  bottom: 26%;
   left: 0;
   width: 100%;
   padding: 12px 0;
@@ -281,6 +281,7 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
+
 @media (max-width: 360px) {
   .col-md-9 .row > .col-md-3,
   .col-6 {
@@ -297,20 +298,8 @@
     text-align: center;
     padding-right: 100px;
   }
-  .quick-add-button {
-    position: absolute;
+  .product-details button{
     bottom: 40%;
-    font-size: 8px;
-    left: 0;
-    width: 100%;
-    padding: 12px 0;
-    background-color: white;
-    color: #007bff;
-    border: none;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.3s ease;
   }
   .size-option {
     padding: 10px;
@@ -322,7 +311,16 @@
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  .filter h3{
-    padding-left: 80px;
+  .filter h3 {
+    margin-left: 80px;
+  }
+  .product-name{
+    font-size: 17px;
+  }
+}
+@media (max-width: 1280px) {
+  .quick-add-button {
+    position: absolute;
+    bottom: 31%;
   }
 }
