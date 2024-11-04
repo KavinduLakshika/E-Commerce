@@ -151,6 +151,9 @@
   .cart-content h5 {
     margin-left: 150px;
   }
+  .qty{
+    margin-top: 5px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -184,9 +187,10 @@
     margin-left: 150px;
   }
   .cart-content h5 {
-    margin-left: 120px;
+    margin-left: 100px;
+    font-size: 20px;
   }
   .qty{
-    margin-left: -60px;
+    margin-left: -50px;
   }
 }
