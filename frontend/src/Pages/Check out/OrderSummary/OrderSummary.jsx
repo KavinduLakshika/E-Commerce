@@ -1,23 +1,39 @@
+import { useLocation } from 'react-router-dom';
 import './OrderSummary.css';
 
 function OrderSummary() {
-    
+    const location = useLocation();
+    const { orderData } = location.state || {};
+
+    if (!orderData || orderData.length === 0) return <div>No order data available</div>;
+
+    const calculateSubtotal = () =>
+        orderData.reduce((acc, item) => acc + item.prodPrice * item.quantity, 0);
+
+    const subtotal = calculateSubtotal();
+    const shippingCost = 380;
+    const total = subtotal + shippingCost;
+
     return (
         <div className="order-summary p-4 mt-2 h-100">
             <h4>Order Summary</h4>
-            <div className="order-item d-flex align-items-center mb-4 mt-4">
-                <img
-                    src=''
-                    alt="Product"
-                    className="product-image"
-                />
-                <div className="order-details">
-                    <h6 className="product-title">Name</h6>
-                    <p className="product-quantity">Quantity</p>
-                    <p className="product-size">Size</p>
+            {orderData.map((item, index) => (
+                <div key={index} className="order-item d-flex align-items-center mb-4 mt-4">
+                    <img
+                        src={item.images[0]}
+                        alt="Product"
+                        className="product-image"
+                    />
+                    <div className="order-details">
+                        <h6 className="product-title">{item.prodName}</h6>
+                        <p className="product-quantity mt-1">Quantity: {item.quantity}</p>
+                        <p className="product-size">Size: {item.selectedSize}</p>
+                    </div>
+                    <span className="prod-price ml-auto">
+                        LKR {item.prodPrice * item.quantity}
+                    </span>
                 </div>
-                <span className="prod-price ml-auto">LKR 000 </span>
-            </div>
+            ))}
 
             <div className="discount-section mb-3">
                 <input
@@ -30,18 +46,18 @@ function OrderSummary() {
 
             <div className="summary-item d-flex justify-content-between">
                 <span>Subtotal</span>
-                <span>LKR </span>
+                <span>LKR {subtotal}</span>
             </div>
             <div className="summary-item d-flex justify-content-between">
                 <span>Shipping</span>
-                <span>LKR 380.00</span>
+                <span>LKR {shippingCost}</span>
             </div>
 
             <hr />
 
             <div className="summary-total d-flex justify-content-between">
                 <strong>Total</strong>
-                <strong>LKR 000</strong>
+                <strong>LKR {total}</strong>
             </div>
         </div>
     );

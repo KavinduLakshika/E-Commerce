@@ -14,6 +14,7 @@ const Product = () => {
     const [selectedSize, setSelectedSize] = useState('');
     const [isCartVisible, setIsCartVisible] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const handleCloseCart = () => setIsCartVisible(false);
 
     useEffect(() => {
         setSelectedImage(product.images[0] || '');
@@ -25,15 +26,16 @@ const Product = () => {
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
     const handleBuyNow = () => {
-        navigate('/checkout')
+        const orderData = { product, quantity, selectedSize };
+        navigate('/checkout', { state: { orderData } });
     };
 
     const handleAddToCart = () => {
         const newCartItem = { ...product, quantity, selectedSize };
         const updatedCart = [...cartItems, newCartItem];
         setCartItems(updatedCart);
-        localStorage.setItem('cartItems', JSON.stringify(updatedCart)); 
-        setIsCartVisible(true); 
+        localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+        setIsCartVisible(true);
     };
 
     const handleRemoveItem = (index) => {
@@ -49,8 +51,6 @@ const Product = () => {
         setCartItems(updatedCart);
         localStorage.setItem('cartItems', JSON.stringify(updatedCart));
     };
-
-    const handleCloseCart = () => setIsCartVisible(false);
 
     return (
         <div>
@@ -116,7 +116,7 @@ const Product = () => {
             </div>
 
             {isCartVisible && <div className="blur-overlay" onClick={handleCloseCart}></div>}
-            
+
             {/* SlideInCart component */}
             <SlideInCart
                 isVisible={isCartVisible}

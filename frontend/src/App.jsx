@@ -9,14 +9,12 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
 import CheckOut from './Pages/Check out/CheckOut';
-import SideBar from './Components/SideBar/SideBar';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Add from './Pages/Dashboard/DashboardPages/Add';
 import List from './Pages/Dashboard/DashboardPages/List';
 import OrderList from './Pages/Dashboard/DashboardPages/OrderList';
 
 function App() {
-
   return (
     <BrowserRouter>
       <div className="m-3">
