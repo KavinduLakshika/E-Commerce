@@ -7,7 +7,6 @@ function OrderSummary() {
 
     if (!orderData || orderData.length === 0) return <div>No order data available</div>
 
-    
     const calculateSubtotal = () =>
         orderData.reduce((acc, item) => acc + item.prodPrice * item.quantity, 0);
 

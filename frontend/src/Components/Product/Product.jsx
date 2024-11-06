@@ -26,10 +26,10 @@ const Product = () => {
     const decreaseQuantity = () => setQuantity(prevQty => (prevQty > 1 ? prevQty - 1 : 1));
 
     const handleBuyNow = () => {
-        const orderData = { product, quantity, selectedSize };
+        const orderData = [{ ...product, quantity, selectedSize }];
         navigate('/checkout', { state: { orderData } });
     };
-
+    
     const handleAddToCart = () => {
         const newCartItem = { ...product, quantity, selectedSize };
         const updatedCart = [...cartItems, newCartItem];
