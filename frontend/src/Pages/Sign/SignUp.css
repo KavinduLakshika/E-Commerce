@@ -11,7 +11,7 @@ body {
 .login-card {
   border-radius: 15px;
   overflow: hidden;
-  width: 800px;
+  width: 1000px;
 }
 
 .signUp-image {
@@ -62,4 +62,38 @@ body {
 
 .singIn {
   color: #007bff;
+}
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+@media (max-width: 1280px) {
+  .login-card {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 800px;
+    height: 650px;
+  }
+  .sec-sing-btn {
+    margin-top: -40px;
+  }
+  .sign-contain {
+    margin-top: -30px;
+  }
+  .or {
+    visibility: hidden;
+  }
+  .google-sign i {
+    margin-right: 0;
+  }
+  .google-sign{
+    margin-top: -90px;
+  }
 }

@@ -13,6 +13,10 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Add from './Pages/Dashboard/DashboardPages/Add';
 import List from './Pages/Dashboard/DashboardPages/List';
 import OrderList from './Pages/Dashboard/DashboardPages/OrderList';
+import PassOtp from './Pages/Login/passwordRecovery/PassOtp';
+import ReqOtp from './Pages/Login/passwordRecovery/ReqOtp';
+import RegOtp from './Pages/Login/passwordRecovery/RegOtp';
+import ResetPassword from './Pages/Login/passwordRecovery/ResetPassword';
 
 function App() {
   return (
@@ -23,11 +27,17 @@ function App() {
           <Route path="/men" element={<Mens />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/women" element={<Women />} />
-          <Route path="/product" element={<Product/>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/checkOut" element={<CheckOut />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/passOtp" element={<PassOtp />} />
+          <Route path="/reqOtp" element={<ReqOtp />} />
+          <Route path="/regOtp" element={<RegOtp />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
+
         </Routes>
       </div>
       <Routes>

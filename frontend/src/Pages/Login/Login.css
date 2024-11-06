@@ -63,3 +63,22 @@ body {
 .singUp {
   color: #007bff;
 }
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+@media (max-width: 1280px) {
+  .login-card {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 800px;
+    height: 650px;
+  }
+}

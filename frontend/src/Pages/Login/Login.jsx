@@ -1,7 +1,15 @@
+import { useState } from "react"
+import { Link } from "react-router-dom";;
+import { Eye, EyeSlash } from "react-bootstrap-icons";
 import "./Login.css";
 import prod from '../../assets/prod 2.webp';
 
 function Login() {
+    const [password, setPassword] = useState("");
+    const [obscurePassword, setObscurePassword] = useState(true);
+    const passwordType = obscurePassword ? "password" : "text";
+    const handleObscurePasswordToggle = () => setObscurePassword(!obscurePassword);
+
     return (
         <div className="login-container d-flex justify-content-center align-items-center vh-100">
             <div className="card shadow-lg login-card">
@@ -23,8 +31,25 @@ function Login() {
                                 <label >Email </label>
                             </div>
                             <div className="form-floating">
-                                <input type="password" className="form-control" placeholder="Password" />
+                                <input type={passwordType} className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                                 <label >Password</label>
+                                <button
+                                    className="password-toggle-icon"
+                                    type="button"
+                                    onClick={handleObscurePasswordToggle}
+                                >
+                                    {obscurePassword ? <Eye /> : <EyeSlash />}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="row mt-2">
+                            <div className="col-md-12">
+                                <Link to="/reqOtp">
+                                    <p>
+                                        <strong>Forgot Password?</strong>
+                                    </p>
+                                </Link>
                             </div>
                         </div>
 
