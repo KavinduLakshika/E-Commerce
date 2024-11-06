@@ -1,0 +1,50 @@
+body {
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.payment-container {
+  background-color: #f1f1f1;
+}
+
+.payment-card {
+  border-radius: 15px;
+  overflow: hidden;
+  width: 800px;
+}
+.pay {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 15px;
+  gap: 5px;
+}
+
+.pay-link {
+  margin: 0 10px;
+  padding: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pay-link:hover {
+  color: #007bff;
+}
+
+.pay-link.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.pay-icon {
+  font-size: 30px;
+  color: white;
+  background: #007bff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Delivery from '../Check out/Delivery/Delivery';
-import Payment from './Payment';
+import Payment from './Payment/Payment';
 import Review from './Review';
 import './CheckOut.css';
 
