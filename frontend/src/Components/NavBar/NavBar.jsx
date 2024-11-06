@@ -7,10 +7,16 @@ import SlideInCart from '../../Pages/Cart/SlideInCart/SlideInCart';
 const NavBar = () => {
     const [isCartVisible, setIsCartVisible] = useState(false);
     const [cartItems, setCartItems] = useState([]);
+    const [profilePic, setProfilePic] = useState("");
 
     useEffect(() => {
         const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         setCartItems(savedCartItems);
+
+        const savedProfilePic = localStorage.getItem("profilePic");
+        if (savedProfilePic) {
+            setProfilePic(savedProfilePic);
+        }
     }, []);
 
     const toggleCartVisibility = () => {
@@ -45,7 +51,7 @@ const NavBar = () => {
                         </a>
                         <div className="">
                             <a href='/profile'>
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
+                                <img src={profilePic} className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
                             </a>
                         </div>
                     </div>

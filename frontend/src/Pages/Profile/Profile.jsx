@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Profile.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import profilePic from "../../assets/prod.webp";
@@ -9,6 +9,11 @@ import MyOrders from "./Tabs/MyOrders";
 import NavBar from "../../Components/NavBar/NavBar";
 
 function Profile() {
+
+    useEffect(() => {// Save profile picture to localStorage
+        localStorage.setItem("profilePic", profilePic);
+    }, []);
+    
     const [activeSection, setActiveSection] = useState("account");
 
     const renderActiveSection = () => {
