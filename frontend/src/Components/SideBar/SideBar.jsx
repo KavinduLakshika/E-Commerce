@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
-function Sidebar() {
+function Sidebar({ onLogout }) {
+    
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [activeLink, setActiveLink] = useState('');
     const location = useLocation();
@@ -39,6 +40,10 @@ function Sidebar() {
         { name: 'Order List', icon: 'bx-list-check', path: '/order_list' }
     ];
 
+    const logout = () => {
+        onLogout();
+    }
+
     return (
         <>
             <header className="header" id="header">
@@ -72,10 +77,10 @@ function Sidebar() {
                         ))}
                     </div>
 
-                    <Link to="/" className="nav_link">
+                    <a href="" className="nav_link" onClick={logout} >
                         <i className="bx bx-log-out nav_icon"></i>
                         <span className="nav_name">SignOut</span>
-                    </Link>
+                    </a>
                 </nav>
             </div>
         </>

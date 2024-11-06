@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import "./Profile.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -8,12 +9,13 @@ import PasswordChange from "./Tabs/PasswordChange";
 import MyOrders from "./Tabs/MyOrders";
 import NavBar from "../../Components/NavBar/NavBar";
 
-function Profile() {
 
-    useEffect(() => {// Save profile picture to localStorage
+function Profile({ onLogout }) {
+
+    useEffect(() => {
         localStorage.setItem("profilePic", profilePic);
     }, []);
-    
+
     const [activeSection, setActiveSection] = useState("account");
 
     const renderActiveSection = () => {
@@ -30,6 +32,10 @@ function Profile() {
                 return <MyAccount />;
         }
     };
+
+    const logout = () => {
+        onLogout();
+    }
 
     return (
         <div>
@@ -87,7 +93,7 @@ function Profile() {
                                 </li>
                             </ul>
                             <hr />
-                            <a href="#" className="logout-link text-danger text-decoration-none">
+                            <a href="#" className="logout-link text-danger text-decoration-none" onClick={logout}>
                                 <i className="bi bi-box-arrow-right me-2"></i>Log Out
                             </a>
                         </div>

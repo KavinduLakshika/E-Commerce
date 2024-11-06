@@ -19,6 +19,7 @@ import RegOtp from './Pages/Login/passwordRecovery/RegOtp';
 import ResetPassword from './Pages/Login/passwordRecovery/ResetPassword';
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="m-3">
