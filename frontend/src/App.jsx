@@ -5,18 +5,19 @@ import Mens from './Pages/Mens/Mens';
 import Cart from './Pages/Cart/Cart';
 import Women from './Pages/Women/Women';
 import Product from './Components/Product/Product';
-import Login from './Pages/Login/Login';
-import SignUp from './Pages/Sign/SignUp';
+import Login from './Pages/Auth/Login/Login';
+import SignUp from './Pages/Auth/Sign/SignUp';
 import Profile from './Pages/Profile/Profile';
 import CheckOut from './Pages/Check out/CheckOut';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Add from './Pages/Dashboard/DashboardPages/Add';
 import List from './Pages/Dashboard/DashboardPages/List';
 import OrderList from './Pages/Dashboard/DashboardPages/OrderList';
-import PassOtp from './Pages/Login/passwordRecovery/PassOtp';
-import ReqOtp from './Pages/Login/passwordRecovery/ReqOtp';
-import RegOtp from './Pages/Login/passwordRecovery/RegOtp';
-import ResetPassword from './Pages/Login/passwordRecovery/ResetPassword';
+
+import PassOtp from './Pages/Auth/passwordRecovery/PassOtp';
+import ReqOtp from './Pages/Auth/passwordRecovery/ReqOtp';
+import RegOtp from './Pages/Auth/passwordRecovery/RegOtp';
+import ResetPassword from './Pages/Auth/passwordRecovery/ResetPassword';
 
 function App() {
 
