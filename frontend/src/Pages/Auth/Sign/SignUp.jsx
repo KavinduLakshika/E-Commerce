@@ -6,14 +6,17 @@ import "./SignUp.css";
 import prod from '../../../assets/prod 2.webp';
 
 function SignUp() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [obscurePassword, setObscurePassword] = useState(true);
     const [obscureConfirmPassword, setObscureConfirmPassword] = useState(true);
     const [error, setError] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
 
+    const { name, email, password, confirmPassword } = formData;
     const passwordType = obscurePassword ? "password" : "text";
     const confirmPasswordType = obscureConfirmPassword ? "password" : "text";
 
@@ -55,6 +58,14 @@ function SignUp() {
         }
     };
 
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [id]: value,
+        }));
+    };
+
     return (
         <div className="login-container d-flex justify-content-center align-items-center vh-100">
             <div className="card shadow-lg login-card">
@@ -62,7 +73,7 @@ function SignUp() {
                     <div className="col-md-6">
                         <img
                             src={prod}
-                            alt="Login visual"
+                            alt="Sign Up visual"
                             className="img-fluid rounded-start signUp-image"
                         />
                     </div>
@@ -74,23 +85,24 @@ function SignUp() {
                         <form onSubmit={handleSignUp}>
                             <div className="frm mb-3">
                                 <div className="form-floating mb-3">
-                                    <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-                                    <label>Name</label>
+                                    <input type="text" id="name" className="form-control" value={name} onChange={handleChange} placeholder="Name" />
+                                    <label htmlFor="name">Name</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                                    <label>Email</label>
+                                    <input type="email" id="email" className="form-control" value={email} onChange={handleChange} placeholder="Email" />
+                                    <label htmlFor="email">Email</label>
                                 </div>
 
                                 <div className="position-relative form-floating mb-3">
                                     <input
                                         type={passwordType}
+                                        id="password"
                                         className="form-control"
                                         placeholder="Password"
                                         value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        onChange={handleChange}
                                     />
-                                    <label>Password</label>
+                                    <label htmlFor="password">Password</label>
                                     <button
                                         className="password-toggle-icon"
                                         type="button"
@@ -108,7 +120,7 @@ function SignUp() {
                                         {passwordValidity.capital ? <CheckCircleFill /> : <XCircleFill />} At least 1 capital letter
                                     </p>
                                     <p className={passwordValidity.simple ? "text-success" : "text-danger"}>
-                                        {passwordValidity.simple ? <CheckCircleFill /> : <XCircleFill />} At least 1 simple letter
+                                        {passwordValidity.simple ? <CheckCircleFill /> : <XCircleFill />} At least 1 lowercase letter
                                     </p>
                                     <p className={passwordValidity.number ? "text-success" : "text-danger"}>
                                         {passwordValidity.number ? <CheckCircleFill /> : <XCircleFill />} At least 1 number
@@ -118,12 +130,13 @@ function SignUp() {
                                 <div className="position-relative form-floating mb-3">
                                     <input
                                         type={confirmPasswordType}
+                                        id="confirmPassword"
                                         className="form-control"
                                         placeholder="Confirm Password"
                                         value={confirmPassword}
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        onChange={handleChange}
                                     />
-                                    <label>Confirm Password</label>
+                                    <label htmlFor="confirmPassword">Confirm Password</label>
                                     <button
                                         className="password-toggle-icon"
                                         type="button"
@@ -149,7 +162,7 @@ function SignUp() {
                                         !passwordsMatch
                                     }
                                 >
-                                    Sign In
+                                    Sign Up
                                 </button>
                             </div>
                         </form>
