@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 function RegOtp() {
     const [seconds, setSeconds] = useState(30);
     const [isRunning, setIsRunning] = useState(false);
-    const [formData, setFormData] = useState({ otp: "" });
     const [errors, setErrors] = useState({ otp: "" });
+    const [formData, setFormData] = useState({ otp: "" });
 
     useEffect(() => {
         let intervalId = null;
