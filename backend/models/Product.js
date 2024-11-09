@@ -32,7 +32,7 @@ const Product = sequelize.define(
         },
         productDescription: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         productImage: {
             type: DataTypes.STRING,

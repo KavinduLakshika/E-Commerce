@@ -29,6 +29,14 @@ const User = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        userTP: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        userSecondTP: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         userNic: {
             type: DataTypes.STRING,
             allowNull: false,

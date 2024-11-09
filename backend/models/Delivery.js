@@ -49,6 +49,7 @@ const Delivery = sequelize.define(
         deliveryStatus: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: "Pending",
         },
         customer_cusId: {
             type: DataTypes.INTEGER,
@@ -64,7 +65,7 @@ const Delivery = sequelize.define(
     }
 );
 
-Order.belongsTo(Customer, {
+Delivery.belongsTo(Customer, {
     foreignKey: "customer_cusId",
     as: "customer",
 });
