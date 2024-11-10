@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Eye, EyeSlash, CheckCircleFill, XCircleFill } from "react-bootstrap-icons";
+import config from "../../../config";
 
 function ResetPassword() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [obscurePassword, setObscurePassword] = useState(true);
     const [obscureConfirmPassword, setObscureConfirmPassword] = useState(true);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertType, setAlertType] = useState("");
+    const navigate = useNavigate();
 
     const passwordType = obscurePassword ? "password" : "text";
     const confirmPasswordType = obscureConfirmPassword ? "password" : "text";
@@ -23,26 +27,47 @@ function ResetPassword() {
 
     const passwordsMatch = password && confirmPassword && password === confirmPassword;
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!passwordsMatch) {
+            setAlertMessage("Passwords do not match");
+            setAlertType("alert alert-danger");
+            return;
+        }
+
+        try {
+            const cusEmail = localStorage.getItem("recoveryEmail");
+            const response = await fetch(`${config.BASE_URL}/changePassword`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ cusEmail, cusPw: password }),
+            });
+
+            const data = await response.json();
+            setAlertType(response.ok ? "alert alert-success" : "alert alert-danger");
+            setAlertMessage(data.message);
+
+            if (response.ok) {
+                setTimeout(() => navigate("/login"), 2000);
+            }
+        } catch (error) {
+            setAlertType("alert alert-danger");
+            setAlertMessage("An error occurred. Please try again later.");
+            console.error("Error changing password:", error);
+        }
+    };
+
     return (
         <div className="container-fluid">
             <div className="row mt-5 justify-content-center">
                 <div className="col-md-3">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h3 className="text-center">Reset Password</h3>
-                        </div>
-                    </div>
+                    <h3 className="text-center">Reset Password</h3>
 
-                    <div className="row mt-3">
-                        <div className="col-md-12">
-                            <Link to="/login">
-                                <button type="button" className="btn btn-warning w-100">Go to Login</button>
-                            </Link>
-                        </div>
-                    </div>
+                    {alertMessage && <div className={alertType}>{alertMessage}</div>}
 
-                    <form>
-                        {/* New Password Field */}
+                    <form onSubmit={handleSubmit}>
                         <div className="row mt-3">
                             <div className="col-md-12">
                                 <label htmlFor="password">New Password:</label>
@@ -70,7 +95,7 @@ function ResetPassword() {
                                         {passwordValidity.capital ? <CheckCircleFill /> : <XCircleFill />} At least 1 capital letter
                                     </p>
                                     <p className={passwordValidity.simple ? "text-success" : "text-danger"}>
-                                        {passwordValidity.simple ? <CheckCircleFill /> : <XCircleFill />} At least 1 simple letter
+                                        {passwordValidity.simple ? <CheckCircleFill /> : <XCircleFill />} At least 1 lowercase letter
                                     </p>
                                     <p className={passwordValidity.number ? "text-success" : "text-danger"}>
                                         {passwordValidity.number ? <CheckCircleFill /> : <XCircleFill />} At least 1 number

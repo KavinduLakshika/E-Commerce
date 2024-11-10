@@ -7,6 +7,7 @@ const path = require('path');
 const fs = require('fs');
 
 const secretKey = process.env.SECRET_KEY;
+const slotRounds = 10;
 
 // Image upload setup
 const storage = multer.diskStorage({
@@ -145,38 +146,39 @@ async function register(req, res) {
     try {
         const { cusName, cusEmail, cusPw } = req.body;
 
+        // Validate required fields
         if (!cusName || !cusEmail || !cusPw) {
             return res.status(400).json({
                 message: "Name, email, and password are required."
             });
         }
 
+        // Check if customer already exists
         const existingCustomer = await Customer.findOne({ where: { cusEmail } });
-
         if (existingCustomer) {
             return res.status(409).json({
                 message: "User with this email already exists."
             });
         }
 
-        const hashedPassword = await bcrypt.hash(cusPw, 10);
-        const otp = generateOTP();
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(cusPw, slotRounds);
         const loginType = "email";
         const cusStatus = "Active";
 
+        // Create new customer
         const newCustomer = await Customer.create({
             cusName,
             cusEmail,
             cusPw: hashedPassword,
             loginType,
             cusStatus,
-            otp
         });
 
+        // Generate JWT token
         const token = jwt.sign({ cusId: newCustomer.cusId }, secretKey, { expiresIn: '6h' });
 
-        await sendEmail(cusEmail, "NM Test OTP", `Your Verification Code: ${otp}`);
-
+        // Successful response
         res.status(201).json({
             message_type: "success",
             message: "User registered successfully.",
@@ -192,7 +194,7 @@ async function register(req, res) {
             message: `An error occurred: ${error.message}`
         });
     }
-};
+}
 
 // Update Profile with Additional Details
 async function updateProfile(req, res) {
@@ -275,7 +277,7 @@ async function changePassword(req, res) {
         }
 
         // Hash the new password
-        const hashedPassword = await bcrypt.hash(cusPw, 10);
+        const hashedPassword = await bcrypt.hash(cusPw, slotRounds);
 
         // Update the password and reset OTP
         await Customer.update(
