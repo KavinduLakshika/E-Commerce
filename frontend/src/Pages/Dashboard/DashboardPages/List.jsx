@@ -7,7 +7,7 @@ import axios from 'axios';
 import config from '../../../config';
 
 const List = () => {
-  const columns = ["ID", "Products Name",'Category','type','Qty','Price','colors'];
+  const columns = ["ID", "Products Name", 'Category', 'type', 'Qty', 'Price', 'colors','Stock'];
   const [data, setData] = useState([]);
   const btnName = 'Add New Product';
   const [error, setError] = useState(null);
@@ -19,7 +19,7 @@ const List = () => {
   useEffect(() => {
     fetchProductList();
     fetchCategories();
-  },[])
+  }, [])
 
   const fetchCategories = async () => {
     try {
@@ -40,19 +40,47 @@ const List = () => {
       if (!response.ok) {
         setError(`Failed to fetch product: ${response.status} ${response.statusText}`);
       }
-      const product=await response.json();
-      const formattedData=product.map(product=>[
+      const product = await response.json();
+      const formattedData = product.map(product => [
         product.productId,
         product.productName,
         categories[product.category_catId],
         product.productDescription,
         product.productQty,
-        product.productPrice, 
+        product.productPrice,
         product.productColor,
+        <select
+          className='form-control'
+          value={product.productStatus}
+          onChange={(e) => handleStatusChange(product.productId, e.target.value)}
+        >
+          <option value="In stock">In stock</option>
+          <option value="Out of Stock">Out of Stock</option>
+        </select>
       ])
       setData(formattedData);
     } catch (error) {
       setError(`Error fetching product list: ${error.message}`);
+    }
+  }
+
+  const handleStatusChange = async (productId, newStatus) => {
+    try {
+      const response = await fetch(`${config.BASE_URL}/product/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productStatus: newStatus }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to update product status: ${response.status} ${response.statusText}. ${errorData.message || ''}`);
+      }
+      await fetchProductList();
+    } catch (error) {
+      setError(`Error updating product status: ${error.message}`);
     }
   }
 

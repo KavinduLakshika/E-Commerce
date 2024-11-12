@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../../Components/SideBar/SideBar';
 import './Add.css'
 import config from '../../../config'
@@ -20,7 +20,7 @@ const Add = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  
+
   const [categories, setCategories] = useState([]);
   const [categoryError, setCategoryError] = useState(null);
 
@@ -117,7 +117,7 @@ const Add = () => {
 
     try {
       const productData = new FormData();
-      
+
       if (formData.image) {
         productData.append('productImage', formData.image);
       }
@@ -128,8 +128,8 @@ const Add = () => {
       productData.append('productSize', JSON.stringify(formData.size));
       productData.append('productColor', JSON.stringify(formData.colors));
       productData.append('productDescription', `${formData.gender} - ${formData.category}`);
-      productData.append('productStatus', 'active');
-      
+      productData.append('productStatus', 'In stock');
+
       if (formData.category) {
         productData.append('catId', formData.category);
       }
@@ -274,16 +274,16 @@ const Add = () => {
             </div>
 
             <div className="d-flex">
-              <button 
-                type="button" 
-                onClick={handleReset} 
+              <button
+                type="button"
+                onClick={handleReset}
                 className="btn btn-danger ms-auto"
                 disabled={loading}
               >
                 Reset
               </button>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn btn-primary ms-2"
                 disabled={loading}
               >
