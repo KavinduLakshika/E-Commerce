@@ -86,7 +86,7 @@ const Table = ({
         setEndDate(null);
     };
     return (
-        <div className="scroll-table">
+        <div >
             <div className="container-fluid p-2">
 
                 <div className="flex-t-h">
@@ -175,7 +175,7 @@ const Table = ({
                 )}
 
                 <div className="mt-2">
-                    <div className="col-md-12">
+                    <div className="scroll-table">
                         <table className="table table-hover table-responsive">
                             <thead>
                                 <tr>
