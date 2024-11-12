@@ -24,27 +24,30 @@ const List = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${config.BASE_URL}/categories`);
+      console.log('Categories:', response.data);
       const categoryMap = response.data.reduce((acc, category) => {
         acc[category.catId] = category.catName;
         return acc;
       }, {});
       setCategories(categoryMap);
+      await fetchProductList(categoryMap);
     } catch (error) {
       setError(`Error fetching categories: ${error.message}`);
     }
   };
-
-  const fetchProductList = async () => {
+  
+  const fetchProductList = async (categoryMap) => {
     try {
       const response = await fetch(`${config.BASE_URL}/products`);
       if (!response.ok) {
         setError(`Failed to fetch product: ${response.status} ${response.statusText}`);
+        return; 
       }
       const product = await response.json();
       const formattedData = product.map(product => [
         product.productId,
         product.productName,
-        categories[product.category_catId],
+        categoryMap[product.category_catId],
         product.productDescription,
         product.productQty,
         product.productPrice,
@@ -57,12 +60,13 @@ const List = () => {
           <option value="In stock">In stock</option>
           <option value="Out of Stock">Out of Stock</option>
         </select>
-      ])
+      ]);
       setData(formattedData);
     } catch (error) {
+      console.log(error);
       setError(`Error fetching product list: ${error.message}`);
     }
-  }
+  };
 
   const handleStatusChange = async (productId, newStatus) => {
     try {
@@ -95,11 +99,6 @@ const List = () => {
       <Sidebar />
       <div className="pt-4">
         <h1>List</h1>
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        )}
         <Table
           data={data}
           columns={columns}
