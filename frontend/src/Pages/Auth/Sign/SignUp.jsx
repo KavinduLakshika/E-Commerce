@@ -1,14 +1,20 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Eye, EyeSlash, CheckCircleFill, XCircleFill } from "react-bootstrap-icons";
 import { auth, googleProvider } from "../../../Components/config/Firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+import config from "../../../config";
 import "./SignUp.css";
 import prod from '../../../assets/prod 2.webp';
 
-function SignUp() {
+function SignUp({ onLogin }) {
     const [obscurePassword, setObscurePassword] = useState(true);
     const [obscureConfirmPassword, setObscureConfirmPassword] = useState(true);
     const [error, setError] = useState("");
+    const [processing, setProcessing] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertType, setAlertType] = useState("");
+    const [message, setMessage] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -30,24 +36,101 @@ function SignUp() {
         number: /[0-9]/.test(password),
     };
 
-    const passwordsMatch = password && confirmPassword && password === confirmPassword;
+    const validate = () => {
+        let tempErrors = {};
+        let isValid = true;
+
+        if (!name.trim()) {
+            tempErrors.name = "Name is required";
+            isValid = false;
+        }
+        if (!email.trim()) {
+            tempErrors.email = "Email is required";
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            tempErrors.email = "Email is invalid";
+            isValid = false;
+        }
+        if (!password) {
+            tempErrors.password = "Password is required";
+            isValid = false;
+        } else {
+            if (!passwordValidity.length) {
+                tempErrors.password = "Password must be at least 8 characters";
+                isValid = false;
+            }
+            if (!passwordValidity.capital) {
+                tempErrors.password = "Password must contain at least 1 capital letter";
+                isValid = false;
+            }
+            if (!passwordValidity.simple) {
+                tempErrors.password = "Password must contain at least 1 lowercase letter";
+                isValid = false;
+            }
+            if (!passwordValidity.number) {
+                tempErrors.password = "Password must contain at least 1 number";
+                isValid = false;
+            }
+        }
+        if (password !== confirmPassword) {
+            tempErrors.confirmPassword = "Passwords do not match";
+            isValid = false;
+        }
+
+        setError(tempErrors);
+        return isValid;
+    };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError("");
+        setProcessing(true);
 
-        if (!passwordsMatch) {
-            setError("Passwords do not match");
-            return;
-        }
+        if (validate()) {
+            const postData = {
+                cusName: formData.name,
+                cusEmail: formData.email,
+                cusPw: formData.password,
+            };
 
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert("Account created successfully!");
-        } catch (err) {
-            setError(err.message);
+            try {
+                const response = await fetch(`${config.BASE_URL}/register`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(postData),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setMessage(data.message || "An error occurred during registration.");
+                    setAlertType("alert alert-danger");
+                    setShowAlert(true);
+                    return;
+                }
+
+                const responseType = data.message_type;
+                if (responseType === "error") {
+                    setMessage(data.message);
+                    setAlertType("alert alert-danger");
+                    setShowAlert(true);
+                } else {
+                    onLogin(data.cusName, data.cusEmail, data.token, data.userStatus);
+                }
+            } catch (err) {
+                setMessage("Network error. Please try again." + err);
+                setAlertType("alert alert-danger");
+                setShowAlert(true);
+            } finally {
+                setProcessing(false);
+            }
+        } else {
+            setProcessing(false);
         }
     };
+
 
     const handleGoogleSignUp = async () => {
         try {
@@ -81,7 +164,17 @@ function SignUp() {
                     <div className="col-md-6 d-flex flex-column justify-content-center p-5 sign-contain">
                         <h3 className="text-center">Create Account</h3>
 
-                        {error && <small className="text-danger">{error}</small>}
+                        {showAlert ?
+                            <div className="row mt-2">
+                                <div className="col-md-12">
+                                    <div className={alertType}>
+                                        {message}
+                                    </div>
+                                </div>
+                            </div> :
+                            null
+                        }
+
                         <form onSubmit={handleSignUp}>
                             <div className="frm mb-3">
                                 <div className="form-floating mb-3">
@@ -145,8 +238,8 @@ function SignUp() {
                                         {obscureConfirmPassword ? <Eye /> : <EyeSlash />}
                                     </button>
                                 </div>
-                                {!passwordsMatch && confirmPassword && (
-                                    <small className="text-danger">Passwords do not match</small>
+                                {error.confirmPassword && (
+                                    <small className="text-danger">{error.confirmPassword}</small>
                                 )}
                             </div>
 
@@ -158,11 +251,10 @@ function SignUp() {
                                         !passwordValidity.length ||
                                         !passwordValidity.capital ||
                                         !passwordValidity.simple ||
-                                        !passwordValidity.number ||
-                                        !passwordsMatch
+                                        !passwordValidity.number
                                     }
                                 >
-                                    Sign Up
+                                    {processing ? "Submitting..." : "SignUp"}
                                 </button>
                             </div>
                         </form>

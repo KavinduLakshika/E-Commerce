@@ -1,14 +1,21 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { auth, googleProvider } from "../../../Components/config/Firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import "./Login.css";
 import prod from '../../../assets/prod.webp';
+import config from "../../../config";
 
-function Login() {
+function Login({ onLogin }) {
     const [obscurePassword, setObscurePassword] = useState(true);
     const passwordType = obscurePassword ? "password" : "text";
+    const [error, setError] = useState("");
+    const [processing, setProcessing] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertType, setAlertType] = useState("");
+    const [message, setMessage] = useState("");
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -17,7 +24,6 @@ function Login() {
         email: "",
         password: "",
     });
-    const [error, setError] = useState("");
 
     const handleObscurePasswordToggle = () => setObscurePassword(!obscurePassword);
 
@@ -55,12 +61,42 @@ function Login() {
         setError("");
 
         if (validate()) {
+            const postData = {
+                cusEmail: formData.email,
+                cusPw: formData.password,
+            };
             try {
-                await signInWithEmailAndPassword(auth, formData.email, formData.password);
-                alert("Logged in successfully!");
+                const response = await fetch(`${config.BASE_URL}/cusLogin`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(postData),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setMessage(data.message || "An error occurred during registration.");
+                    setAlertType("alert alert-danger");
+                    setShowAlert(true);
+                    return;
+                }
+
+                const responseType = data.message_type;
+                if (responseType === "error") {
+                    setMessage(data.message);
+                    setAlertType("alert alert-danger");
+                    setShowAlert(true);
+                } else {
+                    onLogin(data.cusName, data.cusEmail, data.token, data.userStatus);
+                }
             } catch (err) {
                 alert("Failed to log in. Please check your credentials.");
                 setError(err.message);
+            }
+            finally {
+                setProcessing(false);
             }
         }
     };
@@ -89,6 +125,17 @@ function Login() {
 
                     <div className="col-md-6 d-flex flex-column justify-content-center p-5">
                         <h3 className="text-center">Log In</h3>
+
+                        {showAlert ?
+                            <div className="row mt-2">
+                                <div className="col-md-12">
+                                    <div className={alertType}>
+                                        {message}
+                                    </div>
+                                </div>
+                            </div> :
+                            null
+                        }
 
                         <div className="frm mb-3">
                             <div className="form-floating mb-3">
@@ -135,7 +182,7 @@ function Login() {
 
                         <div className="mb-3">
                             <button className="btn my-3 signIn-btn" onClick={handleLogin}>
-                                Sign In
+                                {processing ? "Logging in..." : "Login"}
                             </button>
                         </div>
 

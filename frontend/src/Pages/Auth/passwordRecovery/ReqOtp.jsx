@@ -1,4 +1,6 @@
 import { useState } from "react";
+import config from "../../../config";
+import { useNavigate } from "react-router-dom";
 
 function ReqOtp() {
     const [formData, setFormData] = useState({ email: "" });
@@ -7,15 +9,14 @@ function ReqOtp() {
     const [showAlert, setShowAlert] = useState(false);
     const [alertType, setAlertType] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate(); 
 
     const handleChange = (e) => {
-
         const { id, value } = e.target;
         setFormData((prevState) => ({
             ...prevState,
             [id]: value,
         }));
-        
     };
 
     const validate = () => {
@@ -34,25 +35,46 @@ function ReqOtp() {
         return isValid;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validate()) {
-
             setProcessing(true);
             setShowAlert(false);
 
-            setTimeout(() => {
+            try {
+                const response = await fetch(`${config.BASE_URL}/sendRecoveryOTP`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ cusEmail: formData.email }),
+                });
+
+                const data = await response.json();
                 setProcessing(false);
+
+                if (response.ok) {
+                    setAlertType("alert alert-success");
+                    setMessage(data.message);
+                    localStorage.setItem('recoveryEmail', formData.email);
+                    navigate("/passOtp"); 
+                } else {
+                    setAlertType("alert alert-danger");
+                    setMessage(data.message);
+                }
+            } catch (error) {
+                setProcessing(false);
+                setAlertType("alert alert-danger");
+                setMessage("An error occurred. Please try again later.");
+                console.error("Error during OTP request:", error);
+            } finally {
                 setShowAlert(true);
-                setAlertType("alert alert-success"); 
-                setMessage("OTP has been sent to your email address.");
-            }, 2000);
+            }
 
         } else {
-
             setShowAlert(true);
-            setAlertType("alert alert-danger"); 
+            setAlertType("alert alert-danger");
             setMessage("Please correct the errors and try again.");
         }
     };
