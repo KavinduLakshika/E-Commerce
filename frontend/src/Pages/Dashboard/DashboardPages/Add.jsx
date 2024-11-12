@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Sidebar from '../../../Components/SideBar/SideBar';
 import './Add.css'
+import config from '../../../config'
+import axios from 'axios';
 
 const Add = () => {
   const initialFormData = {
     image: null,
     name: '',
-    gender:'',
+    gender: '',
     category: '',
     price: '',
     size: [],
@@ -15,6 +17,12 @@ const Add = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  
+  const [categories, setCategories] = useState([]);
+  const [categoryError, setCategoryError] = useState(null);
 
   const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL  '];
   const colors = [
@@ -60,14 +68,28 @@ const Add = () => {
     { name: 'White', code: '#FFFFFF' },
   ];
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
-    if (name === 'image') {
-      setFormData({ ...formData, [name]: e.target.files[0] });
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${config.BASE_URL}/categories`);
+      setCategories(response.data);
+      setCategoryError(null);
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+      setCategoryError('Failed to load categories. Please refresh the page or try again later.');
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked, files } = e.target;
+
+    if (type === 'file') {
+      setFormData({ ...formData, image: files[0] });
     } else if (type === 'checkbox') {
       if (name === 'size') {
-        // Handle size checkbox
         setFormData({
           ...formData,
           size: checked
@@ -75,7 +97,6 @@ const Add = () => {
             : formData.size.filter((size) => size !== value),
         });
       } else if (name === 'colors') {
-        // Handle colors checkbox
         setFormData({
           ...formData,
           colors: checked
@@ -88,13 +109,55 @@ const Add = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const productData = new FormData();
+      
+      if (formData.image) {
+        productData.append('productImage', formData.image);
+      }
+
+      productData.append('productName', formData.name);
+      productData.append('productPrice', formData.price);
+      productData.append('productQty', formData.quantity);
+      productData.append('productSize', JSON.stringify(formData.size));
+      productData.append('productColor', JSON.stringify(formData.colors));
+      productData.append('productDescription', `${formData.gender} - ${formData.category}`);
+      productData.append('productStatus', 'active');
+      
+      if (formData.category) {
+        productData.append('catId', formData.category);
+      }
+
+      const response = await axios.post(`${config.BASE_URL}/createProduct`,
+        productData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      setSuccess(true);
+      handleReset();
+      console.log('Product created:', response.data);
+    } catch (err) {
+      setError(err.response?.data?.error || 'An error occurred while creating the product');
+      console.error('Error creating product:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
     setFormData(initialFormData);
+    setError(null);
+    setSuccess(false);
   };
 
   return (
@@ -102,6 +165,23 @@ const Add = () => {
       <Sidebar />
       <div className="container pt-4 mt-4 pb-5">
         <h1 className="mb-4">Add Product</h1>
+
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="alert alert-success" role="alert">
+            Product created successfully!
+          </div>
+        )}
+        {categoryError && (
+          <div className="alert alert-warning" role="alert">
+            {categoryError}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="add-product-form">
 
           <div className="row">
@@ -127,11 +207,17 @@ const Add = () => {
 
             <div className="col-md-3 mb-3">
               <label className="form-label">Category</label>
-              <select name="category" value={formData.category} onChange={handleChange} required className="form-control">
+              <select name="category" value={formData.category} onChange={handleChange} className="form-control" disabled={categories.length === 0} >
                 <option value="">Select Category</option>
-                <option value="T-Shirts">T-Shirts</option>
-                <option value="Shirts">Shirts</option>
+                {categories.map((category) => (
+                  <option key={category.catId} value={category.catId}>
+                    {category.catName}
+                  </option>
+                ))}
               </select>
+              {categories.length === 0 && !categoryError && (
+                <small className="text-muted">Loading categories...</small>
+              )}
             </div>
 
             <div className="col-md-6 mb-3">
@@ -188,8 +274,21 @@ const Add = () => {
             </div>
 
             <div className="d-flex">
-              <button type="button" onClick={handleReset} className="btn btn-danger ms-auto">Reset</button>
-              <button type="submit" className="btn btn-primary ms-2">Add Product</button>
+              <button 
+                type="button" 
+                onClick={handleReset} 
+                className="btn btn-danger ms-auto"
+                disabled={loading}
+              >
+                Reset
+              </button>
+              <button 
+                type="submit" 
+                className="btn btn-primary ms-2"
+                disabled={loading}
+              >
+                {loading ? 'Adding Product...' : 'Add Product'}
+              </button>
             </div>
           </div>
         </form>
