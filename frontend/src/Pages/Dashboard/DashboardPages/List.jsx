@@ -105,7 +105,6 @@ const List = () => {
     }
   };
 
-
   const navigate = useNavigate();
 
   const handleAddBtn = () => {

@@ -3,6 +3,8 @@ import Sidebar from '../../../Components/SideBar/SideBar';
 import './AddCat.css';
 import axios from 'axios';
 import config from '../../../config';
+import Table from '../../../Components/Table/Table'
+import { useEffect } from 'react';
 
 const AddCat = () => {
     const initialFormData = {
@@ -48,6 +50,43 @@ const AddCat = () => {
         setFormData(initialFormData);
     };
 
+    const [data, setData] = useState([]);
+    const columns = ['id', 'Name', 'Action']
+
+    useEffect(() => {
+        fetchCategory();
+    }, []);
+
+    const fetchCategory = async () => {
+        try {
+            const response = await axios.get(`${config.BASE_URL}/categories`);
+            const category = response.data;
+            const formattedData = category.map(category => [
+                category.catId,
+                category.catName,
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(category.catId)}>
+                    <i className='bx bx-trash'></i>
+                </button>
+            ]);
+            setData(formattedData);
+        } catch (error) {
+            setError(`Error fetching category list: ${error.message}`);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this category?')) {
+            try {
+                const response = await axios.delete(`${config.BASE_URL}/category/${id}`);
+                if (response.status === 200) {
+                    setSuccess(true);
+                    fetchCategory();  // Refresh the category list after deletion
+                }
+            } catch (error) {
+                setError(`Error deleting category: ${error.message}`);
+            }
+        }
+    };
 
     return (
         <div className="body" id="body-pd">
@@ -61,7 +100,7 @@ const AddCat = () => {
                 )}
                 {success && (
                     <div className="alert alert-success" role="alert">
-                        Product created successfully!
+                         created successfully!
                     </div>
                 )}
                 <div className="cat-forms row">
@@ -74,6 +113,13 @@ const AddCat = () => {
                             <button type="button" onClick={handleReset} className="btn btn-danger ms-auto" disabled={loading} >Clear</button>
                             <button type="submit" className="btn btn-primary ms-2" disabled={loading}>{loading ? 'Add Product Category...' : 'Add Product Category'}</button>
                         </div>
+                        <Table
+                            data={data}
+                            columns={columns}
+                            showDate={false}
+                            showActions={false}
+                            showButton={false}
+                        />
                     </form>
 
                     <form className='col-md-5'>
