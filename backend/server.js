@@ -28,6 +28,7 @@ app.get('/updateProfile', CustomerController.updateProfile);
 app.get('/customers', CustomerController.getAllCustomers);
 app.get('/customer/:id', CustomerController.getCustomer);
 app.put('/changePassword', CustomerController.changePassword);
+app.post('/changePassword', CustomerController.userChangePassword);
 
 //Auth Routes
 app.post('/sendRecoveryOTP', AuthController.sendRecoveryOTP);

@@ -308,6 +308,33 @@ async function changePassword(req, res) {
     }
 }
 
+async function userChangePassword(req, res) {
+    try {
+        const { oldPassword, newPassword, cusEmail } = req.body;
+
+        const customer = await Customer.findOne({ where: { cusEmail } });
+        if (!customer) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword, customer.cusPw);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Old password is incorrect" });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        customer.cusPw = hashedPassword;
+        await customer.save();
+
+        res.status(200).json({ message: "Password changed successfully" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+
 module.exports = {
     register,
     updateProfile,
@@ -316,4 +343,5 @@ module.exports = {
     getCustomer,
     getAllCustomers,
     changePassword,
+    userChangePassword,
 };

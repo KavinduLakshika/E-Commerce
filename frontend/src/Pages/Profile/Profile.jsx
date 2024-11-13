@@ -4,7 +4,7 @@ import "./Profile.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import MyAccount from "./Tabs/MyAccount";
 import AddressBook from "./Tabs/AddressBook";
-import PasswordChange from "./Tabs/PasswordChange";
+import PasswordChange from "./Tabs/PasswordChange/PasswordChange";
 import MyOrders from "./Tabs/MyOrders";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";

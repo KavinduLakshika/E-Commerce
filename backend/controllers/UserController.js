@@ -153,7 +153,7 @@ const updateUser = async (req, res) => {
         try {
             const { id } = req.params;
 
-            const { userFullName, userName, userPw, userType, userEmail, userNic, userAddress, userTP, userSecondTP, } = req.body;
+            const { userFullName, userName, userType, userEmail, userNic, userAddress, userTP, userSecondTP, } = req.body;
 
             const user = await User.findByPk(id);
             if (!user) {
