@@ -4,6 +4,10 @@ async function createCategory(req, res) {
     try {
         const { catName } = req.body;
 
+        if (!catName) {
+            return res.status(400).json({ error: 'Category name are required' });
+        }
+
         const newCategory = await Category.create({
             catName,
         });
