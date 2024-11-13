@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import { auth, googleProvider } from "../../../Components/config/Firebase";
-import { signInWithPopup } from "firebase/auth";
+import { auth } from "../../../Components/config/Firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import "./Login.css";
 import prod from '../../../assets/prod.webp';
 import config from "../../../config";
@@ -59,6 +59,7 @@ function Login({ onLogin }) {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
+        setProcessing(true);
 
         if (validate()) {
             const postData = {
@@ -76,40 +77,64 @@ function Login({ onLogin }) {
 
                 const data = await response.json();
 
-                if (!response.ok) {
-                    setMessage(data.message || "An error occurred during registration.");
+                if (!response.ok || data.message_type === "error") {
+                    setMessage(data.message || "An error occurred during login.");
                     setAlertType("alert alert-danger");
                     setShowAlert(true);
                     return;
                 }
 
-                const responseType = data.message_type;
-                if (responseType === "error") {
-                    setMessage(data.message);
-                    setAlertType("alert alert-danger");
-                    setShowAlert(true);
-                } else {
-                    onLogin(data.cusName, data.cusEmail, data.token, data.userStatus);
-                }
-            } catch (err) {
-                alert("Failed to log in. Please check your credentials.");
-                setError(err.message);
-            }
-            finally {
+                const { cusName, cusEmail, cusStatus } = data.user;
+                onLogin(cusName, cusEmail, data.token, cusStatus);
+            } catch (error) {
+                setError("Failed to log in. Please check your credentials." + error.message);
+            } finally {
                 setProcessing(false);
             }
+        } else {
+            setProcessing(false);
         }
     };
 
     const handleGoogleSignIn = async () => {
+        const provider = new GoogleAuthProvider();
         try {
-            await signInWithPopup(auth, googleProvider);
-            alert("Signed in with Google successfully!");
-        } catch (err) {
-            alert("Google sign-in failed. Try again.");
-            setError(err.message);
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            const postData = {
+                cusName: user.displayName,
+                cusEmail: user.email,
+                social: "Google",
+                cusImg: user.photoURL,
+            };
+
+            const response = await fetch(`${config.BASE_URL}/socialSign`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(postData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || data.message_type === "error") {
+                setMessage(data.message || "An error occurred during social sign-in.");
+                setAlertType("alert alert-danger");
+                setShowAlert(true);
+                return;
+            }
+            onLogin(user.displayName, user.email, data.token, data.cusStatus, user.photoURL);
+        } catch (error) {
+            console.error("Error during Google sign-in:", error);
+            setMessage("Error signing in with Google: " + error.message);
+            setAlertType("alert alert-danger");
+            setShowAlert(true);
         }
     };
+
+
 
     return (
         <div className="login-container d-flex justify-content-center align-items-center vh-100">
@@ -126,16 +151,15 @@ function Login({ onLogin }) {
                     <div className="col-md-6 d-flex flex-column justify-content-center p-5">
                         <h3 className="text-center">Log In</h3>
 
-                        {showAlert ?
+                        {showAlert && (
                             <div className="row mt-2">
                                 <div className="col-md-12">
                                     <div className={alertType}>
                                         {message}
                                     </div>
                                 </div>
-                            </div> :
-                            null
-                        }
+                            </div>
+                        )}
 
                         <div className="frm mb-3">
                             <div className="form-floating mb-3">
@@ -161,7 +185,11 @@ function Login({ onLogin }) {
                                     placeholder="Password"
                                 />
                                 <label htmlFor="password">Password</label>
-                                <button className="password-toggle-icon" type="button" onClick={handleObscurePasswordToggle}>
+                                <button
+                                    className="password-toggle-icon"
+                                    type="button"
+                                    onClick={handleObscurePasswordToggle}
+                                >
                                     {obscurePassword ? <Eye /> : <EyeSlash />}
                                 </button>
                                 {errors.password && <small className="text-danger">{errors.password}</small>}
@@ -181,7 +209,11 @@ function Login({ onLogin }) {
                         </div>
 
                         <div className="mb-3">
-                            <button className="btn my-3 signIn-btn" onClick={handleLogin}>
+                            <button
+                                className="btn my-3 signIn-btn"
+                                onClick={handleLogin}
+                                disabled={processing}
+                            >
                                 {processing ? "Logging in..." : "Login"}
                             </button>
                         </div>
