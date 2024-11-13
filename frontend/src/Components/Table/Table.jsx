@@ -197,7 +197,7 @@ const Table = ({
                                             <td>
                                                 {showEdit && (
                                                     <button
-                                                        className="btn btn-warning btn-sm mr-3"
+                                                        className="btn btn-warning btn-sm mr-3 btnAction"
                                                         onClick={() => onEdit(rowIndex)}
                                                     >
                                                         <FontAwesomeIcon icon={faPen} />
@@ -206,7 +206,7 @@ const Table = ({
                                                 {' '}
                                                 {showDelete && (
                                                     <button
-                                                        className="btn btn-danger btn-sm"
+                                                        className="btn btn-danger btn-sm btnAction"
                                                         onClick={() => onDelete(rowIndex)}
                                                     >
                                                         <FontAwesomeIcon icon={faTrash} />
