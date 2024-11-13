@@ -120,6 +120,8 @@ const AddCat = () => {
                             showDate={false}
                             showActions={false}
                             showButton={false}
+                            showRow={false}
+                            showSearch={false}
                         />
                     </form>
 
