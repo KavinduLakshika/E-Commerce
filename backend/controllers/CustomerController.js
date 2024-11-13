@@ -94,52 +94,46 @@ async function cusLogin(req, res) {
 async function socialSignIn(req, res) {
     try {
         const { cusName, cusEmail, social, cusImg } = req.body;
-        console.log("Received social sign-in data:", { cusName, cusEmail, social, cusImg });
 
-        const customer = await Customer.findOne({ where: { cusEmail } });
+        let customer = await Customer.findOne({ where: { cusEmail } });
 
         if (!customer) {
-            const loginType = social;
-            const cusStatus = "Active";
-
-            const newCustomer = await Customer.create({
+            customer = await Customer.create({
                 cusName,
                 cusEmail,
-                loginType,
-                cusStatus,
+                loginType: social,
+                cusStatus: "Active",
                 cusImg
             });
 
-            const token = jwt.sign({ cusId: newCustomer.cusEmail }, secretKey, { expiresIn: '12h' });
+            const token = jwt.sign({ cusId: customer.cusEmail }, secretKey, { expiresIn: '12h' });
+
+            return res.status(201).json({
+                message_type: "success",
+                message: "User registered successfully.",
+                cusEmail: customer.cusEmail,
+                cusName: customer.cusName,
+                cusStatus: customer.cusStatus,
+                cusImg: customer.cusImg,
+                token
+            });
+        } else if (customer.loginType === social) {
+            const token = jwt.sign({ cusId: customer.cusEmail }, secretKey, { expiresIn: '12h' });
 
             return res.json({
                 message_type: "success",
-                message: "User registered successfully.",
-                cusEmail: newCustomer.cusEmail,
-                cusName: newCustomer.cusName,
-                cusStatus: newCustomer.cusStatus,
-                cusImg: newCustomer.cusImg,
+                message: "User signed in successfully.",
+                cusEmail: customer.cusEmail,
+                cusName: customer.cusName,
+                cusStatus: customer.cusStatus,
+                cusImg: customer.cusImg,
                 token
             });
         } else {
-            if (customer.loginType === social) {
-                const token = jwt.sign({ cusId: customer.cusEmail }, secretKey, { expiresIn: '12h' });
-
-                return res.json({
-                    message_type: "success",
-                    message: "User signed in successfully.",
-                    cusEmail: customer.cusEmail,
-                    cusName: customer.cusName,
-                    cusStatus: customer.cusStatus,
-                    cusImg: customer.cusImg,
-                    token
-                });
-            } else {
-                return res.status(400).json({
-                    message_type: "error",
-                    message: "User with this email already exists. Try another sign-in method."
-                });
-            }
+            return res.status(400).json({
+                message_type: "error",
+                message: "User with this email already exists. Try another sign-in method."
+            });
         }
     } catch (error) {
         console.error("Error occurred during social sign-in:", error);
@@ -155,14 +149,12 @@ async function register(req, res) {
     try {
         const { cusName, cusEmail, cusPw } = req.body;
 
-        // Validate required fields
         if (!cusName || !cusEmail || !cusPw) {
             return res.status(400).json({
                 message: "Name, email, and password are required."
             });
         }
 
-        // Check if customer already exists
         const existingCustomer = await Customer.findOne({ where: { cusEmail } });
         if (existingCustomer) {
             return res.status(409).json({
@@ -170,18 +162,14 @@ async function register(req, res) {
             });
         }
 
-        // Hash the password
         const hashedPassword = await bcrypt.hash(cusPw, slotRounds);
-        const loginType = "email";
-        const cusStatus = "Active";
 
-        // Create new customer
         const newCustomer = await Customer.create({
             cusName,
             cusEmail,
             cusPw: hashedPassword,
-            loginType,
-            cusStatus,
+            loginType: "email",
+            cusStatus: "Active",
         });
 
         // Generate JWT token
@@ -200,7 +188,8 @@ async function register(req, res) {
     } catch (error) {
         console.error("Error during registration:", error);
         res.status(500).json({
-            message: `An error occurred: ${error.message}`
+            message_type: "error",
+            message: "Internal server error. Please try again."
         });
     }
 }
@@ -308,6 +297,33 @@ async function changePassword(req, res) {
     }
 }
 
+async function userChangePassword(req, res) {
+    try {
+        const { oldPassword, newPassword, cusEmail } = req.body;
+
+        const customer = await Customer.findOne({ where: { cusEmail } });
+        if (!customer) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword, customer.cusPw);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Old password is incorrect" });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        customer.cusPw = hashedPassword;
+        await customer.save();
+
+        res.status(200).json({ message: "Password changed successfully" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+
 module.exports = {
     register,
     updateProfile,
@@ -316,4 +332,5 @@ module.exports = {
     getCustomer,
     getAllCustomers,
     changePassword,
+    userChangePassword,
 };
