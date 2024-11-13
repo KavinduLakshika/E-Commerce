@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 function Profile({ onLogout }) {
     const [activeSection, setActiveSection] = useState("account");
     const navigate = useNavigate();
-
     const [user, setUser] = useState({
         name: '',
         cusImg: ''
@@ -77,8 +76,8 @@ function Profile({ onLogout }) {
                                     alt="Profile"
                                     className="profile-pic mx-auto d-block rounded-circle"
                                 />
-                                <label className="pen-icon">
-                                    <i className="bi bi-pencil-fill"></i>
+                                <label htmlFor="profilePicInput" className="pen-icon">
+                                    <i className="bi bi-pencil-square"></i>
                                 </label>
                                 <input
                                     type="file"

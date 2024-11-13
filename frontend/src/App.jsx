@@ -24,7 +24,7 @@ function App() {
   const [email, setEmail] = useState(null);
   const [token, setToken] = useState(null);
   const [userStatus, setUserStatus] = useState(null);
-  const [cusImage, setCusImg] = useState(null);
+  const [cusImage, setCusImage] = useState(null);
 
   useEffect(() => {
     const storedName = localStorage.getItem('name');
@@ -37,7 +37,7 @@ function App() {
     if (storedEmail) setEmail(storedEmail);
     if (storedToken) setToken(storedToken);
     if (storedStatus) setUserStatus(storedStatus);
-    if (storedImage) setCusImg(storedImage);
+    if (storedImage) setCusImage(storedImage);
   }, []);
 
 
@@ -52,7 +52,7 @@ function App() {
     setEmail(email);
     setToken(token);
     setUserStatus(cusStatus);
-    setCusImg(image);
+    setCusImage(image);
   };
 
   const handleLogout = () => {
@@ -66,7 +66,7 @@ function App() {
     setEmail(null);
     setToken(null);
     setUserStatus(null);
-    setCusImg(null);
+    setCusImage(null);
   };
 
   return (
