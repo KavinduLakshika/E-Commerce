@@ -88,14 +88,14 @@ function App() {
           <Route path="/women" element={<Women />} />
           <Route path="/product" element={<Product />} />
           <Route path="/checkOut" element={<CheckOut />} />
-
-
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add" element={<Add />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/order_list" element={<OrderList />} />
         </Routes>
       </div>
+      <Routes>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/add' element={<Add />} />
+        <Route path='/list' element={<List />} />
+        <Route path='/order_list' element={<OrderList />} />
+      </Routes>
     </BrowserRouter>
   );
 }
