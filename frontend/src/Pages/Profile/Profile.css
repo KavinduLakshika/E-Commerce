@@ -53,3 +53,22 @@ input:hover {
   font-size: 20px;
   line-height: 30px;
 }
+
+.profile-pic-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.pen-icon {
+  position: absolute;
+  cursor: pointer;
+  right: 30%;
+  bottom: -37%;
+  border-radius: 50%;
+}
+
+.pen-icon i {
+  font-size: 0.9rem;
+  color: #333333;
+  color: #555;
+}

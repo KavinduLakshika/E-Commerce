@@ -94,16 +94,23 @@ async function cusLogin(req, res) {
 async function socialSignIn(req, res) {
     try {
         const { cusName, cusEmail, social, cusImg } = req.body;
+        console.log("Received social sign-in data:", { cusName, cusEmail, social, cusImg });
 
         const customer = await Customer.findOne({ where: { cusEmail } });
 
         if (!customer) {
             const loginType = social;
-            const cusStatus = "active";
+            const cusStatus = "Active";
 
-            const newCustomer = await Customer.create({ cusName, cusEmail, loginType, cusStatus, cusImg });
+            const newCustomer = await Customer.create({
+                cusName,
+                cusEmail,
+                loginType,
+                cusStatus,
+                cusImg
+            });
 
-            const token = jwt.sign({ cusId: newCustomer.cusEmail }, secretKey, { expiresIn: '6h' });
+            const token = jwt.sign({ cusId: newCustomer.cusEmail }, secretKey, { expiresIn: '12h' });
 
             return res.json({
                 message_type: "success",
@@ -111,11 +118,12 @@ async function socialSignIn(req, res) {
                 cusEmail: newCustomer.cusEmail,
                 cusName: newCustomer.cusName,
                 cusStatus: newCustomer.cusStatus,
+                cusImg: newCustomer.cusImg,
                 token
             });
         } else {
             if (customer.loginType === social) {
-                const token = jwt.sign({ cusId: customer.cusEmail }, secretKey, { expiresIn: '6h' });
+                const token = jwt.sign({ cusId: customer.cusEmail }, secretKey, { expiresIn: '12h' });
 
                 return res.json({
                     message_type: "success",
@@ -123,6 +131,7 @@ async function socialSignIn(req, res) {
                     cusEmail: customer.cusEmail,
                     cusName: customer.cusName,
                     cusStatus: customer.cusStatus,
+                    cusImg: customer.cusImg,
                     token
                 });
             } else {
@@ -133,10 +142,10 @@ async function socialSignIn(req, res) {
             }
         }
     } catch (error) {
-        console.error("Error occurred while signing in:", error);
+        console.error("Error occurred during social sign-in:", error);
         return res.status(500).json({
             message_type: "error",
-            message: error.message
+            message: "Internal server error. Please try again."
         });
     }
 }

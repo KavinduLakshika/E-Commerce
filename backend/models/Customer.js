@@ -18,7 +18,7 @@ const Customer = sequelize.define("Customer", {
     },
     cusPw: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     cusGender: {
         type: DataTypes.STRING,

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Eye, EyeSlash, CheckCircleFill, XCircleFill } from "react-bootstrap-icons";
-import { auth, googleProvider } from "../../../Components/config/Firebase";
-import { signInWithPopup } from "firebase/auth";
+import { auth } from "../../../Components/config/Firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import config from "../../../config";
 import "./SignUp.css";
 import prod from '../../../assets/prod 2.webp';
@@ -133,11 +133,40 @@ function SignUp({ onLogin }) {
 
 
     const handleGoogleSignUp = async () => {
+        const provider = new GoogleAuthProvider();
         try {
-            await signInWithPopup(auth, googleProvider);
-            alert("Signed up with Google successfully!");
-        } catch (err) {
-            setError(err.message);
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            const postData = {
+                cusName: user.displayName,
+                cusEmail: user.email,
+                social: "Google",
+                cusImg: user.photoURL,
+            };
+
+            const response = await fetch(`${config.BASE_URL}/socialSign`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(postData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || data.message_type === "error") {
+                setMessage(data.message || "An error occurred during social sign-up.");
+                setAlertType("alert alert-danger");
+                setShowAlert(true);
+                return;
+            }
+            onLogin(user.displayName, user.email, data.token, data.cusStatus, user.photoURL);
+        } catch (error) {
+            console.error("Error during Google sign-up:", error);
+            setMessage("Error signing up with Google: " + error.message);
+            setAlertType("alert alert-danger");
+            setShowAlert(true);
         }
     };
 

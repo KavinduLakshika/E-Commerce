@@ -1,22 +1,31 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import "./Profile.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import profilePic from "../../assets/prod.webp";
-import MyAccount from "./Tabs/MyAccount"
+import MyAccount from "./Tabs/MyAccount";
 import AddressBook from "./Tabs/AddressBook";
 import PasswordChange from "./Tabs/PasswordChange";
 import MyOrders from "./Tabs/MyOrders";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import { useNavigate } from "react-router-dom";
 
 function Profile({ onLogout }) {
+    const [activeSection, setActiveSection] = useState("account");
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        name: '',
+        cusImg: ''
+    });
 
     useEffect(() => {
-        localStorage.setItem("profilePic", profilePic);
-    }, []);
+        const storedName = localStorage.getItem('name');
+        const storedImage = localStorage.getItem('cusImage');
 
-    const [activeSection, setActiveSection] = useState("account");
+        setUser({
+            name: storedName || 'User',
+            cusImg: storedImage
+        });
+    }, []);
 
     const renderActiveSection = () => {
         switch (activeSection) {
@@ -33,25 +42,51 @@ function Profile({ onLogout }) {
         }
     };
 
+    const handleProfilePicChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const newProfilePic = reader.result;
+                localStorage.setItem('cusImage', newProfilePic);
+                setUser((prev) => ({ ...prev, cusImg: newProfilePic }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const logout = () => {
         onLogout();
-    }
+        navigate('/');
+    };
 
     return (
         <div>
             <NavBar />
             <div className="container my-5">
                 <a href="/" className="back-link">Back to Shopping</a>
-                <h1 className="fw-bold my-4">Hello</h1>
+                <h1 className="fw-bold my-4">Hello {user.name}</h1>
 
                 <div className="row">
                     <div className="col-md-3">
-                        <div className="card p-3 shadow-sm profile-card">
-                            <img
-                                src={profilePic}
-                                alt="Profile"
-                                className="profile-pic mx-auto d-block rounded-circle"
-                            />
+                        <div className="card p-3 shadow-sm profile-card position-relative">
+                            <div className="profile-pic-wrapper position-relative">
+                                <img
+                                    src={user.cusImg}
+                                    alt="Profile"
+                                    className="profile-pic mx-auto d-block rounded-circle"
+                                />
+                                <label htmlFor="profilePicInput" className="pen-icon">
+                                    <i className="bi bi-pencil-square"></i>
+                                </label>
+                                <input
+                                    type="file"
+                                    id="profilePicInput"
+                                    accept="image/*"
+                                    style={{ display: "none" }}
+                                    onChange={handleProfilePicChange}
+                                />
+                            </div>
                             <h5 className="text-center mt-3 fw-bold">Profile</h5>
 
                             <ul className="list-unstyled mt-4">
@@ -70,7 +105,7 @@ function Profile({ onLogout }) {
                                         className={`profile-link ${activeSection === "passwordChange" ? "active" : ""}`}
                                         onClick={() => setActiveSection("passwordChange")}
                                     >
-                                        <i className="bi bi-eye-slash me-2"></i>Password Change
+                                        <i className="bi bi-eye-slash me-2"></i> Password Change
                                     </a>
                                 </li>
                                 <li className="my-2">
@@ -79,7 +114,7 @@ function Profile({ onLogout }) {
                                         className={`profile-link ${activeSection === "addressBook" ? "active" : ""}`}
                                         onClick={() => setActiveSection("addressBook")}
                                     >
-                                        <i className="bi bi-truck me-2"></i>Address Book
+                                        <i className="bi bi-truck me-2"></i> Address Book
                                     </a>
                                 </li>
                                 <li className="my-2">
@@ -88,13 +123,13 @@ function Profile({ onLogout }) {
                                         className={`profile-link ${activeSection === "orders" ? "active" : ""}`}
                                         onClick={() => setActiveSection("orders")}
                                     >
-                                        <i className="bi bi-bag me-2"></i>My Orders
+                                        <i className="bi bi-bag me-2"></i> My Orders
                                     </a>
                                 </li>
                             </ul>
                             <hr />
                             <a href="#" className="logout-link text-danger text-decoration-none" onClick={logout}>
-                                <i className="bi bi-box-arrow-right me-2"></i>Log Out
+                                <i className="bi bi-box-arrow-right me-2"></i> Log Out
                             </a>
                         </div>
                     </div>
@@ -107,7 +142,7 @@ function Profile({ onLogout }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Profile
+export default Profile;

@@ -1,22 +1,33 @@
 import { useState, useEffect } from 'react';
 import './NavBar.css';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SlideInCart from '../../Pages/Cart/SlideInCart/SlideInCart';
 
 const NavBar = () => {
     const [isCartVisible, setIsCartVisible] = useState(false);
     const [cartItems, setCartItems] = useState([]);
-    const [profilePic, setProfilePic] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         setCartItems(savedCartItems);
 
-        const savedProfilePic = localStorage.getItem("profilePic");
-        if (savedProfilePic) {
-            setProfilePic(savedProfilePic);
-        }
+        const token = localStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const token = localStorage.getItem("token");
+            setIsLoggedIn(!!token);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
     }, []);
 
     const toggleCartVisibility = () => {
@@ -25,6 +36,15 @@ const NavBar = () => {
 
     const handleCloseCart = () => {
         setIsCartVisible(false);
+    };
+
+    const handleProfileClick = (e) => {
+        e.preventDefault();
+        if (isLoggedIn) {
+            navigate('/profile');
+        } else {
+            navigate('/login');
+        }
     };
 
     const handleRemoveItem = (index) => {
@@ -49,9 +69,12 @@ const NavBar = () => {
                         <a className="text-reset me-3" href="#" onClick={(e) => { e.preventDefault(); toggleCartVisibility(); }}>
                             <FaShoppingCart size={25} color="white" />
                         </a>
-                        <div className="">
-                            <a href='/profile'>
-                                <img src={profilePic} className="rounded-circle" height="25" alt="Avatar" loading="lazy" />
+                        <div className="d-flex">
+                            <a href="#" className='d-flex' onClick={handleProfileClick}>
+                                <i className="bi bi-person" style={{ color: "white", fontSize: "25px" }} ></i>
+                                <span className='my-2' style={{ color: "white", paddingLeft: "10px" }}>
+                                    {isLoggedIn ? "Profile" : "Login"}
+                                </span>
                             </a>
                         </div>
                     </div>
