@@ -191,12 +191,12 @@ const Add = () => {
 
             <div className="col-md-6 mb-3">
               <label className="form-label">Name</label>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} required className="form-control" />
+              <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" />
             </div>
 
             <div className="col-md-3 mb-3">
               <label className="form-label">Gender</label>
-              <select name="gender" value={formData.gender} onChange={handleChange} required className="form-control">
+              <select name="gender" value={formData.gender} onChange={handleChange} className="form-control">
                 <option value="">Select Gender</option>
                 <option value="Men">Men</option>
                 <option value="Women">Women</option>
@@ -221,7 +221,7 @@ const Add = () => {
 
             <div className="col-md-6 mb-3">
               <label className="form-label">Price</label>
-              <input type="number" name="price" value={formData.price} onChange={handleChange} required className="form-control" />
+              <input type="number" name="price" value={formData.price} onChange={handleChange}  className="form-control" />
             </div>
 
             <div className="col-md-6 mb-3">
@@ -242,7 +242,7 @@ const Add = () => {
 
             <div className="col-md-6 mb-3">
               <label className="form-label">Quantity</label>
-              <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required className="form-control" />
+              <input type="number" name="quantity" value={formData.quantity} onChange={handleChange}  className="form-control" />
             </div>
 
             <div className="col-md-12 mb-3">

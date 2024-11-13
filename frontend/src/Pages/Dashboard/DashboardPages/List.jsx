@@ -15,33 +15,30 @@ const List = () => {
 
   const title = 'Product';
   const invoice = 'Product.pdf';
-
   useEffect(() => {
-    fetchProductList();
+    fetchProductList(categories);
     fetchCategories();
-  }, [])
-
+  }, [categories]);
+  
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${config.BASE_URL}/categories`);
-      console.log('Categories:', response.data);
       const categoryMap = response.data.reduce((acc, category) => {
         acc[category.catId] = category.catName;
         return acc;
       }, {});
       setCategories(categoryMap);
-      await fetchProductList(categoryMap);
     } catch (error) {
       setError(`Error fetching categories: ${error.message}`);
     }
   };
   
-  const fetchProductList = async (categoryMap) => {
+  const fetchProductList = async (categoryMap = categories) => {
     try {
       const response = await fetch(`${config.BASE_URL}/products`);
       if (!response.ok) {
         setError(`Failed to fetch product: ${response.status} ${response.statusText}`);
-        return; 
+        return;
       }
       const product = await response.json();
       const formattedData = product.map(product => [
@@ -63,11 +60,10 @@ const List = () => {
       ]);
       setData(formattedData);
     } catch (error) {
-      console.log(error);
       setError(`Error fetching product list: ${error.message}`);
     }
   };
-
+  
   const handleStatusChange = async (productId, newStatus) => {
     try {
       const response = await fetch(`${config.BASE_URL}/product/${productId}`, {
@@ -77,16 +73,18 @@ const List = () => {
         },
         body: JSON.stringify({ productStatus: newStatus }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(`Failed to update product status: ${response.status} ${response.statusText}. ${errorData.message || ''}`);
       }
-      await fetchProductList();
+      // Refresh the product list to show the updated status
+      fetchProductList(categories);
     } catch (error) {
       setError(`Error updating product status: ${error.message}`);
     }
-  }
+  };
+  
 
   const navigate = useNavigate();
 
