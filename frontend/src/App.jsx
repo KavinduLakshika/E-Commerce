@@ -18,6 +18,7 @@ import OrderList from './Pages/Dashboard/DashboardPages/OrderList';
 import PassOtp from './Pages/Auth/passwordRecovery/PassOtp';
 import ReqOtp from './Pages/Auth/passwordRecovery/ReqOtp';
 import ResetPassword from './Pages/Auth/passwordRecovery/ResetPassword';
+import AddCat from './Pages/Dashboard/DashboardPages/AddCat';
 
 function App() {
   const [name, setName] = useState(null);
@@ -88,14 +89,14 @@ function App() {
           <Route path="/women" element={<Women />} />
           <Route path="/product" element={<Product />} />
           <Route path="/checkOut" element={<CheckOut />} />
+
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/add' element={<Add />} />
+          <Route path='/list' element={<List />} />
+          <Route path='/order_list' element={<OrderList />} />
+          <Route path='/category_add' element={<AddCat />} />
         </Routes>
       </div>
-      <Routes>
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/add' element={<Add />} />
-        <Route path='/list' element={<List />} />
-        <Route path='/order_list' element={<OrderList />} />
-      </Routes>
     </BrowserRouter>
   );
 }
