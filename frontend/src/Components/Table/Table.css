@@ -21,6 +21,12 @@
     .date{
         width:40%;
     }
+    td{
+        font-size: 10px;
+    }
+    .btnAction{
+        display:none;
+    }
 }
 .scroll-table {
     overflow-x: auto;

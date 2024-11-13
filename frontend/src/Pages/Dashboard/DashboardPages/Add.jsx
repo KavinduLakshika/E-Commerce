@@ -127,7 +127,7 @@ const Add = () => {
       productData.append('productQty', formData.quantity);
       productData.append('productSize', JSON.stringify(formData.size));
       productData.append('productColor', JSON.stringify(formData.colors));
-      productData.append('productDescription', `${formData.gender} - ${formData.category}`);
+      productData.append('productDescription', `${formData.gender}`);
       productData.append('productStatus', 'In stock');
 
       if (formData.category) {
@@ -142,7 +142,6 @@ const Add = () => {
           },
         }
       );
-
       setSuccess(true);
       handleReset();
       console.log('Product created:', response.data);
