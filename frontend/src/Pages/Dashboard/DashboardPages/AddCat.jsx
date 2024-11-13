@@ -36,6 +36,7 @@ const AddCat = () => {
             if (response.status === 201) {
                 setSuccess(true);
                 handleReset();
+                fetchCategory();
             }
             console.log('Sending data to backend:', formData);
         } catch (err) {
