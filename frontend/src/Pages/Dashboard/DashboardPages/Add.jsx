@@ -230,13 +230,7 @@ const Add = () => {
                 {sizes.map((size) => (
                   <div className="form-check form-check-inline align-items-center" key={size}>
                     <label className="checkbox-container">
-                      <input
-                        type="checkbox"
-                        name="size"
-                        value={size}
-                        checked={formData.size.includes(size)}
-                        onChange={handleChange}
-                      />
+                      <input type="checkbox" name="size" value={size} checked={formData.size.includes(size)} onChange={handleChange} />
                       <div className="line"></div>
                       <div className="line line-indicator"></div>
                     </label>
@@ -257,13 +251,7 @@ const Add = () => {
                 {colors.map((color) => (
                   <div className="form-check form-check-inline" key={color.code}>
                     <label className="custom-checkbox-container">
-                      <input
-                        type="checkbox"
-                        name="colors"
-                        value={color.name}
-                        checked={formData.colors.includes(color.name)}
-                        onChange={handleChange}
-                      />
+                      <input type="checkbox" name="colors" value={color.name} checked={formData.colors.includes(color.name)} onChange={handleChange}/>
                       <span className="custom-checkmark" style={{ backgroundColor: color.code }}></span>
                     </label>
                     <span className="form-check-label">{color.name}</span>
@@ -273,21 +261,8 @@ const Add = () => {
             </div>
 
             <div className="d-flex">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="btn btn-danger ms-auto"
-                disabled={loading}
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary ms-2"
-                disabled={loading}
-              >
-                {loading ? 'Adding Product...' : 'Add Product'}
-              </button>
+              <button type="button" onClick={handleReset} className="btn btn-danger ms-auto" disabled={loading}>Reset</button>
+              <button type="submit" className="btn btn-primary ms-2" disabled={loading}>{loading ? 'Adding Product...' : 'Add Product'}</button>
             </div>
           </div>
         </form>
