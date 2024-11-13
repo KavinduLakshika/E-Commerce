@@ -24,7 +24,7 @@ function App() {
   const [email, setEmail] = useState(null);
   const [token, setToken] = useState(null);
   const [userStatus, setUserStatus] = useState(null);
-  const [cusImg, setCusImg] = useState(null);
+  const [cusImage, setCusImg] = useState(null);
 
   useEffect(() => {
     const storedName = localStorage.getItem('name');
