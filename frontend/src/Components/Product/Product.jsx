@@ -28,8 +28,17 @@ const Product = () => {
     const handleBuyNow = () => {
         const orderData = [{ ...product, quantity, selectedSize }];
         navigate('/checkout', { state: { orderData } });
+
+        const isLoggedIn = localStorage.getItem('token');
+
+        if (isLoggedIn) {
+            navigate('/checkout', { state: { orderData } });
+        } else {
+            alert('Please log in to proceed to checkout.');
+            navigate('/login');
+        }
     };
-    
+
     const handleAddToCart = () => {
         const newCartItem = { ...product, quantity, selectedSize };
         const updatedCart = [...cartItems, newCartItem];

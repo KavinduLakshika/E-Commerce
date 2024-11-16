@@ -204,10 +204,17 @@ async function updateProfile(req, res) {
         }
 
         try {
-            const { cusId, cusGender, cusPhone1, cusPhone2, cusCountry, cusDob } = req.body;
+            const { cusEmail, cusName, cusGender, cusPhone1, cusPhone2, cusCountry, cusDob } = req.body;
 
-            if (!cusId) {
-                return res.status(400).json({ error: "Customer ID is required" });
+            if (!cusEmail) {
+                return res.status(400).json({ error: "Customer email is required" });
+            }
+
+            // Check if the customer exists using the email
+            const customer = await Customer.findOne({ where: { cusEmail } });
+
+            if (!customer) {
+                return res.status(404).json({ error: "Customer not found" });
             }
 
             let cusImg = null;
@@ -215,16 +222,17 @@ async function updateProfile(req, res) {
                 cusImg = `${req.protocol}://${req.get('host')}/uploads/customer/${req.file.filename}`;
             }
 
+            // Update the customer's details
             const [updated] = await Customer.update(
-                { cusGender, cusPhone1, cusPhone2, cusCountry, cusDob, cusImg },
-                { where: { cusId } }
+                { cusName, cusGender, cusPhone1, cusPhone2, cusCountry, cusDob, cusImg },
+                { where: { cusEmail } }
             );
 
             if (updated === 1) {
-                const updatedCustomer = await Customer.findOne({ where: { cusId } });
+                const updatedCustomer = await Customer.findOne({ where: { cusEmail } });
                 res.status(200).json({ message: "Profile updated successfully", customer: updatedCustomer });
             } else {
-                res.status(404).json({ error: "Customer not found or no changes made" });
+                res.status(400).json({ error: "No changes were made to the profile" });
             }
         } catch (error) {
             res.status(500).json({ error: `An error occurred: ${error.message}` });
@@ -322,6 +330,53 @@ async function userChangePassword(req, res) {
     }
 }
 
+async function updateProfilePicture(req, res) {
+    upload(req, res, async (err) => {
+        if (err instanceof multer.MulterError) {
+            return res.status(500).json({ error: 'Image upload failed' });
+        } else if (err) {
+            return res.status(500).json({ error: 'Unknown error: Image upload failed' });
+        }
+
+        try {
+            const { cusEmail } = req.body;
+
+            if (!cusEmail) {
+                return res.status(400).json({ error: "Customer email is required" });
+            }
+
+            const customer = await Customer.findOne({ where: { cusEmail } });
+
+            if (!customer) {
+                return res.status(404).json({ error: "Customer not found" });
+            }
+
+            let cusImg = null;
+            if (req.file) {
+                cusImg = `${req.protocol}://${req.get('host')}/uploads/customer/${req.file.filename}`;
+
+                if (customer.cusImg) {
+                    const oldImagePath = path.join(__dirname, '..', 'uploads', 'customer', path.basename(customer.cusImg));
+                    if (fs.existsSync(oldImagePath)) {
+                        fs.unlinkSync(oldImagePath);
+                    }
+                }
+            }
+
+            customer.cusImg = cusImg;
+            await customer.save();
+
+            return res.status(200).json({
+                message: "Profile picture updated successfully",
+                cusImg
+            });
+
+        } catch (error) {
+            console.error("Error updating profile picture:", error);
+            return res.status(500).json({ error: `An error occurred: ${error.message}` });
+        }
+    });
+}
 
 
 module.exports = {
@@ -333,4 +388,5 @@ module.exports = {
     getAllCustomers,
     changePassword,
     userChangePassword,
+    updateProfilePicture,
 };

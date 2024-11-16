@@ -8,6 +8,7 @@ import PasswordChange from "./Tabs/PasswordChange/PasswordChange";
 import MyOrders from "./Tabs/MyOrders";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import config from "../../config";
 
 function Profile({ onLogout }) {
     const [activeSection, setActiveSection] = useState("account");
@@ -42,18 +43,35 @@ function Profile({ onLogout }) {
         }
     };
 
-    const handleProfilePicChange = (e) => {
+    const handleProfilePicChange = async (e) => {
         const file = e.target.files[0];
+
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const newProfilePic = reader.result;
-                localStorage.setItem('cusImage', newProfilePic);
-                setUser((prev) => ({ ...prev, cusImg: newProfilePic }));
-            };
-            reader.readAsDataURL(file);
+            const formData = new FormData();
+            formData.append("cusImg", file);
+            formData.append("cusEmail", localStorage.getItem("email"));
+
+            try {
+                const response = await fetch(`${config.BASE_URL}/updateProfilePicture`, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const newProfilePic = data.cusImg;
+
+                    localStorage.setItem("cusImage", newProfilePic);
+                    setUser((prev) => ({ ...prev, cusImg: newProfilePic }));
+                } else {
+                    console.error("Failed to update profile picture");
+                }
+            } catch (error) {
+                console.error("Error uploading profile picture:", error);
+            }
         }
     };
+
 
     const logout = () => {
         onLogout();

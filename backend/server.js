@@ -24,11 +24,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.post('/cusLogin', CustomerController.cusLogin);
 app.post('/socialSign', CustomerController.socialSignIn);
 app.post('/register', CustomerController.register);
-app.get('/updateProfile', CustomerController.updateProfile);
+app.post('/updateProfile', CustomerController.updateProfile);
 app.get('/customers', CustomerController.getAllCustomers);
 app.get('/customer/:id', CustomerController.getCustomer);
 app.put('/changePassword', CustomerController.changePassword);
 app.post('/changePassword', CustomerController.userChangePassword);
+app.post('/updateProfilePicture', CustomerController.updateProfilePicture);
 
 //Auth Routes
 app.post('/sendRecoveryOTP', AuthController.sendRecoveryOTP);
