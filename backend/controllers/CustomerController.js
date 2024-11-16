@@ -333,32 +333,34 @@ async function userChangePassword(req, res) {
 async function updateProfilePicture(req, res) {
     upload(req, res, async (err) => {
         if (err instanceof multer.MulterError) {
-            return res.status(500).json({ error: 'Image upload failed' });
+            return res.status(500).json({ error: 'Multer error: Image upload failed' });
         } else if (err) {
             return res.status(500).json({ error: 'Unknown error: Image upload failed' });
         }
 
         try {
             const { cusEmail } = req.body;
-
             if (!cusEmail) {
                 return res.status(400).json({ error: "Customer email is required" });
             }
 
             const customer = await Customer.findOne({ where: { cusEmail } });
-
             if (!customer) {
                 return res.status(404).json({ error: "Customer not found" });
             }
 
-            let cusImg = null;
+            let cusImg = customer.cusImg;
             if (req.file) {
                 cusImg = `${req.protocol}://${req.get('host')}/uploads/customer/${req.file.filename}`;
 
                 if (customer.cusImg) {
                     const oldImagePath = path.join(__dirname, '..', 'uploads', 'customer', path.basename(customer.cusImg));
                     if (fs.existsSync(oldImagePath)) {
-                        fs.unlinkSync(oldImagePath);
+                        try {
+                            fs.unlinkSync(oldImagePath);
+                        } catch (err) {
+                            console.error("Failed to delete old image:", err);
+                        }
                     }
                 }
             }
@@ -368,16 +370,15 @@ async function updateProfilePicture(req, res) {
 
             return res.status(200).json({
                 message: "Profile picture updated successfully",
-                cusImg
+                cusImg,
             });
 
         } catch (error) {
             console.error("Error updating profile picture:", error);
-            return res.status(500).json({ error: `An error occurred: ${error.message}` });
+            return res.status(500).json({ error: "Server error: Unable to update profile picture" });
         }
     });
 }
-
 
 module.exports = {
     register,

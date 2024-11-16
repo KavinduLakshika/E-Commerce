@@ -45,7 +45,6 @@ function Profile({ onLogout }) {
 
     const handleProfilePicChange = async (e) => {
         const file = e.target.files[0];
-
         if (file) {
             const formData = new FormData();
             formData.append("cusImg", file);
@@ -61,17 +60,21 @@ function Profile({ onLogout }) {
                     const data = await response.json();
                     const newProfilePic = data.cusImg;
 
+                    // Update localStorage and state
                     localStorage.setItem("cusImage", newProfilePic);
                     setUser((prev) => ({ ...prev, cusImg: newProfilePic }));
+
+                    alert("Profile picture updated successfully!");
                 } else {
                     console.error("Failed to update profile picture");
+                    alert("Failed to update profile picture. Please try again.");
                 }
             } catch (error) {
                 console.error("Error uploading profile picture:", error);
+                alert("An error occurred while uploading. Please try again later.");
             }
         }
     };
-
 
     const logout = () => {
         onLogout();
