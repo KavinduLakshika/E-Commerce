@@ -42,6 +42,7 @@ app.get("/products", ProductController.getAllProducts);
 app.get("/product/:id", ProductController.geByProductId);
 app.put("/product/:id", ProductController.updateProduct);
 app.delete("/product/:id", ProductController.deleteProduct);
+app.get('/products/men', ProductController.getMenProducts);
 
 //Category Routes
 app.post("/createCategory", CategoryController.createCategory);

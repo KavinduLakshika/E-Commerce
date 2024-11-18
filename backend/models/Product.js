@@ -30,6 +30,10 @@ const Product = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        colorCode:{
+            type:DataTypes.STRING,
+            allowNull:false,
+        },
         productDescription: {
             type: DataTypes.STRING,
             allowNull: false,

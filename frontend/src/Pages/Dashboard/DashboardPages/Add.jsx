@@ -10,6 +10,7 @@ const Add = () => {
     name: '',
     gender: '',
     category: '',
+    code:[],
     price: '',
     size: [],
     quantity: '',
@@ -127,6 +128,9 @@ const Add = () => {
       productData.append('productQty', formData.quantity);
       productData.append('productSize', JSON.stringify(formData.size));
       productData.append('productColor', JSON.stringify(formData.colors));
+      productData.append('colorCode', JSON.stringify(formData.colors.map(colorName => 
+        colors.find(c => c.name === colorName)?.code
+      )));
       productData.append('productDescription', `${formData.gender}`);
       productData.append('productStatus', 'In stock');
 

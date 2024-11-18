@@ -33,7 +33,7 @@ async function createProduct(req, res) {
             return res.status(500).json({ error: 'Unknown error: Image upload failed' });
         }
         try {
-            const { productName, productPrice, productQty, productSize, productColor, productDescription, productStatus, catId } = req.body;
+            const { productName, productPrice, productQty, productSize, productColor, colorCode, productDescription, productStatus, catId } = req.body;
 
             // Validate required fields
             if (!productName || !productPrice || !productQty || !productSize || !productColor) {
@@ -59,6 +59,7 @@ async function createProduct(req, res) {
                 productQty,
                 productSize,
                 productColor,
+                colorCode,
                 productDescription,
                 productImage,
                 productStatus,
@@ -192,11 +193,25 @@ async function deleteProduct(req, res) {
     }
 };
 
+async function getMenProducts() {
+    try {
+        const menProducts = await Product.findAll({
+            where: {
+                productDescription: 'Men'
+            }
+        });
+        return menProducts;
+    } catch (error) {
+        console.error('Error fetching Men products:', error);
+        throw error;
+    }
+}
 
 module.exports = {
     createProduct,
     getAllProducts,
     geByProductId,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getMenProducts
 }
