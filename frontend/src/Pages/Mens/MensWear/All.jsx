@@ -1,55 +1,53 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import config from '../../../config';
 import CardList from "../../../Components/Card/CardList";
-import prod from '../../../assets/prod.webp';
-import prod2 from '../../../assets/prod 2.webp';
-import prod3 from '../../../assets/prod3.webp';
 
 function All() {
-    const sampleData = [
-        {
-            prodName: 'Product 1',
-            prodPrice: 1500,
-            images: [prod, prod2, prod3],
-            color: 'red',
-            availableSizes: ['S', 'M', 'L'],
-            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
-            maxQuantity: 10,
-        },
-        {
-            prodName: "Product 2",
-            prodPrice: 2000,
-            images: [prod, prod2, prod3],
-            color: "blue",
-            availableSizes: ['S', 'M', 'L'],
-            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
-            maxQuantity: 10,
-        },
-        {
-            prodName: 'Product 1',
-            prodPrice: 1500,
-            images: [prod, prod2, prod3],
-            color: 'white',
-            availableSizes: ['S', 'M', 'L'],
-            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
-            maxQuantity: 10,
-        },
-        {
-            prodName: "Product 2",
-            prodPrice: 2000,
-            images: [prod, prod2, prod3],
-            color: "blue",
-            availableSizes: ['S', 'M', 'L'],
-            description: 'A comfortable and stylish white t-shirt made from premium cotton.',
-            maxQuantity: 10,
-        }
-    ];
-    return (
-        <div>
-            <CardList
-                data={sampleData}
-                pageName='All'
-            />
-        </div>
-    )
+   const [products, setProducts] = useState([]);
+   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState(null);
+
+   useEffect(() => {
+       fetchMenProducts();
+   }, []);
+
+   const fetchMenProducts = async () => {
+       try {
+           const response = await axios.get(`${config.BASE_URL}/products`);
+           const formattedProducts = response.data.map(product => ({
+               prodName: product.productName,
+               prodPrice: product.productPrice,
+               images: [product.productImage],
+               color: JSON.parse(product.productColor),
+               availableSizes: JSON.parse(product.productSize),
+               description: product.productDescription,
+               maxQuantity: product.productQty,
+           }));
+           setProducts(formattedProducts);
+           setLoading(false);
+       } catch (err) {
+           setError('Failed to fetch men\'s products');
+           setLoading(false);
+       }
+   };
+
+   return (
+       <div>
+           {loading ? (
+               <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+                   <div className="spinner-border text-primary" role="status">
+                       <span className="visually-hidden">Loading...</span>
+                   </div>
+               </div>
+           ) : (
+               <CardList
+                   data={products}
+                   pageName='All'
+               />
+           )}
+       </div>
+   )
 }
 
-export default All
+export default All;

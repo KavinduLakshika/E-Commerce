@@ -193,16 +193,23 @@ async function deleteProduct(req, res) {
     }
 };
 
+// Function to fetch 'Men' products
 async function getMenProducts() {
     try {
+        // Sync the model (optional, remove if already synced)
+        await Product.sync();
+
+        // Fetch products with description 'Men'
         const menProducts = await Product.findAll({
             where: {
                 productDescription: 'Men'
             }
         });
+
+        console.log('Men Products:', menProducts);
         return menProducts;
     } catch (error) {
-        console.error('Error fetching Men products:', error);
+        console.error('Error fetching Men products:', error.message);
         throw error;
     }
 }
